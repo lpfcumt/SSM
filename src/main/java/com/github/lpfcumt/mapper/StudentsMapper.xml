@@ -24,18 +24,10 @@
        select * from students
    </select>
    
-   <!-- 插入数据 -->
-   <insert id="" parameterType="com.github.lpfcumt.pojo.Students" databaseId="mysql">
-       
-   </insert>
-   
-   <!--更新数据  -->
-   <update id="" parameterType="com.github.lpfcumt.pojo.Students" databaseId="mysql">
-       
-   </update >
+
    
    <!--删除数据  -->
-   <delete id="" parameterType="java.lang.Integer" databaseId="mysql">
+   <delete id="delete" parameterType="java.lang.Integer" databaseId="mysql">
        delete from students where id=#{id}
    </delete>
    
