@@ -20,6 +20,12 @@ repositories {
 }
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 // In this section you declare the dependencies for your production and test code
+
+configurations {
+    //在整个构建过程中排除pkaq.tiger：share
+    all*.exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
+}
+
 dependencies {
     // The production code uses the SLF4J logging API at compile time
     compile 'org.springframework:spring-context:4.3.5.RELEASE',
