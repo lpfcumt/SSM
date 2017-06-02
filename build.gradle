@@ -75,12 +75,12 @@ sourceSets {
 
 gretty {
 	 port = 8070  
-    contextPath ="/${project.name}"  
+    //contextPath ="/${project.name}"  
     servletContainer = 'tomcat8'
     debugPort = 5015      // default
   	debugSuspend = true   // default
     //port = 8080  
-    //contextPath =""
+    contextPath =""
     //servletContainer = 'tomcat8'
     //debugPort = 5005      // default
   	//debugSuspend = true   // default

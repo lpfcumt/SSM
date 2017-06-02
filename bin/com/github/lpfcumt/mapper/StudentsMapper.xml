@@ -24,11 +24,15 @@
        select * from students
    </select>
    
-
+   <select id="count" resultType="java.lang.Integer" databaseId="mysql">
+       select count(*) from students
+   </select>
    
    <!--删除数据  -->
    <delete id="delete" parameterType="java.lang.Integer" databaseId="mysql">
        delete from students where id=#{id}
    </delete>
+   
+   <!--  -->
    
 </mapper>

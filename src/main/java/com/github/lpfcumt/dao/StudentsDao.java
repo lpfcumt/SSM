@@ -26,6 +26,13 @@ public interface StudentsDao {
 	 * @return List<Students>
 	 */
 	List<Students> queryAll();
+
+	/**
+	 * @method 查询总数
+	 * @author 林鹏飞
+	 * @return
+	 */
+	int count();
 	
 	
 }

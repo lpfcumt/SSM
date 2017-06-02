@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.github.lpfcumt.dao.StudentsDao;
 import com.github.lpfcumt.pojo.Students;
 import com.github.lpfcumt.service.StudentsService;
+import com.github.pagehelper.PageHelper;
 
 /**
  * @author 林鹏飞
@@ -38,6 +39,19 @@ public class StudentsServiceImpl implements StudentsService {
 	public List<Students> queryAll() {
 		// TODO Auto-generated method stub
 		return studentsDao.queryAll();
+	}
+
+	@Override
+	public List<Students> queryByPage(int pageNumber,int pageSize) {
+		// TODO Auto-generated method stub
+		PageHelper.startPage(pageNumber, pageSize);
+		return studentsDao.queryAll();
+	}
+
+	@Override
+	public int count() {
+		// TODO Auto-generated method stub
+		return studentsDao.count();
 	}
 	
 	
