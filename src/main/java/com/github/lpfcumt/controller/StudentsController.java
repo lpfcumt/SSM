@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSONPObject;
 import com.github.lpfcumt.service.StudentsService;
 
 /**
@@ -31,6 +32,15 @@ public class StudentsController extends BaseController{
 	
 	
 	
+	/**
+	 * @method 查询所有students
+	 * @author 林鹏飞
+	 * @param asc
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return Map<String, Object>
+	 * @throws Exception
+	 */
 	@RequestMapping(value="/queryAll",method=RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> queryAll(String asc,
@@ -43,14 +53,29 @@ public class StudentsController extends BaseController{
 		return data;
 		} 
 	
+	@RequestMapping(value="/query",method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> query() throws Exception{
+		JSONPObject jsonpObject=new JSONPObject();
+		Map<String, Object> data =new HashMap<String,Object>();
+		data.put("rows", studentsService.queryAll());
+		
+		return data;
+		} 
+	
 	@RequestMapping(value="/hello")
 	@ResponseBody
 	public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) throws Exception{
-		ModelAndView mView=new ModelAndView("hello","massage","hello world!");
+		ModelAndView mView=new ModelAndView("easyindex","massage","hello world!");
 		mView.addObject("mm", "13215");
-		
-		return mView;
-		
+		return mView;	
 	} 
+	
+	@RequestMapping(value="/easyindex")
+	@ResponseBody
+	public void returnEasyindex(HttpServletResponse resp) throws Exception{
 		
+		resp.sendRedirect("easyindex.jsp");
+	}
+	
 }
