@@ -2,6 +2,8 @@ package com.github.lpfcumt.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.github.lpfcumt.pojo.Students;
 
 /**
@@ -33,6 +35,8 @@ public interface StudentsDao {
 	 * @return
 	 */
 	int count();
+
+	List<Students> checkLogin(@Param("students_id")int students_id, @Param("password")int password);
 	
 	
 }

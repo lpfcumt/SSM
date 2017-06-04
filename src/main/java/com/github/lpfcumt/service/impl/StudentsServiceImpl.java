@@ -53,6 +53,18 @@ public class StudentsServiceImpl implements StudentsService {
 		// TODO Auto-generated method stub
 		return studentsDao.count();
 	}
+
+	@Override
+	public Boolean checkLogin(int students_id, int password) {
+		// TODO Auto-generated method stub
+		if (!studentsDao.checkLogin(students_id,password).isEmpty()) {
+			return true;
+		} 
+		else {
+			return false;
+		}
+		
+	}
 	
 	
 	

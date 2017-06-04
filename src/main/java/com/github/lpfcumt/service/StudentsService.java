@@ -49,4 +49,13 @@ public interface StudentsService {
 	 */
 	int count();
 
+	/**
+	 * @method 登录验证
+	 * @author 林鹏飞
+	 * @param students_id
+	 * @param password
+	 * @return Boolean
+	 */
+	Boolean checkLogin(int students_id, int password);
+
 }

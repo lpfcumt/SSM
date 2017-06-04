@@ -28,6 +28,10 @@
        select count(*) from students
    </select>
    
+   <select id="checkLogin" resultMap="students" databaseId="mysql">
+       select * from students where students_id=#{students_id} and password=#{password}
+   </select>
+   
    <!--删除数据  -->
    <delete id="delete" parameterType="java.lang.Integer" databaseId="mysql">
        delete from students where id=#{id}

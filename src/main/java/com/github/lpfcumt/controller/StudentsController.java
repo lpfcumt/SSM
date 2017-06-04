@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +31,7 @@ public class StudentsController extends BaseController{
 	@Autowired
 	protected StudentsService studentsService;
 	
+	Map<String, Object> data =new HashMap<String,Object>();
 	
 	
 	/**
@@ -41,41 +43,48 @@ public class StudentsController extends BaseController{
 	 * @return Map<String, Object>
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/queryAll",method=RequestMethod.GET)
+	@RequestMapping(value="/queryAll")
 	@ResponseBody
 	public Map<String, Object> queryAll(String asc,
 			@RequestParam(required = false, defaultValue = "0") int pageNumber,
             @RequestParam(required = false, defaultValue = "5") int pageSize
             ) throws Exception{
-		Map<String, Object> data =new HashMap<String,Object>();
 		data.put("total", studentsService.count());
 		data.put("rows", studentsService.queryByPage(pageNumber, pageSize));
 		return data;
 		} 
 	
-	@RequestMapping(value="/query",method=RequestMethod.POST)
+	@RequestMapping(value="/query")
 	@ResponseBody
-	public Map<String, Object> query() throws Exception{
-		JSONPObject jsonpObject=new JSONPObject();
-		Map<String, Object> data =new HashMap<String,Object>();
-		data.put("rows", studentsService.queryAll());
-		
+	public Map<String, Object> query(String asc,@RequestParam int page,@RequestParam int rows) throws Exception{
+		data.put("rows", studentsService.queryByPage(page, rows));
+		data.put("total", studentsService.count());
 		return data;
 		} 
 	
-	@RequestMapping(value="/hello")
+	@RequestMapping(value="/login")
 	@ResponseBody
-	public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) throws Exception{
-		ModelAndView mView=new ModelAndView("easyindex","massage","hello world!");
-		mView.addObject("mm", "13215");
-		return mView;	
+	public Map<String , Object> login(
+			@RequestParam int students_id ,
+			@RequestParam int password 
+			) throws Exception{
+		
+		Boolean login=studentsService.checkLogin(students_id,password);
+		if (login) {
+			 return ajaxSuccessResponse();
+		} 
+		else {
+			return ajaxFailureResponse();
+		}
 	} 
 	
 	@RequestMapping(value="/easyindex")
 	@ResponseBody
-	public void returnEasyindex(HttpServletResponse resp) throws Exception{
-		
+	public ModelAndView returnEasyindex(HttpServletResponse resp) throws Exception{
 		resp.sendRedirect("easyindex.jsp");
+		ModelAndView modelAndView=new ModelAndView();
+		modelAndView.setViewName("easyindex");
+		return modelAndView;
 	}
 	
 }
