@@ -11,8 +11,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.github.lpfcumt.dao.StudentsDao;
+import com.github.lpfcumt.domain.StudentsLogin;
 import com.github.lpfcumt.pojo.Students;
 import com.github.lpfcumt.service.StudentsService;
 import com.github.pagehelper.PageHelper;
@@ -28,9 +30,11 @@ public class StudentsServiceImpl implements StudentsService {
 	
 	@Autowired
 	private StudentsDao studentsDao;
+	@Autowired
+	private StudentsLogin studentslogin;
 
 	@Override
-	public void deleteById(int id) {
+	public void deleteById(String id) {
 		// TODO Auto-generated method stub
 		studentsDao.deleteById(id);
 	}
@@ -55,15 +59,22 @@ public class StudentsServiceImpl implements StudentsService {
 	}
 
 	@Override
-	public Boolean checkLogin(int students_id, int password) {
+	public Boolean checkLogin(String students_id, int password) {
 		// TODO Auto-generated method stub
-		if (!studentsDao.checkLogin(students_id,password).isEmpty()) {
-			return true;
-		} 
-		else {
-			return false;
-		}
+		return studentslogin.checkLogin(studentsDao.checkLogin(students_id, password));
 		
+	}
+
+	@Override
+	public ModelAndView sendLogin(String students_id) {
+		// TODO Auto-generated method stub
+		return studentslogin.sendLogin(studentsDao.queryById(students_id));
+	}
+
+	@Override
+	public List<Students> queryById(String students_id) {
+		// TODO Auto-generated method stub
+		return studentsDao.queryById(students_id);
 	}
 	
 	

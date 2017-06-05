@@ -4,6 +4,7 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <html>
 <head>
@@ -12,8 +13,8 @@
 <title></title>
 <link href="/easyui/themes/metro-green/easyui.css" rel="stylesheet">
 <link href="/easyui/themes/icon.css" rel="stylesheet">
-<script src="/easyui/jquery.min.js"></script>
-<script src="/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="/easyui/jquery.min.js"></script>
+<script type="text/javascript" src="/easyui/jquery.easyui.min.js"></script>
 
 
 <style type="text/css">
@@ -107,7 +108,15 @@ $(function(){
 <body class="easyui-layout" style="width: 100%;height: 100%">
 	//上侧
 	<div region="north" border="true" split="true" style="overflow: hidden;height: 80px;">
-		<div class="top-bg"></div>
+	<c:forEach items="${students}" var="item">
+		<div class="top-bg" style="margin:50px 20px 10px 0;float:right">
+			
+			    姓名:<c:out value="${item.name}" /> &nbsp;&nbsp;&nbsp;
+			
+			    学号:<c:out value="${item.students_id}" /> <br/>
+			
+		</div>
+	</c:forEach>
 	</div>
 
 	//下侧

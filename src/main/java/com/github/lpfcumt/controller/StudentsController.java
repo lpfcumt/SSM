@@ -5,9 +5,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONPObject;
+import com.github.lpfcumt.pojo.Students;
 import com.github.lpfcumt.service.StudentsService;
 
 /**
@@ -32,7 +35,7 @@ public class StudentsController extends BaseController{
 	protected StudentsService studentsService;
 	
 	Map<String, Object> data =new HashMap<String,Object>();
-	
+	ModelAndView mView=new ModelAndView();
 	
 	/**
 	 * @method 查询所有students
@@ -65,7 +68,7 @@ public class StudentsController extends BaseController{
 	@RequestMapping(value="/login")
 	@ResponseBody
 	public Map<String , Object> login(
-			@RequestParam int students_id ,
+			@RequestParam String students_id ,
 			@RequestParam int password 
 			) throws Exception{
 		
@@ -78,13 +81,22 @@ public class StudentsController extends BaseController{
 		}
 	} 
 	
-	@RequestMapping(value="/easyindex")
+	@RequestMapping(value="/sendLogin")
 	@ResponseBody
-	public ModelAndView returnEasyindex(HttpServletResponse resp) throws Exception{
-		resp.sendRedirect("easyindex.jsp");
-		ModelAndView modelAndView=new ModelAndView();
-		modelAndView.setViewName("easyindex");
-		return modelAndView;
+	public ModelAndView sendLogin(@RequestParam String students_id, @RequestParam int password) throws Exception{
+		
+		if (studentsService.checkLogin(students_id,password)) {
+			return studentsService.sendLogin(students_id );
+		} 
+		else {
+			mView.setViewName("login");
+			return mView;
+		}
+	}
+	
+	@Scheduled(cron="0/5 * *  * * ? ") 
+	public void testScheduled(){
+		System.out.println(123);
 	}
 	
 }

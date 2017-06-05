@@ -32,9 +32,13 @@
        select * from students where students_id=#{students_id} and password=#{password}
    </select>
    
+   <select id="queryById" resultMap="students" databaseId="mysql">
+       select * from students where students_id=#{students_id}
+   </select>
+   
    <!--删除数据  -->
-   <delete id="delete" parameterType="java.lang.Integer" databaseId="mysql">
-       delete from students where id=#{id}
+   <delete id="delete" parameterType="String" databaseId="mysql">
+       delete from students where students_id=#{id}
    </delete>
    
    <!--  -->

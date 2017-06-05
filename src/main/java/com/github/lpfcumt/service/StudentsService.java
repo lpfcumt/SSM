@@ -8,6 +8,8 @@ package com.github.lpfcumt.service;
 
 import java.util.List;
 
+import org.springframework.web.servlet.ModelAndView;
+
 import com.github.lpfcumt.pojo.Students;
 
 /**
@@ -23,7 +25,7 @@ public interface StudentsService {
 	 * @author 林鹏飞
 	 * @param id
 	 */
-	void deleteById(int id);
+	void deleteById(String id);
 	
 	/**
 	 * @method 查询所有students
@@ -56,6 +58,22 @@ public interface StudentsService {
 	 * @param password
 	 * @return Boolean
 	 */
-	Boolean checkLogin(int students_id, int password);
+	Boolean checkLogin(String students_id, int password);
+
+	/**
+	 * @method 登录
+	 * @author 林鹏飞
+	 * @param students_id
+	 * @return ModelAndView
+	 */
+	ModelAndView sendLogin(String students_id);
+	
+	/**
+	 * @method 根据ID查询students
+	 * @author 林鹏飞
+	 * @param students_id
+	 * @return List<Students>
+	 */
+	List<Students> queryById(String students_id);
 
 }

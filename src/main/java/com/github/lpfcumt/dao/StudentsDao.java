@@ -20,7 +20,7 @@ public interface StudentsDao {
 	 * @author 林鹏飞
 	 * @param id
 	 */
-	void deleteById(int id); 
+	void deleteById(String id); 
 	
 	/**
 	 * @method 查询所有students
@@ -36,7 +36,22 @@ public interface StudentsDao {
 	 */
 	int count();
 
-	List<Students> checkLogin(@Param("students_id")int students_id, @Param("password")int password);
+	/**
+	 * @method 检查登录
+	 * @author 林鹏飞
+	 * @param students_id
+	 * @param password
+	 * @return List<Students>
+	 */
+	List<Students> checkLogin(@Param("students_id")String students_id, @Param("password")int password);
+
+	/**
+	 * @method 根据ID查询students
+	 * @author 林鹏飞
+	 * @param students_id
+	 * @return List<Students>
+	 */
+	List<Students> queryById(String students_id);
 	
 	
 }
