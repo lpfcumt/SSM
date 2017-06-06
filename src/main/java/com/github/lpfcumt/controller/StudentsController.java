@@ -20,6 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.JSONPObject;
 import com.github.lpfcumt.pojo.Students;
 import com.github.lpfcumt.service.StudentsService;
+import com.github.lpfcumt.util.JavaEmail;
+import com.github.lpfcumt.util.MailUtil;
+import com.github.lpfcumt.util.SendEmail;
 
 /**
  * @author 林鹏飞
@@ -33,6 +36,8 @@ import com.github.lpfcumt.service.StudentsService;
 public class StudentsController extends BaseController{
 	@Autowired
 	protected StudentsService studentsService;
+	@Autowired
+	protected JavaEmail javaEmail;
 	
 	Map<String, Object> data =new HashMap<String,Object>();
 	ModelAndView mView=new ModelAndView();
@@ -94,9 +99,16 @@ public class StudentsController extends BaseController{
 		}
 	}
 	
-	@Scheduled(cron="0/5 * *  * * ? ") 
-	public void testScheduled(){
-		System.out.println(123);
+	@RequestMapping(value="/sendEmail")
+	@ResponseBody
+//	@Scheduled(cron="0/5 * *  * * ? ") 
+	public void testScheduled() throws InterruptedException{
+		javaEmail.sendHtmlEmail("1009925846@qq.com", "测试", "hello");
+		
+		System.out.println("邮件已发送");
+		
 	}
+	
+	
 	
 }
