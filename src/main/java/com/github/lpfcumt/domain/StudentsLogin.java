@@ -33,12 +33,11 @@ public class StudentsLogin {
 			return mView;
 		}
 		else {
-			
-				map.put("students",list);
 				
+				map.put("students",list);
 				mView.addObject("students",list);
-		
-			mView.setViewName("easyindex");
+				
+			mView.setViewName("redirect:easyindex.jsp");
 			return mView;
 		}
 		

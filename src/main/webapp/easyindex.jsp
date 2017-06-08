@@ -76,28 +76,34 @@ $(function(){
         $(".pagination").find("td:eq(2),td:eq(3),td:eq(9),td:eq(10)").each(function(i){
             $(this).find(".l-btn-text").html(icon2text[i]);
         });
-		});
+});
 
-		 function saveUser(){
-            $('#fm').form('submit',{
-                url: url,
-                onSubmit: function(){
-                    return $(this).form('validate');
-                },
-                success: function(result){
-                    var result = eval('('+result+')');
-                    if (result.errorMsg){
-                        $.messager.show({
-                            title: 'Error',
-                            msg: result.errorMsg
-                        });
-                    } else {
-                        $('#dlg').dialog('close');        // close the dialog
-                        $('#dg').datagrid('reload');    // reload the user data
-                    }
-                }
-            });
-        }
+function saveUser(){
+	$('#fm').form('submit',{
+        url: url,
+        onSubmit: function(){
+             return $(this).form('validate');
+           },
+        success: function(result){
+        	var result = eval('('+result+')');
+            if (result.errorMsg){
+                  $.messager.show({
+                  		title: 'Error',
+                   		msg: result.errorMsg
+                    });
+            } 
+            else {
+                 $('#dlg').dialog('close');        // close the dialog
+                 $('#dg').datagrid('reload');    // reload the user data
+             }
+           }
+       });
+}
+
+function dialogClose(obj){
+	$(obj).window('close');
+	return false;
+}
 </script>
 <script>
 
@@ -108,15 +114,30 @@ $(function(){
 <body class="easyui-layout" style="width: 100%;height: 100%">
 	//上侧
 	<div region="north" border="true" split="true" style="overflow: hidden;height: 80px;">
-	<c:forEach items="${students}" var="item">
-		<div class="top-bg" style="margin:50px 20px 10px 0;float:right">
+	<c:if test="${empty students}">
+		<c:redirect url="login.jsp" />
+	</c:if>
+	<c:if test="${not empty students}">
+		<c:forEach items="${students}" var="item">
+		<div class="top-bg" style="margin:40px 50px 10px 0;float:right">
 			
 			    姓名:<c:out value="${item.name}" /> &nbsp;&nbsp;&nbsp;
 			
 			    学号:<c:out value="${item.students_id}" /> <br/>
-			
+			<a onclick="return exitLogin()" href="exitLogin">退出登录</a>
+			<div id="exit-wind" class="easyui-dialog" title="My Dialog" style=" display: none;overflow: hidden;width:400px;height:200px;"
+			    data-options="iconCls:'icon-save',resizable:true,modal:true" closed="true"
+			    toolbar="#dlg-toolbar" buttons="#dlg-buttons">
+			    Dialog Content.
+			    <div id="dlg-buttons">
+					<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="javascript:alert('Ok')">Ok</a>
+					<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="return dialogClose(this)">Cancel</a>
+				</div>
+			</div>
 		</div>
 	</c:forEach>
+	</c:if>
+	
 	</div>
 
 	//下侧

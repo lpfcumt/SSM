@@ -10,47 +10,31 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>登录</title>
-<link href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
-<link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet">
+
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
+
+<link href="//cdn.bootcss.com/bootstrap-validator/0.5.3/css/bootstrapValidator.min.css" rel="stylesheet">
 
 <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
 <!--jquery.validate-->
-<script type="text/javascript" src="js/jquery.validate.min.js" ></script>
-<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+
+<script src="//cdn.bootcss.com/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script>
 <script src="/js/main.js"></script>
 <style type="text/css">
 	body{background: url(img/4.jpg) no-repeat;background-size: cover;font-size: 16px;}
-		.form{background: rgba(255,255,255,0.2);width:500px;margin:100px auto;}
+		.form{background: rgba(255,255,255,0.2);width:550px;margin:100px auto;}
 		#login_form{display: block;}
 		#register_form{display: none;}
-		.fa{display: inline-block;top: 27px;left: 6px;position: relative;color: #ccc;}
-		input[type="text"],input[type="password"]{padding-left:26px;}
-		.checkbox{padding-left:21px;}
-		.error {
-		  font-family:微软雅黑;
-		  padding-left:16px;
-		  color: rgba(138, 11, 33, 0.74);
-		}
-		label.error {
-  background:url("./demo/images/unchecked.gif") no-repeat 0px 0px;
-
-  padding-left: 16px;
-
-  padding-bottom: 2px;
-
-  font-weight: bold;
-
-  color: #EA5200;
-}
-label.checked {
-  background:url("./demo/images/checked.gif") no-repeat 0px 0px;
-}
+/* 		.fa{display: inline-block;top: 27px;left: 6px;position: relative;color: #ccc;} */
+/* 		input[type="text"],input[type="password"]{padding-left:26px;} */
 	
 </style>
 </head>
@@ -71,26 +55,36 @@ label.checked {
 		-->
 	<div class="container">
 		<div class="form row">
-			<form class="form-horizontal col-sm-offset-3 col-md-offset-3" id="login_form" action="sendLogin" method="post">
-				<div class="col-sm-6 col-md-6" style="margin:auto 50px;padding:auto;"><h3 class="form-title">LOGIN</h3></div>
-				<div class="col-sm-9 col-md-9">
+			<form  class="form-horizontal col-sm-offset-2 col-md-offset-2" id="login_form" action="sendLogin" method="post">
+				<div class="col-sm-6 col-md-6" style="margin:30px 75px;padding:auto;"><h3 class="form-title">LOGIN</h3></div>
+				<div class="col-sm-9 col-md-9" >
+					
 					<div class="form-group">
-						<i class="fa fa-user fa-lg"></i>
-						<input class="form-control required" type="text" placeholder="学号" name="students_id" autofocus="autofocus" maxlength="20"/>
+						<!-- <i class="fa fa-user fa-lg"></i> -->
+					
+								<span class="col-sm-2 control-label glyphicon glyphicon-user"></span>
+						
+						<div class="col-sm-10">
+						<input  class="form-control " type="text" placeholder="学号" name="students_id" autofocus="autofocus" maxlength="20"/>
+						</div>
 					</div>
 					<div class="form-group">
-							<i class="fa fa-lock fa-lg"></i>
-							<input class="form-control required" type="password" placeholder="密码" name="password" maxlength="8"/>
+							<label class="col-sm-2 control-label "><i class="fa fa-lock fa-lg"></i></label>
+							<div class="col-sm-10">
+							<input class="form-control " type="password" placeholder="密码" name="password" maxlength="8"/>
+							</div>
 					</div>
-					<div class="form-group">
-						<label class="checkbox" style="font-size:14px">
+					
+					<div class="form-group" style="margin:20px 50px ">
+						<label class=" checkbox" style="font-size:14px">
 							<input type="checkbox" name="remember" value="1"/> 记住密码
 						</label>
 						<hr />
 						<a href="javascript:;" id="register_btn" class="">注册账户</a>
 					</div>
+					
 					<div class="form-group">
-						<input type="submit"  class="btn btn-success pull-right" value="Login "/>   
+						<input type="submit" id="loginbtn" onclick="return login()"  class="btn btn-success pull-right" value="Login "/>   
 					</div>
 				</div>
 			</form>
@@ -119,7 +113,7 @@ label.checked {
 					</div>
 					<div class="form-group">
 						<input type="submit" class="btn btn-success pull-right" value="Sign Up "/>
-						<input type="submit" class="btn btn-info pull-left" id="back_btn" value="Back"/>
+						<a href=""  class="btn btn-info pull-left" id="back_btn" >Back</a>
 					</div>
 				</div>
 			</form>

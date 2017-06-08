@@ -3,6 +3,8 @@ package com.github.lpfcumt.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -12,6 +14,7 @@ import org.apache.commons.lang3.StringUtils;
  * @time 2017年6月1日下午5:26:02
  */
 public class BaseController {
+	HttpSession session;
 	
 	protected Map<String, Object> ajaxSuccessResponse(){
 		HashMap<String, Object> result=new HashMap<String ,Object>();

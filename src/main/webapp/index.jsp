@@ -4,6 +4,7 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <html>
 <head>
@@ -131,6 +132,20 @@
 </script>
 </head>
 <body>
+	<c:if test="${empty sessionScope.students}">
+		<c:redirect url="login.jsp" />
+	</c:if>
+	<c:if test="${not empty sessionScope.students}">
+		<c:forEach items="${sessionScope.students}" var="item">
+		<div class="top-bg" style="margin:50px 20px 10px 0;float:right">
+			
+			    姓名:<c:out value="${item.name}" /> &nbsp;&nbsp;&nbsp;
+			
+			    学号:<c:out value="${item.students_id}" /> <br/>
+			
+		</div>
+	</c:forEach>
+	</c:if>
 	<div id="toolbar">
 		<button id="add" class="btn btn-success" data-toggle="modal"
 			data-target="#myModal">

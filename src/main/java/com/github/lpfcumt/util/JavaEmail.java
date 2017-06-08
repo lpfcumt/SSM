@@ -28,12 +28,14 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class JavaEmail {
-	String name="xmuscxxems"; //发送人名称
-	String from="xmuscxxems@vip.sina.com"; //发送人地址
-	String password="xmuems.123"; //发送人密码
-	String host="smtp.vip.sina.com"; //发送人host
-	String auth="true"; //是否需要验证
-	String protocol="smtp"; //发送人host类型
+	
+	static final String NAME="xmuscxxems"; //发送人名称
+	static final String FROM="xmuscxxems@vip.sina.com"; //发送人地址
+	static final String PASSWORD="xmuems.123"; //发送人密码
+	static final String HOST="smtp.vip.sina.com"; //发送人host
+	static final String AUTH="true"; //是否需要验证
+	static final String PROTOCOL="smtp"; //发送人host类型
+	static final String MYNICK="lpfcumt"; //发送人昵称
 	
 	
 	/**
@@ -46,23 +48,23 @@ public class JavaEmail {
 	public  void sendHtmlEmail(String to,String subject,String content){
 			try{
 				Properties props = new Properties();
-				props.setProperty("mail.smtp.auth", auth);
-				props.setProperty("mail.transport.protocol", protocol);
-				props.setProperty("mail.smtp.host", host);
+				props.setProperty("mail.smtp.auth", AUTH);
+				props.setProperty("mail.transport.protocol", PROTOCOL);
+				props.setProperty("mail.smtp.host", HOST);
 				Session session = Session.getInstance(props, new Authenticator() {
 					protected PasswordAuthentication getPasswordAuthentication() {
-						return new PasswordAuthentication(name, password);
+						return new PasswordAuthentication(NAME, PASSWORD);
 					}
 				});
 				session.setDebug(true);
 				String nick="";  
 			    try {  
-			        nick=javax.mail.internet.MimeUtility.encodeText("林鹏飞");  
+			        nick=javax.mail.internet.MimeUtility.encodeText(MYNICK);  
 			    } catch (UnsupportedEncodingException e) {  
 			        e.printStackTrace();  
 			    }   
 				Message msg = new MimeMessage(session);
-				msg.setFrom(new InternetAddress(from,nick));
+				msg.setFrom(new InternetAddress(FROM,nick));
 				msg.setHeader("X-Mailer", "Microsoft Outlook Express 6.00.2900.2869");
 				msg.setSubject(subject);
 				
@@ -87,23 +89,23 @@ public class JavaEmail {
 	public void sendTextEmail(String to,String subject,String text){
 		try{
 			Properties props = new Properties();
-			props.setProperty("mail.smtp.auth", auth);
-			props.setProperty("mail.transport.protocol", protocol);
-			props.setProperty("mail.smtp.host", host);
+			props.setProperty("mail.smtp.auth", AUTH);
+			props.setProperty("mail.transport.protocol", PROTOCOL);
+			props.setProperty("mail.smtp.host", HOST);
 			Session session = Session.getInstance(props, new Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication(name, password);
+					return new PasswordAuthentication(NAME, PASSWORD);
 				}
 			});
 			session.setDebug(true);
 			String nick="";  
-	        try {  
-	            nick=javax.mail.internet.MimeUtility.encodeText("林鹏飞");  
-	        } catch (UnsupportedEncodingException e) {  
-	            e.printStackTrace();  
-	        }   
+		    try {  
+		        nick=javax.mail.internet.MimeUtility.encodeText(MYNICK);  
+		    } catch (UnsupportedEncodingException e) {  
+		        e.printStackTrace();  
+		    }   
 			Message msg = new MimeMessage(session);
-			msg.setFrom(new InternetAddress(from,nick));
+			msg.setFrom(new InternetAddress(FROM,nick));
 			msg.setHeader("X-Mailer", "Microsoft Outlook Express 6.00.2900.2869");
 			msg.setSubject(subject);
 			

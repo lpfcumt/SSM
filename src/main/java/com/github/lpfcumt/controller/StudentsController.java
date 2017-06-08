@@ -1,6 +1,7 @@
 package com.github.lpfcumt.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.alibaba.fastjson.JSONPObject;
 import com.github.lpfcumt.pojo.Students;
@@ -88,9 +90,11 @@ public class StudentsController extends BaseController{
 	
 	@RequestMapping(value="/sendLogin")
 	@ResponseBody
-	public ModelAndView sendLogin(@RequestParam String students_id, @RequestParam int password) throws Exception{
+	public ModelAndView sendLogin(@RequestParam String students_id, @RequestParam int password,HttpSession session) throws Exception{
 		
 		if (studentsService.checkLogin(students_id,password)) {
+			//把学生信息放入session
+			session.setAttribute("students", studentsService.queryById(students_id));			
 			return studentsService.sendLogin(students_id );
 		} 
 		else {
@@ -99,14 +103,20 @@ public class StudentsController extends BaseController{
 		}
 	}
 	
+	@RequestMapping(value="/exitLogin")
+	@ResponseBody
+	public ModelAndView exitLogin(HttpSession session) throws Exception{
+		session.invalidate();
+		mView.setViewName("login");
+		return mView;
+	}
+	
 	@RequestMapping(value="/sendEmail")
 	@ResponseBody
 //	@Scheduled(cron="0/5 * *  * * ? ") 
 	public void testScheduled() throws InterruptedException{
-		javaEmail.sendHtmlEmail("1009925846@qq.com", "测试", "hello");
-		
-		System.out.println("邮件已发送");
-		
+		javaEmail.sendHtmlEmail("1009925846@qq.com", "测试", "hello");		
+		System.out.println("邮件已发送");	
 	}
 	
 	
