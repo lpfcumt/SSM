@@ -52,6 +52,13 @@ public interface StudentsDao {
 	 * @return List<Students>
 	 */
 	List<Students> queryById(String students_id);
+
+	/**
+	 * @method 添加学生
+	 * @author 林鹏飞
+	 * @param students
+	 */
+	void addStudents(Students students);
 	
 	
 }

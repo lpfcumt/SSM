@@ -65,13 +65,13 @@
 								<span class="col-sm-2 control-label glyphicon glyphicon-user"></span>
 						
 						<div class="col-sm-10">
-						<input  class="form-control " type="text" placeholder="学号" name="students_id" autofocus="autofocus" maxlength="20"/>
+						<input id="students_id"  class="form-control " type="text" placeholder="学号" name="students_id" autofocus="autofocus" maxlength="20"/>
 						</div>
 					</div>
 					<div class="form-group">
 							<label class="col-sm-2 control-label "><i class="fa fa-lock fa-lg"></i></label>
 							<div class="col-sm-10">
-							<input class="form-control " type="password" placeholder="密码" name="password" maxlength="8"/>
+							<input id="password" class="form-control " type="password" placeholder="密码" name="password" maxlength="18"/>
 							</div>
 					</div>
 					
@@ -84,7 +84,11 @@
 					</div>
 					
 					<div class="form-group">
-						<input type="submit" id="loginbtn" onclick="return login()"  class="btn btn-success pull-right" value="Login "/>   
+						<input type="submit"   id="loginbtn"  class="btn .popover-hide btn-success pull-right" value="Login "/> 
+						<span data-toggle="popover" data-placement="left" title="账号或密码错误" data-content="账号或密码错误，请重新输入" id="returnMessage" class="pull-right " style="display:none">
+							<small class="help-block" data-bv-validator="stringLength" data-bv-for="students_id" data-bv-result="INVALID" style="color:red;font-size:16px"></small>
+						 </span>
+						  
 					</div>
 				</div>
 			</form>

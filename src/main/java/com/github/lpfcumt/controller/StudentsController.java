@@ -76,11 +76,13 @@ public class StudentsController extends BaseController{
 	@ResponseBody
 	public Map<String , Object> login(
 			@RequestParam String students_id ,
-			@RequestParam int password 
+			@RequestParam int password,
+			HttpSession session
 			) throws Exception{
 		
 		Boolean login=studentsService.checkLogin(students_id,password);
 		if (login) {
+			 session.setAttribute("students", studentsService.queryById(students_id));
 			 return ajaxSuccessResponse();
 		} 
 		else {
@@ -88,14 +90,17 @@ public class StudentsController extends BaseController{
 		}
 	} 
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/sendLogin")
 	@ResponseBody
-	public ModelAndView sendLogin(@RequestParam String students_id, @RequestParam int password,HttpSession session) throws Exception{
-		
-		if (studentsService.checkLogin(students_id,password)) {
-			//把学生信息放入session
-			session.setAttribute("students", studentsService.queryById(students_id));			
-			return studentsService.sendLogin(students_id );
+	public ModelAndView sendLogin(HttpSession session) throws Exception{
+		List<Students>  students=(List<Students>) session.getAttribute("students");
+		if (!students.isEmpty()) {
+			String students_id = null;
+			for (Students students2 : students) {
+				 students_id=students2.getStudents_id();
+			}
+			return studentsService.sendLogin(students_id);
 		} 
 		else {
 			mView.setViewName("login");
@@ -109,6 +114,20 @@ public class StudentsController extends BaseController{
 		session.invalidate();
 		mView.setViewName("login");
 		return mView;
+	}
+	
+	@RequestMapping(value="/addStudents")
+	@ResponseBody
+	public Map<String,Object > addStudents(String asc,Students students) throws Exception{
+		try {
+			studentsService.addStudents(students);
+			return ajaxSuccessResponse();
+		} catch (Exception e) {
+			// TODO: handle exception
+			return ajaxFailureResponse();
+		}
+		
+		
 	}
 	
 	@RequestMapping(value="/sendEmail")

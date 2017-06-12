@@ -76,6 +76,12 @@ public class StudentsServiceImpl implements StudentsService {
 		// TODO Auto-generated method stub
 		return studentsDao.queryById(students_id);
 	}
+
+	@Override
+	public void addStudents(Students students) {
+		// TODO Auto-generated method stub
+		studentsDao.addStudents(students);
+	}
 	
 	
 	

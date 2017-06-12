@@ -41,6 +41,12 @@
        delete from students where students_id=#{id}
    </delete>
    
-   <!--  -->
+   <!-- 插入数据 -->
+   <insert id="addStudents" parameterType="com.github.lpfcumt.pojo.Students" databaseId="mysql" useGeneratedKeys="true" keyProperty="id">
+       insert into students
+       			(email,grade,major,name,password,repassword,school,sex,state,students_id) 
+       		values
+       			(#{email},#{grade},#{major},#{name},#{password},#{repassword},#{school},#{sex},#{state},#{students_id})
+   </insert>
    
 </mapper>

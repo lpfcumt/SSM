@@ -1,36 +1,20 @@
+/*登录页*/
+	
 
 
-$().ready(function() {
+$(document).ready(function () {
 	/*判断账号密码是否正确*/
-	function login(){
-		var bv=$("#login_form").data('bootstrapValidator');
-		bv.validate();
-		if(bv.isValid()){
-			var url="login?"+$('#login_form').serialize();
-			var url2="sendLogin?"+$('#login_form').serialize();
-			var result=0;
-	      $.ajax({
-				url:url,
-				data:{},
-				type:'post',
-				dataType:'json',
-				success:function(data){
-					if(data.success){
-						/*提交登录*/
-						$('#login_form').submit();
-						return true;
-						
-					}else{
-						alert("02");
-					}
-				}
+$("#students_id").change(function(){
+    $("#returnMessage").css('display','none');
+});
 
-		  });
-			
-		}
-		return false;
-		
-	}
+$(function () { $("[data-toggle='tooltip']").tooltip(); });
+
+ $(function () { $('.popover-hide').popover('hide');});
+
+$("#password").change(function(){
+    $("#returnMessage").css('display','none');
+});
 	/*设置登录from的表单验证*/
 	$("#login_form").bootstrapValidator({
 //			message: 'This value is not valid',
@@ -77,10 +61,37 @@ $().ready(function() {
                         }
 	                }
 	            }
-	        }
+	      }
+	}).on('success.form.bv', function (e) {
+        // Prevent form submission
+        e.preventDefault();
+        // Get the form instance
+        var $form = $(e.target);
+        // Get the BootstrapValidator instance
+        var bv = $form.data('bootstrapValidator');
+        // Use Ajax to submit form data
+        $.getJSON("login", $form.serialize(), function (data) { 
+        
+            if (data.success==true) {
+            	window.location.href = 'sendLogin'
+            }
+            else if (data.success==false) {
+                $('#returnMessage').css('display','block');
+                 $('#returnMessage').tooltip('show');
+                setTimeout(
+                    function () {
+                  $('#returnMessage').css('display','none');
+                   $('#returnMessage').tooltip('hide');
+                    }, 3000
+                );
+            	//$('#loginbtn').html('操作成功').addClass('alert-success').show().delay(1500).fadeOut();
+            }
+            else {
+                alert("未知错误");
+            }
+        	
+        });
 	});
-	
-	
 	/*注册form的表单验证*/
 	$("#register_form").bootstrapValidator({
 		err: {
@@ -135,7 +146,12 @@ $().ready(function() {
         			   min: 6,
         			   max: 18,
         			   message: '确认密码不正确'
-        		   }
+        		   },
+                    identical: {
+                        field: 'password',
+                        message: '两次密码不同请重新输入'
+                    }
+        		
         	   }
            },
 		   email: {

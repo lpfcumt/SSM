@@ -96,9 +96,10 @@
 		</property>
     </bean>
 	<!-- JDBC事务管理器 -->
-	<bean id="transactionManager" 
-	class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
-		 p:dataSource-ref="dataSource"/>
+	<bean id="transactionManager"  
+        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
+        <property name="dataSource" ref="dataSource" />  
+    </bean> 
 	
 	<!-- 启用支持annotation注解方式事务管理 -->
 	<tx:annotation-driven transaction-manager="transactionManager"/>
@@ -107,9 +108,11 @@
        <!-- 使用PropertyOverrideConfigurer后处理器加载数据源参数 -->
 		<context:property-override location="classpath*:mysql-db.properties"/>
     </beans>
-    <!-- 加载sqlite数据源 -->
-	<beans profile="sqlite">  
-       <!-- 使用PropertyOverrideConfigurer后处理器加载数据源参数 -->
-		<context:property-override location="classpath*:sqlite-db.properties"/>
-    </beans>
+<!--     加载sqlite数据源 -->
+<!-- 	<beans profile="sqlite">   -->
+<!--        使用PropertyOverrideConfigurer后处理器加载数据源参数 -->
+<!-- 		<context:property-override location="classpath*:sqlite-db.properties"/> -->
+<!--     </beans> -->
+    
+	
 </beans>
