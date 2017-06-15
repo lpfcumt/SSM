@@ -19,7 +19,7 @@ import com.github.lpfcumt.util.MailUtil;
 @ContextConfiguration(locations = {"classpath:applicationContext.xml","classpath:springmvc-config.xml"})
 @ActiveProfiles("mysql")//测试mysql数据库（测试sqlite是变为sqlite）
 @Transactional//事务回滚，测试成功后不会持久化到数据库（如果不需要可不加）
-public class GuitarTest {	
+public class ControllerTest {	
 		
 	@Autowired
 	private StudentsDao guitarDao;	
@@ -37,8 +37,6 @@ public class GuitarTest {
 		
 			mailUtil.sendTextMail("1009925846@qq.com", "你好", "123");
 			System.out.println("邮件已发送");
-	
-		
 	}
 	
 	
