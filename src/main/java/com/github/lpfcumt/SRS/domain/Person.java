@@ -9,6 +9,7 @@ package com.github.lpfcumt.SRS.domain;
 public abstract class Person {
 	private String id; // 编号
 	private String name; // 姓名
+	private String password;
 	
 	public String getId() {
 		return id;
@@ -22,17 +23,22 @@ public abstract class Person {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	/**
 	 * @method 带参数的构造函数
 	 * @author 林鹏飞
 	 * @param id
 	 * @param name
 	 */
-	public Person(String id,String name){
+	public Person(String id,String name,String password){
 		this.name = name;
 		this.id = id;
+		this.setPassword(password);
 	}
 	
 	/**

@@ -15,6 +15,7 @@ public class Student extends Person{
 	private String major; // 专业
 	private Transcript transcript; // 成绩单
 	private ArrayList<Section> sections; // 课程班次集合
+	private PlanOfStudy planOfStudy; // 学习计划
 	
 	public String getGrade() {
 		return grade;
@@ -39,14 +40,22 @@ public class Student extends Person{
 	public void setTranscript(Transcript transcript) {
 		this.transcript = transcript;
 	}
+	public PlanOfStudy getPlanOfStudy() {
+		return planOfStudy;
+	}
 
+	public void setPlanOfStudy(PlanOfStudy planOfStudy) {
+		this.planOfStudy = planOfStudy;
+	}
 
 	
 	
-	public Student(String id, String name, String grade, String major) {
-		super(id, name);
+	public Student(String id, String name,String password, String grade, String major) {
+		super(id, name,password);
 		this.setGrade(grade);
 		this.setMajor(major);
+		/*创建一个新的学习计划*/
+		this.setPlanOfStudy(new PlanOfStudy(this));
 		
 		/*创建一个新的成绩单*/
 		this.setTranscript(new Transcript(this));
@@ -62,7 +71,7 @@ public class Student extends Person{
 	 * @param id
 	 */
 	public Student(String id){
-		this(id, "", "", "");
+		this(id, "", "", "","");
 	}
 
 	@Override
@@ -183,4 +192,6 @@ public class Student extends Person{
 	public Collection<Section> getEnrolledSections(){
 		return sections;
 	}
+
+
 }

@@ -35,8 +35,8 @@ public class Teacher extends Person{
 	}
 
 	
-	public Teacher(String id, String name, String title, String department) {
-		super(id, name);
+	public Teacher(String id, String name,String password, String title, String department) {
+		super(id, name, password);
 		this.setTitle(title);
 		this.setDepartment(department);
 		teach=new ArrayList<Section>();

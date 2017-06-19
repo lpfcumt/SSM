@@ -5,7 +5,7 @@ import java.util.HashMap;
 /**
  * @author 林鹏飞
  * @since Jdk1.8
- * @describe 课程计划 
+ * @describe 课程表 
  * @time 2017年6月16日下午5:56:19
  */
 public class ScheduleOfClasses {
@@ -58,14 +58,22 @@ public class ScheduleOfClasses {
 		section.setOfferedIn(this);
 	}
 
-	// The full section number is a concatenation of the
-	// course no. and section no., separated by a hyphen;
-	// e.g., "ART101 - 1".
 
+	/**
+	 * @method 查找班次
+	 * @author 林鹏飞
+	 * @param fullSectionNo 全称
+	 * @return Section
+	 */
 	public Section findSection(String fullSectionNo) {
 		return sectionsOffered.get(fullSectionNo);
 	}
 
+	/**
+	 * @method 判断提供的班次是否为空
+	 * @author 林鹏飞
+	 * @return boolean
+	 */
 	public boolean isEmpty() {
 		if (sectionsOffered.size() == 0) return true;
 		else return false;

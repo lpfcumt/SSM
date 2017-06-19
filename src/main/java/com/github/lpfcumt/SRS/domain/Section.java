@@ -17,8 +17,11 @@ public class Section {
 	private Course representedCourse; // 前置课程
 	private ScheduleOfClasses offeredIn; // 提供的班级
 	private Teacher instructor; // 指导教师
+	/**
+	* @Fields enrolledStudents : TODO(参加班次的学生)
+	*/
 	private HashMap<String, Student> enrolledStudents; // 参加班次的学生
-	private HashMap<String, TranscriptEntry> assignedGrades; // 成绩等级
+	private HashMap<Student, TranscriptEntry> assignedGrades; // 成绩等级
 	
 	public int getSectionId() {
 		return sectionId;
@@ -80,7 +83,7 @@ public class Section {
 		this.setRepresentedCourse(representedCourse);
 		setInstructor(null);
 		enrolledStudents = new HashMap<String,Student>();
-		assignedGrades = new HashMap<String,TranscriptEntry>();
+		assignedGrades = new HashMap<Student,TranscriptEntry>();
 	}
 	
 	@Override
@@ -157,17 +160,11 @@ public class Section {
 	public String getGrade(Student student) {
 		String grade = null;
 
-		// Retrieve the associated TranscriptEntry object for this specific 
-		// student from the assignedGrades HashMap, if one exists, and in turn 
-		// retrieve its assigned grade.
-
+		
 		TranscriptEntry transcriptEntry = assignedGrades.get(student);
 		if (transcriptEntry != null) {
 			grade = transcriptEntry.getGrade(); 
 		}
-
-		// If we found no TranscriptEntry for this Student, a null value
-		// will be returned to signal this.
 
 		return grade;
 	}
@@ -226,19 +223,45 @@ public class Section {
 	public void displayStudentRoster() {
 		System.out.print("\tTotal of " + getTotalEnrollment() + 
 				   " students enrolled");
-
-		// How we punctuate the preceding message depends on 
-		// how many students are enrolled (note that we used
-		// a print() vs. println() call above).
-
 		if (getTotalEnrollment() == 0) System.out.println(".");
 		else System.out.println(", as follows:");
-
-		// Iterate through all of the values stored in the HashMap.
-
 		for (Student s : enrolledStudents.values()) {
 			System.out.println("\t\t" + s.getName());
 		}
+	}
+	
+	public boolean postGrade(Student student, String grade) {
+		// 判断成绩等级是否正确.
+		if (!TranscriptEntry.validateGrade(grade)) return false;
+
+		// Make sure that we haven't previously assigned a
+		// grade to this Student by looking in the HashMap
+		// for an entry using this Student as the key.  If
+		// we discover that a grade has already been assigned,
+		// we return a value of false to indicate that
+		// we are at risk of overwriting an existing grade.  
+		// (A different method, eraseGrade(), can then be written
+		// to allow a Professor to change his/her mind.)
+
+		if (assignedGrades.get(student) != null) return false;
+
+		// First, we create a new TranscriptEntry object.  Note
+		// that we are passing in a reference to THIS Section,
+		// because we want the TranscriptEntry object,
+		// as an association class ..., to maintain
+		// "handles" on the Section as well as on the Student.
+		// (We'll let the TranscriptEntry constructor take care of
+		// linking this T.E. to the correct Transcript.)
+
+		TranscriptEntry te = new TranscriptEntry(student, grade, this);
+
+		// Then, we "remember" this grade because we wish for
+		// the connection between a T.E. and a Section to be
+		// bidirectional.
+
+		assignedGrades.put(student, te);
+
+		return true;
 	}
 	
 	/**
