@@ -5,7 +5,7 @@ import java.util.HashMap;
 /**
  * @author 林鹏飞
  * @since Jdk1.8
- * @describe 课程表 
+ * @describe 总课程表 
  * @time 2017年6月16日下午5:56:19
  */
 public class ScheduleOfClasses {
@@ -13,12 +13,12 @@ public class ScheduleOfClasses {
 	private HashMap<String, Section> sectionsOffered; // 提供的班次集合
 
 	public ScheduleOfClasses(String semester) {
-		setSemester(semester);
+		this.setSemester(semester);
 		sectionsOffered = new HashMap<String, Section>();
 	}
 
 	public ScheduleOfClasses(String semester, HashMap<String, Section> sectionsOffered ) {
-		setSemester(semester);
+		this.setSemester(semester);
 		
 		// 实例化支持空的集合
 		this.sectionsOffered = sectionsOffered;

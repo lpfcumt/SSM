@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.github.lpfcumt.SRS.dao.CourseDao;
 import com.github.lpfcumt.SRS.domain.Course;
+import com.github.lpfcumt.SRS.domain.Section;
 
 @Repository("courseDao")
 public class CourseDaoImpl implements CourseDao{
@@ -30,7 +31,7 @@ public class CourseDaoImpl implements CourseDao{
 		listAllCourse.put(c1.getCourseId(), c1);
 		listAllCourse.put(c2.getCourseId(), c2);
 		listAllCourse.put(c3.getCourseId(), c3);
-		listAllCourse.put(c4.getCourseId(), c4);	
+		listAllCourse.put(c4.getCourseId(), c4);
 		return listAllCourse;
 	}
 

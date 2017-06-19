@@ -1,10 +1,64 @@
 package com.github.lpfcumt.SRS.dao.impl.mock;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Repository;
 
+import com.github.lpfcumt.SRS.dao.CourseDao;
 import com.github.lpfcumt.SRS.dao.SectionDao;
+import com.github.lpfcumt.SRS.domain.Course;
+import com.github.lpfcumt.SRS.domain.Section;
 
 @Repository("sectionDao")
 public class SectionDaoImpl implements SectionDao{
+	@Resource(name="courseDao")
+	protected CourseDao courseDao;
+	
+	@Override
+	public ArrayList<Section> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public HashMap<String, Section> findBySemester(String semester){
+		// 创建HashMap对象
+		HashMap<String, Section> sections = new HashMap<String, Section>();
+		// 获取所有课程
+		HashMap<String, Course> allCourses = courseDao.findAll();
+        // 创建Section变量
+		Section sec1, sec2, sec3, sec4, sec5, sec6;
+		// 创建Course变量
+		Course c;
+		
+		// 为sections添加班次
+		c = allCourses.get("ABC-101");
+		sec1 = new Section(1,'M', "8:10 - 10:00 PM", allCourses.get("ABC-104") , "GOVT101", 30);
+		sections.put(c.getCourseId() + "-" + sec1.getSectionId(), sec1);
+		sec2 = new Section(2,'W', "6:10 - 8:00 PM", allCourses.get("ABC-104") , "GOVT202", 30);
+		sections.put(c.getCourseId() + "-" + sec2.getSectionId(), sec2);
+		
+		c = allCourses.get("ABC-102");
+		sec3 = new Section(1,'R', "4:10 - 6:00 PM", allCourses.get("ABC-101"), "GOVT105", 25);
+		sections.put(c.getCourseId() + "-" + sec3.getSectionId(), sec3);
+		sec4 = new Section(2,'T', "6:10 - 8:00 PM", allCourses.get("ABC-101"), "SCI330", 25);
+		sections.put(c.getCourseId() + "-" + sec4.getSectionId(), sec4);
+		
+		c = allCourses.get("ABC-103");
+		sec5 = new Section(1,'M', "6:10 - 8:00 PM", allCourses.get("ABC-102"), "GOVT101", 20);
+		sections.put(c.getCourseId() + "-" + sec5.getSectionId(), sec5);
+		
+		c = allCourses.get("ABC-104");
+		sec6 = new Section(1, 'R', "4:10 - 6:00 PM", c, "SCI241", 15);
+		sections.put(c.getCourseId() + "-" + sec6.getSectionId(), sec6);
+
+		return sections;
+	}
+
+
+	
 
 }

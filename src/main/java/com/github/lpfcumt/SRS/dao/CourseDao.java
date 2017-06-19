@@ -12,5 +12,6 @@ public interface CourseDao {
 	 * @return HashMap
 	 */
 	HashMap<String , Course> findAll();
-
+	
+	
 }

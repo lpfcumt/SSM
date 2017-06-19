@@ -95,7 +95,7 @@ public class Section {
 	}
 	
 	/**
-	 * @method 获取全部班次的编号
+	 * @method 获取班次的编号
 	 * @author 林鹏飞
 	 * @return String
 	 */
@@ -105,7 +105,7 @@ public class Section {
 	}
 	
 	/**
-	 * @method 获取全部班次的信息
+	 * @method 获取班次的信息
 	 * @author 林鹏飞
 	 * @return String
 	 */
@@ -233,32 +233,14 @@ public class Section {
 	public boolean postGrade(Student student, String grade) {
 		// 判断成绩等级是否正确.
 		if (!TranscriptEntry.validateGrade(grade)) return false;
-
-		// Make sure that we haven't previously assigned a
-		// grade to this Student by looking in the HashMap
-		// for an entry using this Student as the key.  If
-		// we discover that a grade has already been assigned,
-		// we return a value of false to indicate that
-		// we are at risk of overwriting an existing grade.  
-		// (A different method, eraseGrade(), can then be written
-		// to allow a Professor to change his/her mind.)
-
+		
+		// 判断学生成绩是否已存在
 		if (assignedGrades.get(student) != null) return false;
 
-		// First, we create a new TranscriptEntry object.  Note
-		// that we are passing in a reference to THIS Section,
-		// because we want the TranscriptEntry object,
-		// as an association class ..., to maintain
-		// "handles" on the Section as well as on the Student.
-		// (We'll let the TranscriptEntry constructor take care of
-		// linking this T.E. to the correct Transcript.)
-
+		// 生成成绩
 		TranscriptEntry te = new TranscriptEntry(student, grade, this);
 
-		// Then, we "remember" this grade because we wish for
-		// the connection between a T.E. and a Section to be
-		// bidirectional.
-
+		// 添加成绩到assignedGrade
 		assignedGrades.put(student, te);
 
 		return true;
