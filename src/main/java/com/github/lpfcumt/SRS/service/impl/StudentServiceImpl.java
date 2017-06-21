@@ -18,17 +18,18 @@ public class StudentServiceImpl implements StudentService{
 	
 	@Override
 	public HashMap<String, Student> findAllStudent() {
-		
-		return null;
+		return studentDao.findAll();
 	}
 
 	@Override
 	public boolean checkLogin(String id, String password) {
-		Student student = studentDao.findStudentById(id);
-		if (password.equals(student.getPassword())) {
-			return true;
-		}
-		return false;
+		if (password.equals(findStudentById(id).getPassword())) return true;
+		else return false;
+	}
+
+	@Override
+	public Student findStudentById(String id) {
+		return studentDao.findStudentById(id);
 	}
 
 }

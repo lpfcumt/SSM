@@ -30,9 +30,7 @@ public class StudentDaoImpl implements StudentDao{
 
 	@Override
 	public Student findStudentById(String id) {
-		listAllStudent = findAll();
-		Student student = listAllStudent.get(id);
-		return student;
+		return findAll().get(id);
 	}
 
 

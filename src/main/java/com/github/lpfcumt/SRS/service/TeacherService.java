@@ -2,16 +2,17 @@ package com.github.lpfcumt.SRS.service;
 
 import java.util.HashMap;
 
-import com.github.lpfcumt.SRS.domain.Student;
 
-public interface StudentService {
+import com.github.lpfcumt.SRS.domain.Teacher;
+
+public interface TeacherService {
 	
 	/**
-	 * @method 查找所有学生
+	 * @method 查找所有教师
 	 * @author 林鹏飞
 	 * @return HashMap
 	 */
-	HashMap<String, Student> findAllStudent();
+	HashMap<String, Teacher> findAllStudent();
 	
 	/**
 	 * @method 检查登录
@@ -23,10 +24,10 @@ public interface StudentService {
 	boolean checkLogin(String id, String password);
 	
 	/**
-	 * @method 通过id查找学生
+	 * @method 通过id查找教师
 	 * @author 林鹏飞
 	 * @param id
-	 * @return Student
+	 * @return Teacher
 	 */
-	Student findStudentById(String id);
+	Teacher findTeacherById(String id);
 }

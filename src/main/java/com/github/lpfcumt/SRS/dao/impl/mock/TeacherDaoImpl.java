@@ -28,4 +28,10 @@ public class TeacherDaoImpl implements TeacherDao{
 		return listAllTeacher;
 	}
 
+	@Override
+	public Teacher findTeacherById(String id) {
+		return findAll().get(id);
+	}
+	
+	
 }
