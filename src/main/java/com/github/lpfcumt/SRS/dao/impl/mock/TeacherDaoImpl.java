@@ -1,5 +1,6 @@
 package com.github.lpfcumt.SRS.dao.impl.mock;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.stereotype.Repository;
@@ -7,13 +8,16 @@ import org.springframework.stereotype.Repository;
 import com.github.lpfcumt.SRS.dao.TeacherDao;
 import com.github.lpfcumt.SRS.domain.Teacher;
 
-@Repository("teacherDao")
+@Repository("teacherMockDao")
 public class TeacherDaoImpl implements TeacherDao{
-
+	
+	HashMap<String, Teacher> mapTeacher;
+	ArrayList<Teacher> listTeacher;
+	
 	@Override
-	public HashMap<String, Teacher> findAll() {
+	public ArrayList<Teacher> findAll() {
 		// 创建HashMap对象
-		HashMap<String, Teacher> listAllTeacher = new HashMap<String, Teacher>();
+		listTeacher = new ArrayList<Teacher>();
 		// 创建Teacher变量
 		Teacher tc1,tc2,tc3;
 		// 创建teacher 对象
@@ -22,15 +26,18 @@ public class TeacherDaoImpl implements TeacherDao{
 		tc3 = new Teacher("333333", "杨教授", "123456", "副教授", "信息系统");
 		
 		// 为listAllTeacher添加数据
-		listAllTeacher.put(tc1.getId(), tc1);
-		listAllTeacher.put(tc2.getId(), tc2);
-		listAllTeacher.put(tc3.getId(), tc3);
-		return listAllTeacher;
+		listTeacher.add(tc1);
+		listTeacher.add(tc2);
+		listTeacher.add(tc3);
+		return listTeacher;
 	}
 
 	@Override
-	public Teacher findTeacherById(String id) {
-		return findAll().get(id);
+	public Teacher findTeacherById(String id){
+		for (Teacher teacher : findAll()) {
+			if (teacher.getId().equals(id)) return teacher;
+		}
+		return null;
 	}
 	
 	

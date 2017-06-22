@@ -1,6 +1,6 @@
 package com.github.lpfcumt.SRS.dao;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import com.github.lpfcumt.SRS.domain.Student;
 
@@ -11,7 +11,7 @@ public interface StudentDao{
 	 * @author 林鹏飞
 	 * @return HashMap
 	 */
-	HashMap<String, Student> findAll();
+	ArrayList<Student> findAll();
 	
 	/**
 	 * @method 验证登录

@@ -1,6 +1,6 @@
 package com.github.lpfcumt.SRS.dao;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import com.github.lpfcumt.SRS.domain.Teacher;
 
@@ -9,9 +9,9 @@ public interface TeacherDao {
 	/**
 	 * @method 查找所有教师
 	 * @author 林鹏飞
-	 * @return HashMap
+	 * @return ArrayList<Teacher> 
 	 */
-	HashMap<String, Teacher> findAll();
+	ArrayList<Teacher>  findAll();
 	
 	/**
 	 * @method 根据id查询教师

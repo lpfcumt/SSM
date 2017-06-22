@@ -60,11 +60,11 @@ public class Transcript {
 	}
 
 	public void display() {
-		System.out.println("Transcript for:  " +
+		System.out.println("学生个人成绩单:  " +
 				   getStudentOwner().toString());
 
 		if (transcriptEntries.size() == 0) {
-			System.out.println("\t(no entries)");
+			System.out.println("\t(无成绩)");
 		}
 		else for (TranscriptEntry te : transcriptEntries) {
 			Section sec = te.getSection();
@@ -73,13 +73,13 @@ public class Transcript {
 
 			ScheduleOfClasses soc = sec.getOfferedIn();
 
-			System.out.println("\tSemester:        " +
+			System.out.println("\t学期:        " +
 					   soc.getSemester());
-			System.out.println("\tCourse No.:      " +
+			System.out.println("\t课程编号.:      " +
 					   c.getCourseId());
-			System.out.println("\tCredits:         " +
+			System.out.println("\t学分:         " +
 					   c.getCredits());
-			System.out.println("\tGrade Received:  " +
+			System.out.println("\t获得成绩:  " +
 					   te.getGrade());
 			System.out.println("\t-----");
 		}

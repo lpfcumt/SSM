@@ -40,6 +40,7 @@ public class ScheduleOfClasses {
 		System.out.println();
 
 		for (Section s : sectionsOffered.values()) {
+			s.setOfferedIn(this);
 			s.display();
 			System.out.println();
 		}

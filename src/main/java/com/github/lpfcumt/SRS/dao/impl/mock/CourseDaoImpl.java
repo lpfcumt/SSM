@@ -1,20 +1,19 @@
 package com.github.lpfcumt.SRS.dao.impl.mock;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import org.springframework.stereotype.Repository;
 
 import com.github.lpfcumt.SRS.dao.CourseDao;
 import com.github.lpfcumt.SRS.domain.Course;
-import com.github.lpfcumt.SRS.domain.Section;
 
-@Repository("courseDao")
+@Repository("courseMockDao")
 public class CourseDaoImpl implements CourseDao{
 	
 	@Override
-	public HashMap<String, Course> findAll() {
+	public ArrayList<Course> findAll() {
 		// 创建新的hashMap容器
-		HashMap<String, Course> listAllCourse = new HashMap<String , Course>();
+		ArrayList<Course>listAllCourse = new ArrayList<Course>();
 
 		// 创建Course 对象
 		Course c1 = new Course("ABC-101", "信息系统分析与设计（上）", 2.5);
@@ -28,10 +27,10 @@ public class CourseDaoImpl implements CourseDao{
 		c3.addPrerequisite(c2);
 		
 		// 为hashmap对象加载数据
-		listAllCourse.put(c1.getCourseId(), c1);
-		listAllCourse.put(c2.getCourseId(), c2);
-		listAllCourse.put(c3.getCourseId(), c3);
-		listAllCourse.put(c4.getCourseId(), c4);
+		listAllCourse.add(c1);
+		listAllCourse.add(c2);
+		listAllCourse.add(c3);
+		listAllCourse.add(c4);
 		return listAllCourse;
 	}
 

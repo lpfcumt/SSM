@@ -1,5 +1,6 @@
 package com.github.lpfcumt.SRS.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.annotation.Resource;
@@ -12,24 +13,30 @@ import com.github.lpfcumt.SRS.service.TeacherService;
 
 @Service("teacherService")
 public class TeacherServiceImpl implements TeacherService{
-	@Resource(name="teacherDao")
+	@Resource(name="teacherMockDao") // 把name值改为teacherDao，即可切换成sqlite数据源
 	protected TeacherDao teacherDao;
 	
+	HashMap<String, Teacher> mapTeacher;
+	ArrayList<Teacher> listTeacher;
 	
 	@Override
-	public HashMap<String, Teacher> findAllStudent() {
-		return teacherDao.findAll();
+	public HashMap<String, Teacher> findAll() {
+		mapTeacher = new HashMap<String, Teacher>();
+		for (Teacher teacher : teacherDao.findAll()) {
+			mapTeacher.put(teacher.getId(), teacher);
+		}
+		return mapTeacher;
 	}
 
 	@Override
 	public boolean checkLogin(String id, String password) {
-		if (password.equals(findTeacherById(id).getPassword())) return true; 
+		if (teacherDao.findTeacherById(id) != null && password.equals(teacherDao.findTeacherById(id).getPassword())) return true; 
 		else return false;
 	}
 
 	@Override
 	public Teacher findTeacherById(String id) {
-		return findTeacherById(id);
+		return teacherDao.findTeacherById(id);
 	}
 
 }

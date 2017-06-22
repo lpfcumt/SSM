@@ -65,7 +65,7 @@
 								<span class="col-sm-2 control-label glyphicon glyphicon-user"></span>
 						
 						<div class="col-sm-10">
-						<input id="students_id"  class="form-control " type="text" placeholder="学号" name="students_id" autofocus="autofocus" maxlength="20"/>
+						<input id="id"  class="form-control " type="text" placeholder="学号" name="id" autofocus="autofocus" maxlength="20"/>
 						</div>
 					</div>
 					<div class="form-group">

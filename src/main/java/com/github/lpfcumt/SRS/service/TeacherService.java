@@ -12,7 +12,7 @@ public interface TeacherService {
 	 * @author 林鹏飞
 	 * @return HashMap
 	 */
-	HashMap<String, Teacher> findAllStudent();
+	HashMap<String, Teacher> findAll();
 	
 	/**
 	 * @method 检查登录

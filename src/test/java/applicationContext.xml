@@ -25,7 +25,7 @@
 	<task:annotation-driven />
 	
 	<!-- mybatis:scan会扫描包里的所有接口当作Spring的bean配置，之后可以进行依赖注入-->  
-    <mybatis:scan base-package="com.github.lpfcumt.SRS.dao"/>
+    <!-- <mybatis:scan base-package="com.github.lpfcumt.SRS.dao"/> -->
     
     <!-- spring扫描包下面的java文件，有Spring的相关注解的类，则把这些类注册为Spring的bean -->
     <context:component-scan base-package="com.github.lpfcumt.SRS"/>
@@ -34,9 +34,9 @@
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"/>
 	
 	<!-- mybatis会用mapper文件实现以下包内的接口 -->
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	<!-- <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.github.lpfcumt.SRS.dao" />
-    </bean> 
+    </bean> -->
     
 	<!--多数据源配置  -->
 	<bean id="vendorProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">

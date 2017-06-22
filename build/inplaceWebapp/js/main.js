@@ -27,7 +27,7 @@ $("#password").change(function(){
 	            　　　　　　　　validating: 'glyphicon glyphicon-refresh'
 	        　　　　　　　　   },
 	        fields: {
-	            students_id: {
+	            id: {
 	                message: '用户名验证失败',
 	                validators: {
 	                    notEmpty: {
@@ -70,7 +70,7 @@ $("#password").change(function(){
         // Get the BootstrapValidator instance
         var bv = $form.data('bootstrapValidator');
         // Use Ajax to submit form data
-        $.getJSON("login", $form.serialize(), function (data) { 
+        $.getJSON("checklogin", $form.serialize(), function (data) { 
         
             if (data.success==true) {
             	window.location.href = 'sendLogin'

@@ -107,7 +107,7 @@ public class Student extends Person{
 	 */
 	private void printCourseSchedule() {
 		
-		System.out.println("Course Schedule for " + this.getName());
+		System.out.println("学生课程表 " + this.getName());
 		for (Section s : sections) {            
 			if (s.getGrade(this) == null) {
 				System.out.println("\t课程编号.:  " + 

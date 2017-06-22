@@ -15,11 +15,8 @@ public class Section {
 	private String room; // 教室
 	private int seatingCapacity; // 座位
 	private Course representedCourse; // 前置课程
-	private ScheduleOfClasses offeredIn; // 提供的班级
+	private ScheduleOfClasses offeredIn; // 提供的课程表
 	private Teacher instructor; // 指导教师
-	/**
-	* @Fields enrolledStudents : TODO(参加班次的学生)
-	*/
 	private HashMap<String, Student> enrolledStudents; // 参加班次的学生
 	private HashMap<Student, TranscriptEntry> assignedGrades; // 成绩等级
 	
@@ -81,7 +78,7 @@ public class Section {
 		this.setRoom(room);
 		this.setSeatingCapacity(seatingCapacity);
 		this.setRepresentedCourse(representedCourse);
-		setInstructor(null);
+		this.setInstructor(null);
 		enrolledStudents = new HashMap<String,Student>();
 		assignedGrades = new HashMap<Student,TranscriptEntry>();
 	}
@@ -206,16 +203,16 @@ public class Section {
 	}	
 
 	public void display() {
-		System.out.println("Section Information:");
-		System.out.println("\tSemester:  " + getOfferedIn().getSemester());
-		System.out.println("\tCourse No.:  " + 
+		System.out.println("班次信息:");
+		System.out.println("\t学期:  " + getOfferedIn().getSemester());
+		System.out.println("\t课程编号.:  " + 
 				   getRepresentedCourse().getCourseId());
-		System.out.println("\tSection No:  " + getSectionId());
-		System.out.println("\tOffered:  " + getDayOfWeek() + 
+		System.out.println("\t班次编号:  " + getSectionId());
+		System.out.println("\t时间与日期:  " + getDayOfWeek() + 
 				   " at " + getTimeOfDay());
-		System.out.println("\tIn Room:  " + getRoom());
+		System.out.println("\t教室:  " + getRoom());
 		if (getInstructor() != null) 
-			System.out.println("\tProfessor:  " + 
+			System.out.println("\t授课老师:  " + 
 				   getInstructor().getName());
 		displayStudentRoster();
 	}

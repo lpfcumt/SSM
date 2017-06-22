@@ -132,17 +132,16 @@ function dialogClose(obj){
 <body class="easyui-layout" style="width: 100%;height: 100%">
 	//上侧
 	<div region="north" border="true" split="true" style="overflow: hidden;height: 80px;">
-	<c:if test="${empty sessionScope.students}">
+	<c:if test="${empty sessionScope.student}">
 		<c:redirect url="login.jsp" />
 	</c:if>
-	<c:if test="${not empty sessionScope.students}">
-		<c:forEach items="${sessionScope.students}" var="item">
-		<div class="top-bg" style="margin:40px 50px 10px 0;float:right">
+	<c:if test="${not empty sessionScope.student}">
+		<div class="top-bg" style="margin:40px 40px 10px 0;float:right">
+			<p>${student.name} &nbsp;<
+				 ${student.id}>[${student.grade}&nbsp;${student.major}]&nbsp;
+				 <a onclick="return exitLogin()" href="exitLogin">退出登录</a>
+			</p> 
 			
-			    姓名:<c:out value="${item.name}" /> &nbsp;&nbsp;&nbsp;
-			
-			    学号:<c:out value="${item.students_id}" /> <br/>
-			<a onclick="return exitLogin()" href="exitLogin">退出登录</a>
 			<div id="exit-wind" class="easyui-dialog" title="My Dialog" style=" display: none;overflow: hidden;width:400px;height:200px;"
 			    data-options="iconCls:'icon-save',resizable:true,modal:true" closed="true"
 			    toolbar="#dlg-toolbar" buttons="#dlg-buttons">
@@ -153,7 +152,6 @@ function dialogClose(obj){
 				</div>
 			</div>
 		</div>
-	</c:forEach>
 	</c:if>
 	
 	</div>
@@ -168,20 +166,20 @@ function dialogClose(obj){
 		//导航栏
         <div id="aa" class="easyui-accordion" style="position: absolute; top: 27px; left: 0px; right: 0px; bottom: 0px;">
 
-            <div title="学生管理" iconcls="icon-save" style="overflow: auto; padding: 10px;">
+            <div title="学生选课" iconcls="icon-save" style="overflow: auto; padding: 10px;">
                 <ul class="easyui-tree">
                     <li>
-                        <span><a onclick="addTab('所有学生','index.jsp')" href="#">学生管理</a></span>
+                        <span><a onclick="addTab('学生选课','index.jsp')" href="#">学生选课</a></span>
                     </li>
                     <li>
                         <span><a href="#">File21</a></span>
                     </li>
                 </ul>
             </div>
-            <div title="教师管理" iconcls="icon-reload"  style="padding: 10px;">
+            <div title="课表查询" iconcls="icon-reload"  style="padding: 10px;">
                 <ul class="easyui-tree">
                 	<li>
-                		<span><a href="#">教师管理</a></span>
+                		<span><a href="#">课表查询</a></span>
                 	</li>
                 </ul> 
             </div>

@@ -36,7 +36,7 @@
 	<!-- mybatis会用mapper文件实现以下包内的接口 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.github.lpfcumt.SRS.dao" />
-    </bean>
+    </bean> 
     
 	<!--多数据源配置  -->
 	<bean id="vendorProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
@@ -59,7 +59,7 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="databaseIdProvider" ref="databaseIdProvider" />
-        <property name="mapperLocations" value="classpath*:/com/github/lpfcumt/SSR/mapper/**/*.xml" />
+        <property name="mapperLocations" value="classpath*:/com/github/lpfcumt/SRS/dao/impl/mapper/**/*.xml" />
         <property name="plugins">
 			<list>
 				<bean class="com.github.pagehelper.PageInterceptor">
