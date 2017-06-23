@@ -19,26 +19,24 @@
 			            http://mybatis.org/schema/mybatis-spring.xsd 
 			            http://www.springframework.org/schema/task 
 			            http://www.springframework.org/schema/task/spring-task-4.1.xsd">
-
+		
     <!-- 配置spring定时器 -->
     <context:annotation-config />
-	<task:annotation-driven />
-	
-	<!-- mybatis:scan会扫描包里的所有接口当作Spring的bean配置，之后可以进行依赖注入-->  
-    <mybatis:scan base-package="com.github.lpfcumt.SRS.dao"/>
-    
-    <!-- spring扫描包下面的java文件，有Spring的相关注解的类，则把这些类注册为Spring的bean -->
+	<task:annotation-driven />	      
+	<!-- mybatis:scan会扫描org.fkit.dao包里的所有接口当作Spring的bean配置，之后可以进行依赖注入-->  
+    <mybatis:scan base-package="com.github.lpfcumt.SRS.dao"/>   
+       
+	<!-- 扫描org.fkit包下面的java文件，有Spring的相关注解的类，则把这些类注册为Spring的bean -->
     <context:component-scan base-package="com.github.lpfcumt.SRS"/>
     
-    <!-- 配置c3p0数据源 -->
+	 
+	<!-- 配置c3p0数据源 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"/>
 	
-	<!-- mybatis会用mapper文件实现以下包内的接口 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.github.lpfcumt.SRS.dao" />
-    </bean> 
+    </bean>
     
-	<!--多数据源配置  -->
 	<bean id="vendorProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 	  <property name="properties">
 	    <props>
@@ -51,15 +49,15 @@
 	    </props>
 	  </property>
 	</bean>
+	
 	<bean id="databaseIdProvider" class="org.apache.ibatis.mapping.VendorDatabaseIdProvider">
 	  <property name="properties" ref="vendorProperties"/>
 	</bean>
-	
 	<!-- 配置SqlSessionFactory，org.mybatis.spring.SqlSessionFactoryBean是Mybatis社区开发用于整合Spring的bean -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="databaseIdProvider" ref="databaseIdProvider" />
-        <property name="mapperLocations" value="classpath*:/com/github/lpfcumt/SRS/dao/impl/mapper/**/*.xml" />
+        <property name="mapperLocations" value="classpath*:/com/github/lpfcumt/SRS/mapper/**/*.xml" />
         <property name="plugins">
 			<list>
 				<bean class="com.github.pagehelper.PageInterceptor">
@@ -77,25 +75,24 @@
 			</list>
 		</property>
     </bean>
-    
 	<!-- JDBC事务管理器 -->
 	<bean id="transactionManager"  
         class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
         <property name="dataSource" ref="dataSource" />  
-    </bean>
-    
+    </bean> 
+	
 	<!-- 启用支持annotation注解方式事务管理 -->
 	<tx:annotation-driven transaction-manager="transactionManager"/>
-	
 	<!-- 加载mysql数据源 -->
 	<beans profile="mysql">  
        <!-- 使用PropertyOverrideConfigurer后处理器加载数据源参数 -->
 		<context:property-override location="classpath*:mysql-db.properties"/>
     </beans>
+<!--     加载sqlite数据源 -->
+ 	<beans profile="sqlite">  
+<!--        使用PropertyOverrideConfigurer后处理器加载数据源参数 -->
+ 		<context:property-override location="classpath*:sqlite-db.properties"/> 
+     </beans>
     
- 	<!-- 加载sqlite数据源 -->
-	<beans profile="sqlite">  
-       <!-- 使用PropertyOverrideConfigurer后处理器加载数据源参数 -->
-		<context:property-override location="classpath*:sqlite-db.properties"/>
-    </beans>
+	
 </beans>

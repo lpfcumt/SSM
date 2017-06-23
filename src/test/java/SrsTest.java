@@ -1,16 +1,18 @@
 import java.util.HashMap;
+import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-
+import com.github.lpfcumt.SRS.dao.StudentDao;
 import com.github.lpfcumt.SRS.domain.EnrollmentStatus;
 import com.github.lpfcumt.SRS.domain.ScheduleOfClasses;
 import com.github.lpfcumt.SRS.domain.Section;
@@ -37,6 +39,8 @@ public class SrsTest {
 	protected SectionService sectionService;
 	@Resource(name="scheduleService")
 	protected ScheduleService scheduleService;
+	@Autowired
+	protected StudentDao studentDao;
 	
 	@Before
 	public void addThings(){
@@ -119,5 +123,15 @@ public class SrsTest {
 		System.out.println("----"+student.getName()+"正在查看个人信息----");
 		student.display();
 		
+	}
+	
+	@Test
+	public void test2(){
+		
+		
+		
+//		studentDao.query("09143627");
+////		studentDao.findStudentById("03143617");
+//		teacherService.findAll();
 	}
 }

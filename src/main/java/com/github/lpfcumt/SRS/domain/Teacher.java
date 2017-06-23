@@ -41,7 +41,11 @@ public class Teacher extends Person{
 		this.setDepartment(department);
 		teach=new ArrayList<Section>();
 	}
-
+	
+	public Teacher() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub

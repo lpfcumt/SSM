@@ -14,7 +14,7 @@ public class Section {
 	private String timeOfDay; // 一天的时间
 	private String room; // 教室
 	private int seatingCapacity; // 座位
-	private Course representedCourse; // 前置课程
+	private Course representedCourse; // 代表的课程
 	private ScheduleOfClasses offeredIn; // 提供的课程表
 	private Teacher instructor; // 指导教师
 	private HashMap<String, Student> enrolledStudents; // 参加班次的学生

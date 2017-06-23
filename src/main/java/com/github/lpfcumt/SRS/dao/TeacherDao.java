@@ -2,6 +2,8 @@ package com.github.lpfcumt.SRS.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Select;
+
 import com.github.lpfcumt.SRS.domain.Teacher;
 
 public interface TeacherDao {
@@ -11,6 +13,7 @@ public interface TeacherDao {
 	 * @author 林鹏飞
 	 * @return ArrayList<Teacher> 
 	 */
+
 	ArrayList<Teacher>  findAll();
 	
 	/**

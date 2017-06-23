@@ -3,6 +3,8 @@ package com.github.lpfcumt.SRS.domain;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.github.lpfcumt.SRS.pojo.poStudent;
+
 /**
  * @author 林鹏飞
  * @since Jdk1.8
@@ -10,12 +12,12 @@ import java.util.Collection;
  * @time 2017年6月16日下午2:46:02
  */
 public class Student extends Person{
-	
-	private String grade; // 年级
-	private String major; // 专业
+	private String grade;
+	private String major;	
 	private Transcript transcript; // 成绩单
 	private ArrayList<Section> sections; // 课程班次集合
 	private PlanOfStudy planOfStudy; // 学习计划
+	
 	
 	public String getGrade() {
 		return grade;
@@ -48,12 +50,14 @@ public class Student extends Person{
 		this.planOfStudy = planOfStudy;
 	}
 
-	
-	
-	public Student(String id, String name,String password, String grade, String major) {
-		super(id, name,password);
-		this.setGrade(grade);
-		this.setMajor(major);
+	public Student(){
+		
+	}
+
+	public Student(String id, String name, String password, String grade, String major) {
+		super(id,name,password);
+		this.grade = grade;
+		this.major = major;
 		/*创建一个新的学习计划*/
 		this.setPlanOfStudy(new PlanOfStudy(this));
 		
@@ -71,7 +75,7 @@ public class Student extends Person{
 	 * @param id
 	 */
 	public Student(String id){
-		this(id, "", "", "","");
+		this(id, "", "", "", "");
 	}
 
 	@Override
@@ -83,7 +87,6 @@ public class Student extends Person{
 	
 	@Override
 	public void display(){
-		super.display();
 		System.out.println("学生具体信息： ");
 		System.out.println("\t年级: "+this.getGrade());
 		System.out.println("\t专业: "+this.getMajor());
@@ -192,6 +195,8 @@ public class Student extends Person{
 	public Collection<Section> getEnrolledSections(){
 		return sections;
 	}
+
+
 
 
 }

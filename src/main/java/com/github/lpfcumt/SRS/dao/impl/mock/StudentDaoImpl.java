@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.github.lpfcumt.SRS.dao.StudentDao;
 import com.github.lpfcumt.SRS.domain.Student;
 
+
 @Repository("studentMockDao")
 public class StudentDaoImpl implements StudentDao{
 	
@@ -38,6 +39,12 @@ public class StudentDaoImpl implements StudentDao{
 			if (student.getId().equals(id))return student;
 
 		}
+		return null;
+	}
+
+	@Override
+	public String query(String id) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

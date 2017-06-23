@@ -15,13 +15,13 @@ import com.github.lpfcumt.SRS.domain.Student;
 import com.github.lpfcumt.SRS.service.StudentService;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/student")
 public class StudentController extends BaseController{
 	@Resource(name="studentService")
 	protected StudentService studentService;
 	
 	// 检查账号密码是否正确
-	@RequestMapping(value="/checklogin") 
+	@RequestMapping(value="/checkLogin") 
 	@ResponseBody
 	public Map<String, Object> checkLOgin(@RequestParam(required=true,defaultValue="0")String id,
 			@RequestParam(required=true,defaultValue="0")String password, HttpSession session) throws Exception{
@@ -39,9 +39,17 @@ public class StudentController extends BaseController{
 	public ModelAndView sendLogin(HttpSession session){
 		Student student = (Student)session.getAttribute("student"); // 从session中获取student
 		// 判断session中的student是否为空
-		if (student!=null)return new ModelAndView("redirect:easyindex.jsp"); // 跳转至首页
-		else return new ModelAndView("redirect:login"); // 跳转至login页
+		if (student!=null)return new ModelAndView("redirect:/studentindex.jsp"); // 跳转至首页
+		else return new ModelAndView("redirect:/studentlogin"); // 跳转至login页
 	}
+	
+	// 检验登录并跳转页面
+		@RequestMapping(value="/listAllstudent") 
+		@ResponseBody
+		public Map<String, Object> listAllstudent(HttpSession session){
+			data.put("allstudent", studentService.findAllStudent());
+			return data;
+		}
 	
 	// 展示总课程表
 	@RequestMapping(value="/listScheduleOfClass")

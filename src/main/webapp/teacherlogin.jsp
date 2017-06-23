@@ -1,9 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!doctype html>
 <html>
 <head>
@@ -27,9 +25,9 @@
 <!--jquery.validate-->
 
 <script src="//cdn.bootcss.com/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script>
-<script src="/js/main.js"></script>
+<script src="${path}/js/main.js"></script>
 <style type="text/css">
-	body{background: url(img/4.jpg) no-repeat;background-size: cover;font-size: 16px;}
+	body{background: url(${path}/img/4.jpg) no-repeat;background-size: cover;font-size: 16px;}
 		.form{background: rgba(255,255,255,0.2);width:550px;margin:100px auto;}
 		#login_form{display: block;}
 		#register_form{display: none;}
@@ -55,8 +53,8 @@
 		-->
 	<div class="container">
 		<div class="form row">
-			<form  class="form-horizontal col-sm-offset-2 col-md-offset-2" id="login_form" action="sendLogin" method="post">
-				<div class="col-sm-6 col-md-6" style="margin:30px 75px;padding:auto;"><h3 class="form-title">LOGIN</h3></div>
+			<form  class="form-horizontal col-sm-offset-2 col-md-offset-2" id="teacher_login" action="teacher_sendLogin" method="post">
+				<div class="col-sm-6 col-md-6" style="margin:30px 75px;padding:auto;"><h3 class="form-title">TEACHER LOGIN</h3></div>
 				<div class="col-sm-9 col-md-9" >
 					
 					<div class="form-group">

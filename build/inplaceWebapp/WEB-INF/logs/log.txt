@@ -1,98 +1,63 @@
-2017-06-13 20:31:38,961 localhost-startStop-1 ERROR [org.springframework.web.servlet.DispatcherServlet] Context initialization failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter': Cannot create inner bean 'fastJsonHttpMessageConverter' of type [com.alibaba.fastjson.support.spring.FastJsonHttpMessageConvertet] while setting bean property 'messageConverters' with key [4]; nested exception is org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [com.alibaba.fastjson.support.spring.FastJsonHttpMessageConvertet] for bean with name 'fastJsonHttpMessageConverter' defined in URL [file:/C:/Users/Administrator/workspace/SRS/build/resources/main/springmvc-config.xml]; nested exception is java.lang.ClassNotFoundException: com.alibaba.fastjson.support.spring.FastJsonHttpMessageConvertet
-	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveInnerBean(BeanDefinitionValueResolver.java:313)
-	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:122)
-	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveManagedList(BeanDefinitionValueResolver.java:382)
-	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:157)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1492)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1237)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:552)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
-	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:759)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:866)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:542)
-	at org.springframework.web.servlet.FrameworkServlet.configureAndRefreshWebApplicationContext(FrameworkServlet.java:668)
-	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:634)
-	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:682)
-	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:553)
-	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:494)
-	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:136)
-	at javax.servlet.GenericServlet.init(GenericServlet.java:158)
-	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1231)
-	at org.apache.catalina.core.StandardWrapper.loadServlet(StandardWrapper.java:1144)
-	at org.apache.catalina.core.StandardWrapper.load(StandardWrapper.java:1031)
-	at org.apache.catalina.core.StandardContext.loadOnStartup(StandardContext.java:4914)
-	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5201)
-	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
-	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1409)
-	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1399)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
-	at java.lang.Thread.run(Thread.java:745)
-Caused by: org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [com.alibaba.fastjson.support.spring.FastJsonHttpMessageConvertet] for bean with name 'fastJsonHttpMessageConverter' defined in URL [file:/C:/Users/Administrator/workspace/SRS/build/resources/main/springmvc-config.xml]; nested exception is java.lang.ClassNotFoundException: com.alibaba.fastjson.support.spring.FastJsonHttpMessageConvertet
-	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1377)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
-	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveInnerBean(BeanDefinitionValueResolver.java:299)
-	... 33 more
-Caused by: java.lang.ClassNotFoundException: com.alibaba.fastjson.support.spring.FastJsonHttpMessageConvertet
-	at org.akhikhl.gretty.TomcatEmbeddedWebappClassLoader.loadClass(TomcatEmbeddedWebappClassLoader.java:60)
-	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1157)
-	at org.springframework.util.ClassUtils.forName(ClassUtils.java:250)
-	at org.springframework.beans.factory.support.AbstractBeanDefinition.resolveBeanClass(AbstractBeanDefinition.java:394)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doResolveBeanClass(AbstractBeanFactory.java:1424)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1369)
-	... 35 more
-2017-06-13 20:33:17,118 localhost-startStop-1 ERROR [org.springframework.web.servlet.DispatcherServlet] Context initialization failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter': Cannot create inner bean 'fastJsonHttpMessageConverter' of type [com.alibaba.fastjson.support.spring.FastJsonHttpMessageConvertet] while setting bean property 'messageConverters' with key [4]; nested exception is org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [com.alibaba.fastjson.support.spring.FastJsonHttpMessageConvertet] for bean with name 'fastJsonHttpMessageConverter' defined in URL [file:/C:/Users/Administrator/workspace/SRS/build/resources/main/springmvc-config.xml]; nested exception is java.lang.ClassNotFoundException: com.alibaba.fastjson.support.spring.FastJsonHttpMessageConvertet
-	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveInnerBean(BeanDefinitionValueResolver.java:313)
-	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:122)
-	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveManagedList(BeanDefinitionValueResolver.java:382)
-	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:157)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1492)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1237)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:552)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
-	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:759)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:866)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:542)
-	at org.springframework.web.servlet.FrameworkServlet.configureAndRefreshWebApplicationContext(FrameworkServlet.java:668)
-	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:634)
-	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:682)
-	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:553)
-	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:494)
-	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:136)
-	at javax.servlet.GenericServlet.init(GenericServlet.java:158)
-	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1231)
-	at org.apache.catalina.core.StandardWrapper.loadServlet(StandardWrapper.java:1144)
-	at org.apache.catalina.core.StandardWrapper.load(StandardWrapper.java:1031)
-	at org.apache.catalina.core.StandardContext.loadOnStartup(StandardContext.java:4914)
-	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5201)
-	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
-	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1409)
-	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1399)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
-	at java.lang.Thread.run(Thread.java:745)
-Caused by: org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [com.alibaba.fastjson.support.spring.FastJsonHttpMessageConvertet] for bean with name 'fastJsonHttpMessageConverter' defined in URL [file:/C:/Users/Administrator/workspace/SRS/build/resources/main/springmvc-config.xml]; nested exception is java.lang.ClassNotFoundException: com.alibaba.fastjson.support.spring.FastJsonHttpMessageConvertet
-	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1377)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
-	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveInnerBean(BeanDefinitionValueResolver.java:299)
-	... 33 more
-Caused by: java.lang.ClassNotFoundException: com.alibaba.fastjson.support.spring.FastJsonHttpMessageConvertet
-	at org.akhikhl.gretty.TomcatEmbeddedWebappClassLoader.loadClass(TomcatEmbeddedWebappClassLoader.java:60)
-	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1157)
-	at org.springframework.util.ClassUtils.forName(ClassUtils.java:250)
-	at org.springframework.beans.factory.support.AbstractBeanDefinition.resolveBeanClass(AbstractBeanDefinition.java:394)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doResolveBeanClass(AbstractBeanFactory.java:1424)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1369)
-	... 35 more
+2017-06-23 21:55:09,985 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==>  Preparing: select * from student where id=? 
+2017-06-23 21:55:10,011 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==> Parameters: 6456456(String)
+2017-06-23 21:55:10,024 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] <==      Total: 0
+2017-06-23 21:55:19,731 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==>  Preparing: select * from student where id=? 
+2017-06-23 21:55:19,732 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==> Parameters: 09143627(String)
+2017-06-23 21:55:19,736 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] <==      Total: 1
+2017-06-23 21:58:09,485 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==>  Preparing: select * from student where id=? 
+2017-06-23 21:58:09,501 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==> Parameters: 09143627(String)
+2017-06-23 22:18:37,168 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==>  Preparing: select * from student where id=? 
+2017-06-23 22:18:37,193 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==> Parameters: 09143627(String)
+2017-06-23 22:19:56,825 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==>  Preparing: select * from student where id=? 
+2017-06-23 22:19:56,841 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==> Parameters: 09143627(String)
+2017-06-23 22:21:18,601 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==>  Preparing: select * from student where id=? 
+2017-06-23 22:21:18,613 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==> Parameters: 09143627(String)
+2017-06-23 22:21:18,622 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] <==      Total: 1
+2017-06-23 22:21:18,624 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==>  Preparing: select * from student where id=? 
+2017-06-23 22:21:18,624 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==> Parameters: 09143627(String)
+2017-06-23 22:21:18,625 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] <==      Total: 1
+2017-06-23 22:21:26,225 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==>  Preparing: select * from student where id=? 
+2017-06-23 22:21:26,228 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==> Parameters: 09143627(String)
+2017-06-23 22:21:26,229 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] <==      Total: 1
+2017-06-23 22:21:26,230 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==>  Preparing: select * from student where id=? 
+2017-06-23 22:21:26,232 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==> Parameters: 09143627(String)
+2017-06-23 22:21:26,233 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] <==      Total: 1
+2017-06-23 22:21:26,235 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==>  Preparing: select * from student where id=? 
+2017-06-23 22:21:26,236 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==> Parameters: 09143627(String)
+2017-06-23 22:21:26,237 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] <==      Total: 1
+2017-06-23 22:22:53,868 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==>  Preparing: select * from student where id=? 
+2017-06-23 22:22:53,871 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==> Parameters: 09143627(String)
+2017-06-23 22:22:53,874 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] <==      Total: 1
+2017-06-23 22:22:53,879 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==>  Preparing: select * from student where id=? 
+2017-06-23 22:22:53,881 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==> Parameters: 09143627(String)
+2017-06-23 22:22:53,882 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] <==      Total: 1
+2017-06-23 22:22:53,885 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==>  Preparing: select * from student where id=? 
+2017-06-23 22:22:53,886 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==> Parameters: 09143627(String)
+2017-06-23 22:22:53,889 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] <==      Total: 1
+2017-06-23 22:34:16,145 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.TeacherDao.findTeacherById] ==>  Preparing: select * from teacher where id=? 
+2017-06-23 22:34:16,170 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.TeacherDao.findTeacherById] ==> Parameters: 56456456(String)
+2017-06-23 22:34:16,193 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.TeacherDao.findTeacherById] <==      Total: 0
+2017-06-23 22:34:28,796 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.TeacherDao.findTeacherById] ==>  Preparing: select * from teacher where id=? 
+2017-06-23 22:34:28,798 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.TeacherDao.findTeacherById] ==> Parameters: 111111(String)
+2017-06-23 22:34:28,800 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.TeacherDao.findTeacherById] <==      Total: 1
+2017-06-23 22:34:28,801 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.TeacherDao.findTeacherById] ==>  Preparing: select * from teacher where id=? 
+2017-06-23 22:34:28,801 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.TeacherDao.findTeacherById] ==> Parameters: 111111(String)
+2017-06-23 22:34:28,802 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.TeacherDao.findTeacherById] <==      Total: 1
+2017-06-23 22:34:28,803 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.TeacherDao.findTeacherById] ==>  Preparing: select * from teacher where id=? 
+2017-06-23 22:34:28,804 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.TeacherDao.findTeacherById] ==> Parameters: 111111(String)
+2017-06-23 22:34:28,804 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.TeacherDao.findTeacherById] <==      Total: 1
+2017-06-23 22:41:23,373 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==>  Preparing: select * from student where id=? 
+2017-06-23 22:41:23,420 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==> Parameters: 09143627(String)
+2017-06-23 22:41:23,452 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] <==      Total: 1
+2017-06-23 22:41:23,455 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==>  Preparing: select * from student where id=? 
+2017-06-23 22:41:23,457 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==> Parameters: 09143627(String)
+2017-06-23 22:41:23,458 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] <==      Total: 1
+2017-06-23 22:41:27,850 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==>  Preparing: select * from student where id=? 
+2017-06-23 22:41:27,852 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==> Parameters: 09143627(String)
+2017-06-23 22:41:27,853 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] <==      Total: 1
+2017-06-23 22:41:27,855 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==>  Preparing: select * from student where id=? 
+2017-06-23 22:41:27,856 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==> Parameters: 09143627(String)
+2017-06-23 22:41:27,860 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] <==      Total: 1
+2017-06-23 22:41:27,862 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==>  Preparing: select * from student where id=? 
+2017-06-23 22:41:27,864 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==> Parameters: 09143627(String)
+2017-06-23 22:41:27,865 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] <==      Total: 1

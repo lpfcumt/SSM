@@ -33,6 +33,7 @@
 $(function(){
 
 			 $('#dg').datagrid({
+				 
 				selectOnCheck:true,
 				columns:[[    
 					{field:'id',title:'序号',width:60},    

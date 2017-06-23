@@ -132,13 +132,13 @@ function dialogClose(obj){
 <body class="easyui-layout" style="width: 100%;height: 100%">
 	//上侧
 	<div region="north" border="true" split="true" style="overflow: hidden;height: 80px;">
-	<c:if test="${empty sessionScope.student}">
+	<c:if test="${empty sessionScope.teacher}">
 		<c:redirect url="login.jsp" />
 	</c:if>
-	<c:if test="${not empty sessionScope.student}">
+	<c:if test="${not empty sessionScope.teacher}">
 		<div class="top-bg" style="margin:40px 40px 10px 0;float:right">
-			<p>${student.name} &nbsp;<
-				 ${student.id}>[${student.grade}&nbsp;${student.major}]&nbsp;
+			<p>${teacher.name} &nbsp;<
+				 ${teacher.id}>[${teacher.title}&nbsp;${teacher.department}]&nbsp;
 				 <a onclick="return exitLogin()" href="exitLogin">退出登录</a>
 			</p> 
 			

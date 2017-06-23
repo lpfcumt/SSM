@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.lpfcumt.SRS.dao.TeacherDao;
@@ -13,7 +14,7 @@ import com.github.lpfcumt.SRS.service.TeacherService;
 
 @Service("teacherService")
 public class TeacherServiceImpl implements TeacherService{
-	@Resource(name="teacherMockDao") // 把name值改为teacherDao，即可切换成sqlite数据源
+	@Autowired // 把name值改为teacherDao，即可切换成sqlite数据源
 	protected TeacherDao teacherDao;
 	
 	HashMap<String, Teacher> mapTeacher;
