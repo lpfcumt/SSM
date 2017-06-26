@@ -34,4 +34,28 @@ public class CourseDaoImpl implements CourseDao{
 		return listAllCourse;
 	}
 
+	@Override
+	public int countAllCourse() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void addCourse(Course course) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateCourse(Course course) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<Course> fuzzyfindCourse(String search) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

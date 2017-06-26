@@ -6,6 +6,7 @@ import java.util.HashMap;
 import org.springframework.stereotype.Repository;
 
 import com.github.lpfcumt.SRS.dao.StudentDao;
+import com.github.lpfcumt.SRS.domain.Section;
 import com.github.lpfcumt.SRS.domain.Student;
 
 
@@ -44,6 +45,12 @@ public class StudentDaoImpl implements StudentDao{
 
 	@Override
 	public String query(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Student> findStudentBySectionId(String sectionId, String dayOfWeek) {
 		// TODO Auto-generated method stub
 		return null;
 	}

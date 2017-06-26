@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.lpfcumt.SRS.dao.ScheduleDao;
@@ -13,7 +14,7 @@ import com.github.lpfcumt.SRS.service.ScheduleService;
 
 @Service("scheduleService")
 public class ScheduleServiceImpl implements ScheduleService{
-	@Resource(name="scheduleMockDao")
+	@Autowired // 把'@Autowired'改为'@Resource(name="scheduleMockDao")'，即可切换成sqlite数据源
 	protected ScheduleDao scheduleDao;
 	
 	ArrayList<Section> sections = new ArrayList<Section>();

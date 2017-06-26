@@ -30,98 +30,7 @@
 </style>
 
 <script>
-$(function(){
 
-			 $('#dg').datagrid({
-				selectOnCheck:true,
-				columns:[[    
-					{field:'id',title:'序号',width:60},    
-					{field:'students_id',title:'学号',width:100%$},    
-					{field:'name',title:'姓名',width:100%$},
-					{field:'email',title:'邮箱',width:100%$},
-					{field:'sex',title:'性别',width:100%$},
-					{field:'school',title:'学院',width:100%$},
-					{field:'grade',title:'年级',width:100%$},    
-					{field:'major',title:'专业',width:100%$},
-					{field:'time',title:'创建时间',width:100%$},
-					{field:'state',title:'状态',width:100%$}
-				]]    
-			 });
-			var pager = $('#dg').datagrid('getPager');	// get the pager of datagrid
-			pager.pagination({
-				showPageList:true,
-				pageSize:10,
-				url:'query',
-				pageList: [10, 15, 50],
-				beforePageText: '第',//页数文本框前显示的汉字
-				afterPageText: '页    共 {pages} 页',
-				displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录', 
-            	
-				buttons:[{
-					iconCls:'icon-search',
-					text:'搜索',
-					handler:function(){
-						
-					}
-				},{
-					iconCls:'icon-add',
-					text:'添加',
-					handler:function(){
-						$('#dlg').dialog('open').dialog('center').dialog('setTitle','添加学生');
-						$('#fm').form('clear');
-						url = 'save_user.php';
-
-					}
-				},{
-					iconCls:'icon-edit',
-					text:'编辑',
-					handler:function(){
-							var row = $('#dg').datagrid('getSelected');
-							if (row){
-								$('#dlg').dialog('open').dialog('center').dialog('setTitle','编辑学生');
-								$('#fm').form('load',row);
-								url = 'updateStudents?'+$("#fm").serialize();
-							}
-					}
-				}],
-				onBeforeRefresh:function(){
-					alert('before refresh');
-					return true;
-				}
-			});
-			var icon2text = ["首页","上一页","下一页","尾页"];
-        $(".pagination").find("td:eq(2),td:eq(3),td:eq(9),td:eq(10)").each(function(i){
-            $(this).find(".l-btn-text").html(icon2text[i]);
-        });
-});
-
-function saveUser(){
-	var url="${basePath}addStudents?"+$("#fm").serialize();
-	$('#fm').form('submit',{
-        url: url,
-        onSubmit: function(){
-             return $(this).form('validate');
-           },
-        success: function(result){
-        	var result = eval('('+result+')');
-            if (result.errorMsg){
-                  $.messager.show({
-                  		title: 'Error',
-                   		msg: result.errorMsg
-                    });
-            } 
-            else {
-                 $('#dlg').dialog('close');        // close the dialog
-                 $('#dg').datagrid('reload');    // reload the user data
-             }
-           }
-       });
-}
-
-function dialogClose(obj){
-	$(obj).window('close');
-	return false;
-}
 </script>
 <script>
 
@@ -133,7 +42,7 @@ function dialogClose(obj){
 	//上侧
 	<div region="north" border="true" split="true" style="overflow: hidden;height: 80px;">
 	<c:if test="${empty sessionScope.teacher}">
-		<c:redirect url="login.jsp" />
+		<c:redirect url="teacherlogin.jsp" />
 	</c:if>
 	<c:if test="${not empty sessionScope.teacher}">
 		<div class="top-bg" style="margin:40px 40px 10px 0;float:right">
@@ -166,20 +75,32 @@ function dialogClose(obj){
 		//导航栏
         <div id="aa" class="easyui-accordion" style="position: absolute; top: 27px; left: 0px; right: 0px; bottom: 0px;">
 
-            <div title="学生选课" iconcls="icon-save" style="overflow: auto; padding: 10px;">
+            <div title="课程管理" iconcls="icon-save" style="overflow: auto; padding: 10px;">
                 <ul class="easyui-tree">
                     <li>
-                        <span><a onclick="addTab('学生选课','index.jsp')" href="#">学生选课</a></span>
+                        <span><a onclick="addTab('课程管理','course/course')" href="#">课程管理</a></span>
                     </li>
+                </ul>
+                <ul class="easyui-tree">
                     <li>
-                        <span><a href="#">File21</a></span>
+                        <span><a onclick="addTab('班次管理','section/section')" href="#">班次管理</a></span>
                     </li>
                 </ul>
             </div>
-            <div title="课表查询" iconcls="icon-reload"  style="padding: 10px;">
+            <div title="课表管理" iconcls="icon-reload"  style="padding: 10px;">
                 <ul class="easyui-tree">
                 	<li>
-                		<span><a href="#">课表查询</a></span>
+                		<span><a href="#">授课管理</a></span>
+                	</li>
+                	<li>
+                		<span><a href="#">课表制定</a></span>
+                	</li>
+                </ul> 
+            </div>
+            <div title="学习计划" iconcls="icon-reload"  style="padding: 10px;">
+                <ul class="easyui-tree">
+                	<li>
+                		<span><a href="#">学习计划</a></span>
                 	</li>
                 </ul> 
             </div>
@@ -192,63 +113,7 @@ function dialogClose(obj){
 			 
             <div title="欢迎使用" style="padding: 20px; overflow: hidden;" id="home">
 				
-				<div id="dlg" class="easyui-dialog" style="width:400px"
-						closed="true" buttons="#dlg-buttons1">
-					<form id="fm" method="post" novalidate class="easyui-form" style="margin:0;padding:20px 50px">
-						<div style="margin-bottom:20px;font-size:14px;border-bottom:1px solid #ccc">学生信息</div>
-						<div style="margin-bottom:10px">
-							<input name="students_id" class="easyui-textbox" data-options="required:true" label="学号" style="width:100%">
-						</div>
-						<div style="margin-bottom:10px">
-							<input name="name" class="easyui-textbox" data-options="required:true" label="姓名:" style="width:100%">
-						</div>
-						<div style="margin-bottom:10px">
-							<input name="password" class="easyui-textbox" type="password" data-options="required:true" label="密码:" style="width:100%">
-						</div>
-						<div style="margin-bottom:10px">
-							<input name="repassword" class="easyui-textbox" type="password" data-options="required:true" label="确认密码:" style="width:100%">
-						</div>
-						<div style="margin-bottom:10px">
-							<input name="email" class="easyui-textbox" data-options="required:true,validType:'email'" label="邮箱:" style="width:100%">
-						</div>
-						<div style="margin-bottom:10px">
-							<input name="school" class="easyui-textbox" data-options="required:true"  label="学院:" style="width:100%">
-						</div>
-						<div style="margin-bottom:10px">
-							<input name="sex" class="easyui-textbox" data-options="required:true" label="性别:" style="width:100%">
-						</div>
-					</form>
-				</div>
-				<div id="dlg-buttons1">
-					<a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveUser()" style="width:90px">Save</a>
-					<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">Cancel</a>
-				</div>
-
-				<div  id="dg" title="学生信息" class="easyui-datagrid"
-						url="query" striped="true"  loadMsg="正在加载"
-						iconCls="icon-save" pagination="true"
-						singleSelect="true"  style="width:1000px;margin: 20px;padding: 20px;width:100%;height:100%;">
-					
-					<table>
-						<thead>
-							<tr>
-								<th field="id" >序号</th>
-								<th field="students_id" align="right">学号</th>
-								<th field="name"  align="left">姓名</th>
-								<th field="email"  align="left">邮箱</th>
-								<th field="school" align="left">学院</th>
-								<th field="sex"  align="center">性别</th>
-								<th field="tel"  align="right">电话</th>
-								<th field="grade"  align="left">年级</th>
-								<th field="major"  align="left">专业</th>
-								<th field="time"  align="left">创建时间</th>
-								<th field="state"  align="center">状态</th>
-							</tr>
-						</thead>
-					</table>
-					
-					
-            	</div>
+			
             </div>
 
         </div>

@@ -15,7 +15,7 @@ import com.github.lpfcumt.SRS.service.StudentService;
 
 @Service("studentService")
 public class StudentServiceImpl implements StudentService{
-	@Autowired
+	@Autowired // 把'@Autowired'改为'@Resource(name="studentMockDao")'，即可切换成sqlite数据源
 	protected StudentDao studentDao;
 	
 	ArrayList<Student> listAllStudent;

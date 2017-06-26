@@ -11,6 +11,8 @@ import com.github.lpfcumt.SRS.dao.CourseDao;
 import com.github.lpfcumt.SRS.dao.SectionDao;
 import com.github.lpfcumt.SRS.domain.Course;
 import com.github.lpfcumt.SRS.domain.Section;
+import com.github.lpfcumt.SRS.domain.Student;
+import com.github.lpfcumt.SRS.domain.Teacher;
 
 @Repository("sectionMockDao")
 public class SectionDaoImpl implements SectionDao{
@@ -60,6 +62,42 @@ public class SectionDaoImpl implements SectionDao{
 		sections.add(sec6);
 
 		return sections;
+	}
+
+	@Override
+	public ArrayList<Section>  findSectionByCourseId(String courseId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addSection(Section section) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void appointInstructor(Teacher teacher, Section section) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<Section> findSectionBy_TreacherId(String teacherId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateSection(Section section) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<Student> findStudentBySectionId(Section section) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

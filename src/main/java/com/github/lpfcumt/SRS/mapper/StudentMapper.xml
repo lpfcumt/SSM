@@ -16,8 +16,16 @@
    <select id="findAll" resultMap="student" >
        select * from student
    </select>
+   
+   <!--根据 id 查询学生  -->
    <select id="findStudentById" resultMap="student">
        select * from student where id=#{id}
    </select>
    
+   <!--根据班次查询学生  -->
+   <select id="findStudentBySectionId" resultMap="student">
+       SELECT * FROM student WHERE id IN
+       		(SELECT studentid FROM transcriptentry WHERE 
+      			 sectionid=#{sectionId} AND courseid=#{courseId})
+   </select>
 </mapper>

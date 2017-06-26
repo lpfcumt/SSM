@@ -15,6 +15,15 @@ public class Teacher extends Person{
 	private ArrayList<Section> teach; // 教授的课程班次集合
 	
 	
+	public ArrayList<Section> getTeach() {
+		return teach;
+	}
+
+	public void setTeach(ArrayList<Section> teach) {
+		this.teach = teach;
+	}
+
+
 	public String getTitle() {
 		return title;
 	}
@@ -99,5 +108,17 @@ public class Teacher extends Person{
 		section.setInstructor(this);
 	}
 	
+	/**
+	 * @method 是否教授了该班次
+	 * @author 林鹏飞
+	 * @param section
+	 * @return boolean
+	 */
+	public boolean isInTeached(Section section){
+		for (Section section1 : teach) {
+			if (section1.getFullSectionId().equals(section.getFullSectionId())) return false;
+		}
+		return true;
+	}
 	
 }

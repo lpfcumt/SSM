@@ -56,7 +56,7 @@
 	<div class="container">
 		<div class="form row">
 			<form  class="form-horizontal col-sm-offset-2 col-md-offset-2" id="login_form" action="sendLogin" method="post">
-				<div class="col-sm-6 col-md-6" style="margin:30px 75px;padding:auto;"><h3 class="form-title">LOGIN</h3></div>
+				<div class="col-sm-6 col-md-6" style="margin:30px 75px;padding:auto;"><h3 class="form-title">STUDENT LOGIN</h3></div>
 				<div class="col-sm-9 col-md-9" >
 					
 					<div class="form-group">

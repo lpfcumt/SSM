@@ -38,6 +38,10 @@ public class Course {
 		this.credits = credits;
 	}
 	
+	public Course(){
+		
+	}
+	
 	public Course(String courseId, String courseName, double credits) {
 		super();
 		this.setCourseId(courseId);

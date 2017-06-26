@@ -69,6 +69,9 @@ public class Section {
 		this.instructor = instructor;
 	}
 	
+	public Section(){
+		
+	}
 	public Section(int sectionId, char dayOfWeek, String timeOfDay,Course representedCourse, String room, int seatingCapacity
 			) {
 		super();
@@ -198,7 +201,7 @@ public class Section {
 	 * @author 林鹏飞
 	 * @return int
 	 */
-	public int getTotalEnrollment() {
+	public int reachTotalEnrollment() {
 		return enrolledStudents.size();
 	}	
 
@@ -218,9 +221,9 @@ public class Section {
 	}
 	
 	public void displayStudentRoster() {
-		System.out.print("\tTotal of " + getTotalEnrollment() + 
+		System.out.print("\tTotal of " + reachTotalEnrollment() + 
 				   " students enrolled");
-		if (getTotalEnrollment() == 0) System.out.println(".");
+		if (reachTotalEnrollment() == 0) System.out.println(".");
 		else System.out.println(", as follows:");
 		for (Student s : enrolledStudents.values()) {
 			System.out.println("\t\t" + s.getName());

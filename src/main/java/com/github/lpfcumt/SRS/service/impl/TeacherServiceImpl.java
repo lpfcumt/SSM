@@ -8,14 +8,17 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.lpfcumt.SRS.dao.SectionDao;
 import com.github.lpfcumt.SRS.dao.TeacherDao;
 import com.github.lpfcumt.SRS.domain.Teacher;
 import com.github.lpfcumt.SRS.service.TeacherService;
 
 @Service("teacherService")
 public class TeacherServiceImpl implements TeacherService{
-	@Autowired // 把name值改为teacherDao，即可切换成sqlite数据源
+	@Autowired // 把@Autowired改为@Resource(name="teacherMockDao")，即可切换成sqlite数据源
 	protected TeacherDao teacherDao;
+	@Autowired
+	protected SectionDao sectionDao;
 	
 	HashMap<String, Teacher> mapTeacher;
 	ArrayList<Teacher> listTeacher;
@@ -37,7 +40,9 @@ public class TeacherServiceImpl implements TeacherService{
 
 	@Override
 	public Teacher findTeacherById(String id) {
-		return teacherDao.findTeacherById(id);
+		Teacher teacher =teacherDao.findTeacherById(id);
+		teacher.setTeach(sectionDao.findSectionBy_TreacherId(id));
+		return teacher;
 	}
 
 }
