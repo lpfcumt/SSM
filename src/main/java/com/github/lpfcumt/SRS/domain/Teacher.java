@@ -116,9 +116,9 @@ public class Teacher extends Person{
 	 */
 	public boolean isInTeached(Section section){
 		for (Section section1 : teach) {
-			if (section1.getFullSectionId().equals(section.getFullSectionId())) return false;
+			if (section1.getFullSectionId().equals(section.getFullSectionId())) return true;
 		}
-		return true;
+		return false;
 	}
 	
 }

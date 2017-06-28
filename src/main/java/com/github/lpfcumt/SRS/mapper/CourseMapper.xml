@@ -27,6 +27,9 @@
     <insert id="addCourse" parameterType="com.github.lpfcumt.SRS.domain.Course">
         INSERT INTO course(courseid,courseName,credits) VALUES(#{courseId},#{courseName},#{credits})
     </insert>
+    <insert id="addPreCourse" >
+        INSERT INTO precourse(courseid,precourseId) VALUES(#{courseId},#{precourseId})
+    </insert>
     
     <!--修改课程  -->
     <update id="updateCourse" parameterType="com.github.lpfcumt.SRS.domain.Course">

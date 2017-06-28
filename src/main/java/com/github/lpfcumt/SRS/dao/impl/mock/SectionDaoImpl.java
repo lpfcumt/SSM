@@ -77,7 +77,7 @@ public class SectionDaoImpl implements SectionDao{
 	}
 
 	@Override
-	public void appointInstructor(Teacher teacher, Section section) {
+	public void appointInstructor(Teacher teacher, String sectionId, String courseId) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -96,6 +96,14 @@ public class SectionDaoImpl implements SectionDao{
 
 	@Override
 	public ArrayList<Student> findStudentBySectionId(Section section) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public Section findSectionByCourseId_SectionId(String courseId, String sectionId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

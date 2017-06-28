@@ -90,10 +90,17 @@
             <div title="课表管理" iconcls="icon-reload"  style="padding: 10px;">
                 <ul class="easyui-tree">
                 	<li>
-                		<span><a href="#">授课管理</a></span>
+                		<span><a onclick="addTab('授课管理','section/teachOfSection')" href="#">授课管理</a></span>
                 	</li>
                 	<li>
-                		<span><a href="#">课表制定</a></span>
+                		<span><a onclick="addTab('课表查询','schedule/teacherSchedule')" href="#">课表查询</a></span>
+                	</li>
+                </ul> 
+            </div>
+            <div title="指派成绩" iconcls="icon-reload"  style="padding: 10px;">
+                <ul class="easyui-tree">
+                	<li>
+                		<span><a href="#">指派成绩</a></span>
                 	</li>
                 </ul> 
             </div>

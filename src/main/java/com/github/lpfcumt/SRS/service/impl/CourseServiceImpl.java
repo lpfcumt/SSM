@@ -39,8 +39,12 @@ public class CourseServiceImpl implements CourseService{
 	}
 
 	@Override
-	public void addCourse(Course course) {
+	public void addCourse(Course course, String[] precourseIds) {
 		courseDao.addCourse(course);
+		for (String precoursId : precourseIds) {
+			if (precourseIds.equals(""));
+			else courseDao.addPreCourse(course.getCourseId(),precoursId);
+		}
 	}
 
 	@Override

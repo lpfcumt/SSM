@@ -24,8 +24,8 @@
    
    <!--根据班次查询学生  -->
    <select id="findStudentBySectionId" resultMap="student">
-       SELECT * FROM student WHERE id IN
-       		(SELECT studentid FROM transcriptentry WHERE 
-      			 sectionid=#{sectionId} AND courseid=#{courseId})
+       SELECT s.id,s.name,s.major,tn.grade FROM student AS s WHERE id INNER JOIN
+        transcriptentry AS tn 
+      			 tn.sectionid=#{sectionId} AND tn.courseid=#{courseId})
    </select>
 </mapper>

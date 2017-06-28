@@ -10,6 +10,8 @@ import java.util.HashMap;
  */
 public class ScheduleOfClasses {
 	private String semester; // 学期
+	private String courseId;
+	private String sectionId;
 	private HashMap<String, Section> sectionsOffered; // 提供的班次集合
 
 	public ScheduleOfClasses(String semester) {
@@ -30,6 +32,22 @@ public class ScheduleOfClasses {
 	public String getSemester() {
 		return semester;
 	}
+	public String getCourseId() {
+		return courseId;
+	}
+
+	public void setCourseId(String courseId) {
+		this.courseId = courseId;
+	}
+
+	public String getSectionId() {
+		return sectionId;
+	}
+
+	public void setSectionId(String sectionId) {
+		this.sectionId = sectionId;
+	}
+
 	public HashMap<String, Section> getSectionsOffered() {
 		return sectionsOffered;
 	}

@@ -55,9 +55,10 @@ public class CourseController extends BaseController{
 	// 添加课程
 	@RequestMapping(value="/addCourse",method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> addCourse(Course course,HttpSession session) throws Exception{
+	public Map<String, Object> addCourse(Course course,@RequestParam( required=true, defaultValue="")String[] precourseId, 
+			HttpSession session) throws Exception{
 		if (course!=null) {
-			courseService.addCourse(course);
+			courseService.addCourse(course,precourseId);
 			return ajaxSuccessResponse();
 		}
 		else return ajaxFailureResponse();

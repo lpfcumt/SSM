@@ -34,6 +34,12 @@ public class SectionController extends BaseController{
 		return new ModelAndView("section");
 	}
 	
+	@RequestMapping("/teachOfSection")
+	@ResponseBody
+	public ModelAndView teachOfSection(HttpSession session) throws Exception{
+		return new ModelAndView("teachOfSection");
+	}
+	
 	/*根据 courseId 查询班次*/
 	@RequestMapping("/findSectionByCourseId")
 	@ResponseBody
@@ -57,9 +63,9 @@ public class SectionController extends BaseController{
 	/*添加班次*/
 	@RequestMapping("/addSection")
 	@ResponseBody
-	public Map<String, Object> addSection(Section section, HttpSession session) throws Exception{
+	public Map<String, Object> addSection(Section section, String semester, HttpSession session) throws Exception{
 		
-		sectionService.addSection(section);
+		sectionService.addSection(section ,semester);
 		return ajaxSuccessResponse();
 	}
 	
@@ -75,10 +81,10 @@ public class SectionController extends BaseController{
 	/*指定授课教师*/
 	@RequestMapping("/appointInstructor")
 	@ResponseBody
-	public Map<String, Object> appointInstructor(HttpSession session, Section section) throws Exception{
+	public Map<String, Object> appointInstructor(HttpSession session, String sectionId, String courseId) throws Exception{
 		
 		Teacher teacher = (Teacher) session.getAttribute("teacher");
-		if (sectionService.appointInstructor(teacher,section)) return ajaxSuccessResponse();
+		if (sectionService.appointInstructor(teacher,sectionId,courseId)) return ajaxSuccessResponse();
 		else return ajaxFailureResponse();
 	}
 }

@@ -273,6 +273,18 @@
 								<input name="credits" type="text" class="form-control" id="credits" placeholder="请输入课程学分">	
 							</div>
 						</div>
+						<div class="form-group">
+							<label for="precourseId1" class="col-sm-2 control-label">前置课程1</label>
+							<div class="col-sm-9">
+								<input name="precourseId" type="text" class="form-control" id="precourseId1" placeholder="请输入前置课程编号">	
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="precourseId2" class="col-sm-2 control-label">前置课程2</label>
+							<div class="col-sm-9">
+								<input name="precourseId" type="text" class="form-control" id="precourseId2" placeholder="请输入前置课程编号">	
+							</div>
+						</div>
 					</form>
 				</div>
 				<div class="modal-footer" >

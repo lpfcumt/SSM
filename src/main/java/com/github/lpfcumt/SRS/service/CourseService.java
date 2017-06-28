@@ -27,8 +27,9 @@ public interface CourseService {
 	 * @method 添加课程
 	 * @author 林鹏飞
 	 * @param course
+	 * @param precourseId 
 	 */
-	void addCourse(Course course);
+	void addCourse(Course course, String[] precourseId);
 
 	/**
 	 * @method 更新课程

@@ -1,6 +1,9 @@
 package com.github.lpfcumt.SRS.dao;
 
 import java.util.ArrayList;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.github.lpfcumt.SRS.domain.Course;
 
 public interface CourseDao {
@@ -40,6 +43,14 @@ public interface CourseDao {
 	 * @return ArrayList
 	 */
 	ArrayList<Course> fuzzyfindCourse(String search);
+
+	/**
+	 * @method 添加前置课程
+	 * @author 林鹏飞
+	 * @param courseId
+	 * @param precoursId
+	 */
+	void addPreCourse(@Param("courseId")String courseId, @Param("precourseId")String precoursId);
 	
 	
 }

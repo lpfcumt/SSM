@@ -58,4 +58,10 @@ public class CourseDaoImpl implements CourseDao{
 		return null;
 	}
 
+	@Override
+	public void addPreCourse(String courseId, String precoursId) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

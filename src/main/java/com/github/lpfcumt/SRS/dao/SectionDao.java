@@ -45,7 +45,7 @@ public interface SectionDao {
 	 * @param teacher
 	 * @param section
 	 */
-	void appointInstructor(@Param("teacher")Teacher teacher, @Param("section")Section section);
+	void appointInstructor(@Param("teacher")Teacher teacher, @Param("sectionId")String sectionId, @Param("courseId")String courseId);
 	
 	/**
 	 * @method 查询教师授课的班次
@@ -69,4 +69,6 @@ public interface SectionDao {
 	 * @return ArrayList
 	 */
 	ArrayList<Student> findStudentBySectionId(Section section);
+
+	Section findSectionByCourseId_SectionId(@Param("courseId")String courseId, @Param("sectionId")String sectionId);
 }

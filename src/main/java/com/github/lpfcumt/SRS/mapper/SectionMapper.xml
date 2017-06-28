@@ -31,8 +31,18 @@
     <select id="findSectionByCourseId"  resultMap="sectionMap">
       	SELECT * FROM section as s inner join 
       	(select * from Course where courseid=#{courseId}) as c 
-      	inner join teacher as t 
-      	on s.courseid=c.courseid 
+      		on s.courseid=c.courseid 
+      	left join teacher as t on s.teacherid=t.id
+      	
+    </select>
+    
+     <!--根据 courseId 查询班次  -->
+    <select id="findSectionByCourseId_SectionId"  resultMap="sectionMap">
+      	SELECT * FROM section as s inner join 
+      	(select * from Course where courseid=#{courseId} ) as c 
+      		on s.courseid=c.courseid and s.sectionid=#{sectionId}
+      	left join teacher as t on s.teacherid=t.id 
+      	
     </select>
     
     <!--根据 teacherId 查询班次  -->
@@ -47,13 +57,13 @@
     <!--添加班次  -->
     <insert id="addSection" parameterType="com.github.lpfcumt.SRS.domain.Section">
         INSERT INTO section(sectionid,courseid,teacherid,dayofweek,timeofday,room,seatingcapacity) 
-        VALUES(#{sectionId},#{representedCourse.courseId},#{instructor.id},#{dayOfWeek},
+        	VALUES(#{sectionId},#{representedCourse.courseId},#{instructor.id},#{dayOfWeek},
         	#{timeOfDay},#{room},#{seatingCapacity})
     </insert>
     
     <!--指派授课教师  -->
     <update id="appointInstructor" >
-        UPDATE section SET teacherid=#{teacher.id} WHERE sectionid=#{section.sectionId}
+        UPDATE section SET teacherid=#{teacher.id} WHERE sectionid=#{sectionId} and courseid=#{courseId}
     </update>
     
     <!--更新课程信息  -->

@@ -41,6 +41,7 @@
 			detailView: true,
 			search : true,
 			cache :　false,
+			toolbar : '#toolbar',
 			showColumns : true,
 			showRefresh : true,
 			showToggle : true,
@@ -113,7 +114,7 @@
 			    	method: 'get',
 			    	queryParams: { courseId: parentid },
 			    	ajaxOptions: { courseId: parentid },
-//  			    	toolbar : '#toolbar',
+ // 			    	toolbar : '#toolbar',
 			    	sidePagination : 'server',
 			    	clickToSelect: true,
 			    	cache :　false,
@@ -295,7 +296,7 @@ window.operateEvents = {
 			$('#courseId_edit').attr('value',row.fullSectionId);
 			$('#courseId_edit_send').attr('value',row.representedCourse.courseId);
 			$('#sectionId_edit').attr('value',row.sectionId);
-			$('#teacherId_edit').attr('value',row.instructor.id);
+			
 			$('#dayOfWeek_edit').attr('value',row.dayOfWeek);
 			$('#timeOfDay_edit').attr('value',row.timeOfDay);
 			$('#room_edit').attr('value',row.room);
@@ -311,7 +312,6 @@ function addCourseId(courseId){
 </script>
 </head>
 <body>
-	
 	<div class="container-fluid">
 		<table id="table"></table>
 	</div>
@@ -341,6 +341,16 @@ function addCourseId(courseId){
 							<label for="sectionId" class="col-sm-2 control-label">班次</label>
 							<div class="col-sm-9">
 								<input name="sectionId" type="text" class="form-control" id="sectionId" placeholder="请输入班次">	
+							</div>
+						</div>
+							<div class="form-group">
+							<label for="select" class="col-sm-2 control-label">学期</label>
+							<div class="col-sm-9">
+								<select name="semester" id="select" for="ff" class="form-control"> 
+									<option selected="selected">学期</option>
+									<option>1</option> 
+									<option>2</option> 
+								</select>	
 							</div>
 						</div>
 						<div class="form-group">

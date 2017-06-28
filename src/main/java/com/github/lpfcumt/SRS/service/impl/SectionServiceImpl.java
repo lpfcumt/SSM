@@ -7,6 +7,7 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.lpfcumt.SRS.dao.ScheduleDao;
 import com.github.lpfcumt.SRS.dao.SectionDao;
 import com.github.lpfcumt.SRS.dao.StudentDao;
 import com.github.lpfcumt.SRS.domain.Section;
@@ -20,6 +21,8 @@ public class SectionServiceImpl implements SectionService{
 	protected SectionDao sectionDao;
 	@Autowired
 	protected StudentDao studentDao;
+	@Autowired 
+	protected ScheduleDao scheduleDao;
 	
 	ArrayList<Section> listSections = new ArrayList<Section>();
 	HashMap<String, Section> mapSections= new HashMap<String, Section>();
@@ -49,14 +52,15 @@ public class SectionServiceImpl implements SectionService{
 	}
 
 	@Override
-	public void addSection(Section section) {
+	public void addSection(Section section, String semester) {
 		sectionDao.addSection(section);
+		scheduleDao.addSchedule(section,semester);
 	}
 
 	@Override
-	public boolean appointInstructor(Teacher teacher, Section section) {
-		if (teacher.isInTeached(section)) return false;
-		else sectionDao.appointInstructor(teacher, section);
+	public boolean appointInstructor(Teacher teacher, String sectionId, String courseId) {
+		if (teacher.isInTeached(findSectionByCourseId(courseId,sectionId))) return false;
+		else sectionDao.appointInstructor(teacher, sectionId, courseId);
 		return true;
 	}
 
@@ -68,5 +72,10 @@ public class SectionServiceImpl implements SectionService{
 	@Override
 	public ArrayList<Student> findStudentBySectionId(String sectionId, String dayOfWeek) {
 		return studentDao.findStudentBySectionId(sectionId,dayOfWeek);
+	}
+
+	@Override
+	public Section findSectionByCourseId(String courseId, String sectionId) {
+		return sectionDao.findSectionByCourseId_SectionId(courseId, sectionId);
 	}
 }

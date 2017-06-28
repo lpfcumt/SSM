@@ -16,7 +16,6 @@ public class Course {
 	private double credits;// 学分
 	private ArrayList<Section> offeredSection;// 提供的课程班次集合
 	private ArrayList<Course> prerequisites;// 课程的前置课程
-	private ArrayList<Course> prerequisitesOf;// 课程的前置课程之
 	
 	public String getCourseId() {
 		return courseId;
@@ -50,7 +49,6 @@ public class Course {
 		
 		offeredSection = new ArrayList<Section>();
 		prerequisites = new ArrayList<Course>();
-		prerequisitesOf = new ArrayList<Course>();
 	}
 	
 	/**

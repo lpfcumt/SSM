@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.github.lpfcumt.SRS.dao.ScheduleDao;
 import com.github.lpfcumt.SRS.domain.Section;
+import com.github.lpfcumt.SRS.domain.Teacher;
 import com.github.lpfcumt.SRS.service.ScheduleService;
 
 @Service("scheduleService")
@@ -23,5 +24,10 @@ public class ScheduleServiceImpl implements ScheduleService{
 	public HashMap<String, Section> findBySemester(String semester) {
 		
 		return null;
+	}
+
+	@Override
+	public ArrayList<Section> findScheduleBySemester(Teacher teacher, String semester) {
+		return scheduleDao.findScheduleBySemester(teacher, semester);
 	}
 }

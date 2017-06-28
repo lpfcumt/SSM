@@ -33,14 +33,14 @@
 	$(function() {
 		$('#table').bootstrapTable('destroy');
 		$('#table').bootstrapTable({
-			url : '/course/listAllCourse',
+			url : '/schedule/listScheduleOfTeacher',
 			queryParamsType:'',
 			pagination : true,
 			sidePagination : 'server',
-			
+			toolbar : '#toolbar',
 			striped : true,
-			detailView: true,
-			search : true,
+// 			detailView: true,
+// 			search : true,
 			cache :　false,
 			showColumns : true,
 			showRefresh : true,
@@ -64,39 +64,43 @@
 				params.sortOrder = this.sortOrder;
 				params.pageSize = this.pageSize;
 				params.pageNumber = this.pageNumber;
-				params.search = $('.search input').val();
+				params.search = $('#select').val();
 				return params
 				},
 			onCheck : function(row) {
-				$('#remove').attr('disabled', false)
 			},
 			onLoadSuccess : function(data) {
-				$('#remove').attr('disabled', 'disabled')
 				
 			},
-			columns : [{
-				field : 'courseId',
-				title : '课程编号',
-				sortable:true
-			}, {
-				field : 'courseName',
-				title : '课程名称',
-				sortable:true
-			}, {
-				field : 'credits',
-				title : '课程学分',
-				sortable:true
-			},{
-					title : '操作',
-					align : 'center',
-					formatter : function (value,row,index){
-									return '<a id="'+row.courseId+'"  onclick="addCourseId(\''+ row.courseId +'\')" class="add_btn btn btn-default" " data-toggle="modal"'+
-									'data-target="#myModal1"> 添加班次</a>'
-				}	
-				}],
+			columns : [ {
+		            field: 'representedCourse.courseId',
+		            title : '课程编号'
+		        },{
+		            field: 'representedCourse.courseName',
+		            title : '课程名称'
+		        },{
+		            field: 'fullSectionId',
+		            title : '班次编号'
+		        },
+		        {
+		            field: 'instructor.name',
+		            title : '教师姓名'
+		        },
+		        {
+		            field: 'dayOfWeek',
+		            title : '星期'
+		        },
+		        {
+		            field: 'timeOfDay',
+		            title : '时间'
+		        },
+		        {
+		            field: 'room',
+		            title : '教室'
+		        }],
 			onExpandRow: function (index, row, $detail) {
 				
-				childTable(index, row, $detail);
+				
 				
 		    },
 		    onCollapseRow : function(index, row){
@@ -105,166 +109,33 @@
 			
 		});
 		
-		// 子表
-		function childTable(index, row, $detail){
-			 	var parentid = row.courseId;
-			    var group_com = $detail.html('<table></table>').find('table');
-			    $(group_com).bootstrapTable('destroy');
-			    $(group_com).bootstrapTable({
-			    	url: '${basePath}findSectionByCourseId',
-			    	method: 'get',
-			    	queryParams: { courseId: parentid },
-			    	ajaxOptions: { courseId: parentid },
-//  			    	toolbar : '#toolbar',
-			    	sidePagination : 'server',
-			    	clickToSelect: true,
-			    	cache :　false,
-			    	uniqueId: "",
-			    	dataField : "rows",
-			    	onLoadSuccess : function(data) {
-						
-					},
-			        columns: [ {
-						radio : true
-					}, {
-			            field: 'fullSectionId',
-			            title : '班次编号'
-			        },
-			        {
-			            field: 'instructor.name',
-			            title : '教师姓名'
-			        },
-			        {
-			            field: 'dayOfWeek',
-			            title : '星期'
-			        },
-			        {
-			            field: 'timeOfDay',
-			            title : '时间'
-			        },
-			        {
-			            field: 'room',
-			            title : '教室'
-			        },
-			        {
-			            field: 'seatingCapacity',
-			            title : '容量'
-			        },{
-			            title : '操作',
-			            align : 'center',
-			            events : operateEvents,
-			            formatter : function (value,row,index){
-			            		return '<div id="toolbar" class="btn-group"  >'+
-			            		'<button  type="button"  class="btn_edit btn btn-default"'+
-			            			'data-toggle="modal" data-target="#myModal_edit">'+
-			            		 	'<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改'+
-			            		'</button>'+
-			            		'<button  class="btn btn-danger" disabled>'+
-			            			'<i class="glyphicon glyphicon-remove"></i> 删除'+
-			            		'</button>'+
-			            	'</div>';
-			           	 	}
-			        }
-			        ]
-			    });
-		}
-		// 删除班次
-		$('#remove').click(function() {
-			var rows = $('#table').bootstrapTable('getSelections');
-			if (rows.length == 0) {
-				alert('请选择一条记录！')
-			} else {
-				$.ajax({
-					url : '${basePath}delete',
-					data : {
-						courseId : rows[0].id
-					},
-					dataType : 'json',
-					method : 'POST',
-					success : function(data) {
-						
-						if (data.success) {
-							$('#table').bootstrapTable('refresh');
-						} else {
-							alert('删除失败！')
-						}
-					}
-				})
-			}
-		});
-		
-		
-		
-		// 添加班次
-		$('#submit').click(function(){
-  			var url="${basePath}addSection?"+$('#ff').serialize();
-  			
-  			$.ajax({
-  				url:url,
-  				data:{},
-  				dataType:'json',
-  				method:'POST',
-  				success:function(data){
-  					$("#close").click();
-  					if(data.success){
-  						$('#table').bootstrapTable('refresh');
-  					}else{
-  						alert('添加失败！')
-  					}
-  				},
-  				error:function(){
-  					alert('添加失败！请确保所有字段不为空')
-  				}
-  			})
-  		});
-		
-		// 修改班次
-		$('#submit_edit').click(function(){
-			var url="${basePath}updateSection?"+$('#form_edit').serialize();
-			$.ajax({
-				url : url,
-				data : {},
-				dataType : 'json',
-				method : 'POST',
-				success : function(data) {
-					
-					if (data.success) {
-						$('#myModal_edit').modal('hide');
-						alert('修改成功！')
-						$('#table').bootstrapTable('refresh');
-					} else {
-						alert('修改失败！')
-					}
-				}
-			})
-  		})
-
+		$("#select").change(function () {  
+		    var ss = $(this).children('option:selected').val();  
+		    $('#table').bootstrapTable('refresh');
+		});	
 });
 
 
 // 编辑时给 form 赋值
 window.operateEvents = {
-		'click .btn_edit': function (e, value, row, index) {
-			$('#courseId_edit').attr('value',row.fullSectionId);
-			$('#courseId_edit_send').attr('value',row.representedCourse.courseId);
-			$('#sectionId_edit').attr('value',row.sectionId);
-			$('#teacherId_edit').attr('value',row.instructor.id);
-			$('#dayOfWeek_edit').attr('value',row.dayOfWeek);
-			$('#timeOfDay_edit').attr('value',row.timeOfDay);
-			$('#room_edit').attr('value',row.room);
-			$('#seatingCapacity_edit').attr('value',row.seatingCapacity);
+		'change #select': function (e, value, row, index) {
+
 			
 		      }
 };
-	
-function addCourseId(courseId){		
-	$('#courseId').attr('value',courseId);
-	$('#courseId_add').attr('value',courseId);
-};
+
+
+
 </script>
 </head>
 <body>
-	
+	<div id="toolbar" class="btn-group">
+	<select name="semester" id="select"  class="form-control"> 
+		<option selected="selected">学期</option>
+		<option value="1">1</option> 
+		<option value="2">2</option> 
+	</select>	
+	</div>
 	<div class="container-fluid">
 		<table id="table"></table>
 	</div>

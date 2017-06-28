@@ -25,13 +25,22 @@ public interface SectionService {
 	 * @return ArrayList<Section>
 	 */
 	ArrayList<Section> findSectionByCourseId(String courseId);
+	
+	/**
+	 * @method 根据courseId查询班次
+	 * @author 林鹏飞
+	 * @param courseId
+	 * @return ArrayList<Section>
+	 */
+	Section findSectionByCourseId(String courseId ,String sectionId);
 
 	/**
 	 * @method 添加课程
 	 * @author 林鹏飞
 	 * @param section
+	 * @param semester 
 	 */
-	void addSection(Section section);
+	void addSection(Section section, String semester);
 
 	/**
 	 * @method 指派授课教师
@@ -40,7 +49,7 @@ public interface SectionService {
 	 * @param section
 	 * @return
 	 */
-	boolean appointInstructor(Teacher teacher, Section section);
+	boolean appointInstructor(Teacher teacher, String sectionId, String courseId);
 
 	/**
 	 * @method 更新班次信息
