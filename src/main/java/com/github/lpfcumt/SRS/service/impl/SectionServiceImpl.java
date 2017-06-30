@@ -7,13 +7,20 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.lpfcumt.SRS.dao.CourseDao;
 import com.github.lpfcumt.SRS.dao.ScheduleDao;
 import com.github.lpfcumt.SRS.dao.SectionDao;
 import com.github.lpfcumt.SRS.dao.StudentDao;
+import com.github.lpfcumt.SRS.dao.TranscriptDao;
+import com.github.lpfcumt.SRS.domain.Course;
+import com.github.lpfcumt.SRS.domain.EnrollmentStatus;
 import com.github.lpfcumt.SRS.domain.Section;
 import com.github.lpfcumt.SRS.domain.Student;
 import com.github.lpfcumt.SRS.domain.Teacher;
+import com.github.lpfcumt.SRS.domain.Transcript;
+import com.github.lpfcumt.SRS.domain.TranscriptEntry;
 import com.github.lpfcumt.SRS.service.SectionService;
+import com.github.pagehelper.PageHelper;
 
 @Service("sectionService")
 public class SectionServiceImpl implements SectionService{
@@ -23,10 +30,14 @@ public class SectionServiceImpl implements SectionService{
 	protected StudentDao studentDao;
 	@Autowired 
 	protected ScheduleDao scheduleDao;
+	@Autowired
+	protected TranscriptDao transcriptDao;
+	@Autowired
+	protected CourseDao courseDao;
 	
 	ArrayList<Section> listSections = new ArrayList<Section>();
 	HashMap<String, Section> mapSections= new HashMap<String, Section>();
-	
+	HashMap<String, Student> studentMap = new HashMap<String, Student>();
 	
 	HashMap<String, Section> finAll(){
 		return null;
@@ -77,5 +88,60 @@ public class SectionServiceImpl implements SectionService{
 	@Override
 	public Section findSectionByCourseId(String courseId, String sectionId) {
 		return sectionDao.findSectionByCourseId_SectionId(courseId, sectionId);
+	}
+
+	@Override
+	public void cancelInstructor(Teacher teacher, String sectionId, String courseId) {
+		
+	}
+
+	@Override
+	public int countStudentOfSection(String sectionId, String courseId) {
+		return studentDao.countStudentOfSection(sectionId, courseId);
+	}
+
+	@Override
+	public ArrayList<Student> findStudentForGrade(String courseId, String sectionId, String semester, int pageNumber, int pageSize) {
+		PageHelper.startPage(pageNumber, pageSize);
+		return studentDao.findStudentForGrade(courseId, sectionId, semester);
+		
+	}
+
+	@Override
+	public int countStudentForGrade(String courseId, String sectionId, String search) {
+		
+		return studentDao.countStudentForGrade(courseId, sectionId, search);
+	}
+
+	@Override
+	public void appointGrade(String courseId, String sectionId, String studentId, String grade) {
+		studentDao.appointGrade(courseId, sectionId, studentId, grade);
+	}
+
+	@Override
+	public ArrayList<Section> findSectionforStudent(String courseId, String sectionId, String search, Student student) {
+		return sectionDao.findSectionforStudent(courseId, sectionId, search, student);
+	}
+
+	@Override
+	public EnrollmentStatus appointSection(Student student, String sectionId, String courseId) {
+		Section section=sectionDao.findSectionByCourseId_SectionId(courseId, sectionId);
+		ArrayList<Student> students= studentDao.findStudentBySectionId(sectionId, courseId);
+		ArrayList<Course> courses = courseDao.findPreCourse(courseId);
+		for (Student student2 : students) {
+			studentMap.put(student2.getId(), student2);
+		}
+		student.setSections(sectionDao.findSectionByStudent(student));
+		section.setEnrolledStudents(studentMap);
+		section.getRepresentedCourse().setPrerequisites(courses);
+		section.setStudent(student);
+		
+		return section.enroll(student);
+	}
+
+	@Override
+	public void selectSection(Student student, String sectionId, String courseId, String semester) {
+		// TODO Auto-generated method stub
+		sectionDao.selectSection(student, sectionId, courseId, semester);
 	}
 }

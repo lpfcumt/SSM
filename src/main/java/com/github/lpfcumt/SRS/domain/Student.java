@@ -19,6 +19,14 @@ public class Student extends Person{
 	private PlanOfStudy planOfStudy; // 学习计划
 	
 	
+	public ArrayList<Section> getSections() {
+		return sections;
+	}
+
+	public void setSections(ArrayList<Section> sections) {
+		this.sections = sections;
+	}
+
 	public String getGrade() {
 		return grade;
 	}

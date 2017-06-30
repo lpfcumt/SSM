@@ -1,8 +1,10 @@
 package com.github.lpfcumt.SRS.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.github.lpfcumt.SRS.domain.Student;
+import com.github.lpfcumt.SRS.domain.TranscriptEntry;
 
 public interface StudentService {
 	
@@ -29,5 +31,13 @@ public interface StudentService {
 	 * @return Student
 	 */
 	Student findStudentById(String id);
+	
+	/**
+	 * @method 
+	 * @author 林鹏飞
+	 * @param student
+	 * @return
+	 */
+	ArrayList<TranscriptEntry> findTranscriptForStudent(Student student);
 	
 }

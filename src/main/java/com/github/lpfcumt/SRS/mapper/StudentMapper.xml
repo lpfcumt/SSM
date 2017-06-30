@@ -24,8 +24,40 @@
    
    <!--根据班次查询学生  -->
    <select id="findStudentBySectionId" resultMap="student">
-       SELECT s.id,s.name,s.major,tn.grade FROM student AS s WHERE id INNER JOIN
-        transcriptentry AS tn 
-      			 tn.sectionid=#{sectionId} AND tn.courseid=#{courseId})
+       SELECT s.id,s.name,s.major,tn.grade 
+       		FROM student AS s INNER JOIN
+       			transcriptentry AS tn 
+      			 	ON tn.sectionid=#{sectionId} AND tn.courseid=#{courseId} AND s.id=tn.studentid
    </select>
+   
+   <!--根据班次查询学生总数  -->
+   <select id="countStudentOfSection" resultType="Integer">
+       SELECT count(*) 
+       		FROM student AS s INNER JOIN
+       			transcriptentry AS tn 
+      			 	ON tn.sectionid=#{sectionId} AND tn.courseid=#{courseId} AND s.id=tn.studentid
+   </select>
+   
+   <!--根据班次查询学生  -->
+   <select id="findStudentForGrade" resultMap="student">
+       SELECT s.id,s.name,s.major,tn.grade 
+       		FROM student AS s INNER JOIN
+       			transcriptentry AS tn 
+      			 	ON tn.sectionid=#{sectionId} AND tn.courseid=#{courseId} AND s.id=tn.studentid AND tn.semester=#{semester}
+      			 		AND (tn.grade is null OR tn.grade='')
+   </select>
+   
+   <!--根据班次查询学生  -->
+   <select id="countStudentForGrade" resultType="Integer">
+       SELECT count(*) 
+       		FROM student AS s INNER JOIN
+       			transcriptentry AS tn 
+      			 	ON tn.sectionid=#{sectionId} AND tn.courseid=#{courseId} AND s.id=tn.studentid AND tn.semester=#{semester}
+      			 		AND (tn.grade is null OR tn.grade='')
+   </select>
+   
+   <!-- 指派成绩 -->
+   <update id="appointGrade">
+       UPDATE transcriptentry SET grade=#{grade} WHERE studentid=#{studentId} AND courseid=#{courseId} AND sectionid=#{sectionId}
+   </update>
 </mapper>

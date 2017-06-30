@@ -12,7 +12,9 @@ public class TranscriptEntry {
 	private Section section;
 	private Transcript transcript;
 
-
+	public TranscriptEntry(){
+		
+	}
 	public TranscriptEntry(Student student, String grade, Section section) {
 		this.setStudent(student);
 		this.setSection(section);

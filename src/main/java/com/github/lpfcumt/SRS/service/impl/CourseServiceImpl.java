@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.github.lpfcumt.SRS.dao.CourseDao;
 import com.github.lpfcumt.SRS.domain.Course;
+import com.github.lpfcumt.SRS.domain.Student;
 import com.github.lpfcumt.SRS.service.CourseService;
 import com.github.pagehelper.PageHelper;
 
@@ -56,6 +57,17 @@ public class CourseServiceImpl implements CourseService{
 	public ArrayList<Course> fuzzyfindCourse(String search, int pageNumber, int pageSize) {
 		PageHelper.startPage(pageNumber, pageSize);
 		return courseDao.fuzzyfindCourse(search);
+	}
+
+	@Override
+	public ArrayList<Course> listCourseForStudent(Student student, String semester, int pageNumber, int pageSize) {
+		PageHelper.startPage(pageNumber,pageSize);
+		return courseDao.listCourseForStudent(student, semester);
+	}
+
+	@Override
+	public int countCourseForStudent(String search) {
+		return courseDao.countCourseForStudent(search);
 	}
 
 }

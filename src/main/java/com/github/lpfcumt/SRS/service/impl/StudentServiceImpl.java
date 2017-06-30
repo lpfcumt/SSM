@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.lpfcumt.SRS.dao.StudentDao;
+import com.github.lpfcumt.SRS.dao.TranscriptDao;
 import com.github.lpfcumt.SRS.domain.Student;
+import com.github.lpfcumt.SRS.domain.TranscriptEntry;
 import com.github.lpfcumt.SRS.pojo.poStudent;
 import com.github.lpfcumt.SRS.service.StudentService;
 
@@ -17,6 +19,8 @@ import com.github.lpfcumt.SRS.service.StudentService;
 public class StudentServiceImpl implements StudentService{
 	@Autowired // 把'@Autowired'改为'@Resource(name="studentMockDao")'，即可切换成sqlite数据源
 	protected StudentDao studentDao;
+	@Autowired 
+	protected TranscriptDao transcriptDao;
 	
 	ArrayList<Student> listAllStudent;
 	HashMap<String , Student> mapStudent;
@@ -32,13 +36,20 @@ public class StudentServiceImpl implements StudentService{
 
 	@Override
 	public boolean checkLogin(String id, String password) {
-		if (studentDao.findStudentById(id) != null && password.equals(studentDao.findStudentById(id).getPassword())) return true;
+		if ( studentDao.findStudentById(id)!= null && password.equals(studentDao.findStudentById(id).getPassword())){
+			return true;
+			}
 		else return false;
 	}
 
 	@Override
 	public Student findStudentById(String id) {
 		return studentDao.findStudentById(id) ;
+	}
+
+	@Override
+	public ArrayList<TranscriptEntry> findTranscriptForStudent(Student student) {
+		return transcriptDao.findTranscriptForStudent(student);
 	}
 
 }

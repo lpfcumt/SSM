@@ -6,7 +6,6 @@ import java.util.HashMap;
 import org.springframework.stereotype.Repository;
 
 import com.github.lpfcumt.SRS.dao.StudentDao;
-import com.github.lpfcumt.SRS.domain.Section;
 import com.github.lpfcumt.SRS.domain.Student;
 
 
@@ -53,6 +52,30 @@ public class StudentDaoImpl implements StudentDao{
 	public ArrayList<Student> findStudentBySectionId(String sectionId, String dayOfWeek) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public int countStudentOfSection(String sectionId, String courseId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public ArrayList<Student> findStudentForGrade(String courseId, String sectionId, String semester) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int countStudentForGrade(String courseId, String sectionId, String search) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void appointGrade(String courseId, String sectionId, String studentId, String grade) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

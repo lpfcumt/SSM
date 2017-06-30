@@ -20,6 +20,10 @@
         <result property="timeOfDay" column="timeofday"/>
         <result property="room" column="room"/>
         <result property="seatingCapacity" column="seatingcapacity"/>
+        
+        <!--Student表  -->
+        <result property="studentId" column="studentid"/>
+        
     </resultMap>
     
     <!--查询所有班次  -->
@@ -54,11 +58,36 @@
       			on s.courseid=c.courseid and s.teacherid=t.id and t.id=#{teacherId}
     </select>
     
+    <!--查询学生选课班次  -->
+    <select id="findSectionforStudent" resultMap="sectionMap">
+        SELECT * FROM section AS s
+        	INNER JOIN scheduleofclasses AS sd
+        		ON s.courseid=sd.courseid AND s.sectionid=sd.sectionid 
+        		AND sd.courseid=#{courseId} AND sd.semester=#{semester}
+        	LEFT JOIN teacher AS t 
+        		ON t.id = s.teacherid 
+        	LEFT JOIN transcriptentry AS te
+        		ON s.courseid=te.courseid AND s.sectionid=te.sectionid
+    </select>
+    
+    <!--查询学生所有课程  -->
+    <select id="findSectionByStudent" resultMap="sectionMap">
+        SELECT * FROM section AS s
+        	INNER JOIN transcriptentry te
+        		ON s.courseid=te.courseid AND s.sectionid=te.sectionid AND te.studentid=#{student.id}
+    </select>
+    
     <!--添加班次  -->
     <insert id="addSection" parameterType="com.github.lpfcumt.SRS.domain.Section">
         INSERT INTO section(sectionid,courseid,teacherid,dayofweek,timeofday,room,seatingcapacity) 
         	VALUES(#{sectionId},#{representedCourse.courseId},#{instructor.id},#{dayOfWeek},
         	#{timeOfDay},#{room},#{seatingCapacity})
+    </insert>
+    
+    <!--学生选课  -->
+    <insert id="selectSection">
+        INSERT INTO transcriptentry(studentid,sectionid,courseid,semester) 
+        	VALUES(#{student.id},#{sectionId},#{courseId},#{semester})
     </insert>
     
     <!--指派授课教师  -->
@@ -71,4 +100,5 @@
         UPDATE section SET dayofweek=#{dayOfWeek},timeofday=#{timeOfDay},room=#{room},seatingcapacity=#{seatingCapacity} 
         WHERE sectionid=#{sectionId} and courseid=#{representedCourse.courseId}
     </update>
+    
 </mapper>

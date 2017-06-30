@@ -37,6 +37,9 @@ public class Course {
 		this.credits = credits;
 	}
 	
+	public void setPrerequisites(ArrayList<Course> prerequisites) {
+		this.prerequisites = prerequisites;
+	}
 	public Course(){
 		
 	}

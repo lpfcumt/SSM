@@ -2,13 +2,25 @@ package com.github.lpfcumt.SRS.domain;
 
 import java.util.HashMap;
 
+import javax.annotation.Resource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.github.lpfcumt.SRS.dao.SectionDao;
+import com.github.lpfcumt.SRS.service.SectionService;
+
 /**
  * @author 林鹏飞
  * @since Jdk1.8
  * @describe 班次类
  * @time 2017年6月16日下午4:52:54
  */
+@Component
 public class Section {
+	@Resource(name="sectionService") 
+	protected SectionService sectionService;
+	
 	private int sectionId; // 班次编号
 	private char dayOfWeek; // 星期几
 	private String timeOfDay; // 一天的时间
@@ -17,6 +29,8 @@ public class Section {
 	private Course representedCourse; // 代表的课程
 	private ScheduleOfClasses offeredIn; // 提供的课程表
 	private Teacher instructor; // 指导教师
+	private Student student;
+	private String studentId;
 	private HashMap<String, Student> enrolledStudents; // 参加班次的学生
 	private HashMap<Student, TranscriptEntry> assignedGrades; // 成绩等级
 	
@@ -69,8 +83,28 @@ public class Section {
 		this.instructor = instructor;
 	}
 	
+	public Student getStudent() {
+		return student;
+	}
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+	
+	public HashMap<String, Student> getEnrolledStudents() {
+		return enrolledStudents;
+	}
+	public void setEnrolledStudents(HashMap<String, Student> enrolledStudents) {
+		this.enrolledStudents = enrolledStudents;
+	}
 	public Section(){
 		
+	}
+	
+	public String getStudentId() {
+		return studentId;
+	}
+	public void setStudentId(String studentId) {
+		this.studentId = studentId;
 	}
 	public Section(int sectionId, char dayOfWeek, String timeOfDay,Course representedCourse, String room, int seatingCapacity
 			) {
@@ -253,7 +287,7 @@ public class Section {
 	 * @return boolean
 	 */
 	public boolean isSectionOf(Course course) {
-		if (course == representedCourse) return true;
+		if (course.getCourseId().equals(representedCourse.getCourseId())) return true;
 		else return false;
 	}
 }

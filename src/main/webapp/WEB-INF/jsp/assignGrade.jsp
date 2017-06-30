@@ -10,22 +10,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>授课管理</title>
+<title>指派成绩</title>
 
 <link
 	href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
 	rel="stylesheet">
 <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	rel="stylesheet">
+
 <link rel="stylesheet"
 	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/x-editable/1.5.1/bootstrap-editable/css/bootstrap-editable.css">
 	
 <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript"t src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="//cdn.bootcss.com/x-editable/1.5.1/bootstrap3-editable/js/bootstrap-editable.js"></script>
 <script type="text/javascript"
 	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+
 <script type="text/javascript"
 	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+
 <style>
 	body,button, input, select, textarea,h1 ,h2, h3, h4, h5, h6 ,lable{ font-family: Microsoft YaHei,'宋体' , Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;}
 </style>
@@ -33,14 +38,14 @@
 	$(function() {
 		$('#table').bootstrapTable('destroy');
 		$('#table').bootstrapTable({
-			url : '/course/listAllCourse',
+			url : '/schedule/listScheduleOfTeacher',
 			queryParamsType:'',
 			pagination : true,
 			sidePagination : 'server',
-			
+			toolbar : '#toolbar',
 			striped : true,
 			detailView: true,
-			search : true,
+// 			search : true,
 			cache :　false,
 			showColumns : true,
 			showRefresh : true,
@@ -50,7 +55,7 @@
 			clickToSelect : true,
 			singleSelect : true,
 			pageNumber : 1,
-			pageSize : 3,
+			pageSize : 10,
 			pageList : [ 5, 10, 15, 'ALL' ],
 			dataField : 'rows',
 			totalField : 'total',
@@ -64,7 +69,7 @@
 				params.sortOrder = this.sortOrder;
 				params.pageSize = this.pageSize;
 				params.pageNumber = this.pageNumber;
-				params.search = $('.search input').val();
+				params.search = $('#select').val();
 				return params
 				},
 			onCheck : function(row) {
@@ -75,18 +80,31 @@
 				
 			},
 			columns : [{
-				field : 'courseId',
-				title : '课程编号',
-				sortable:true
-			}, {
-				field : 'courseName',
-				title : '课程名称',
-				sortable:true
-			}, {
-				field : 'credits',
-				title : '课程学分',
-				sortable:true
-			}
+		            field: 'representedCourse.courseId',
+		            title : '课程编号'
+		        },{
+		            field: 'representedCourse.courseName',
+		            title : '课程名称'
+		        },{
+		            field: 'fullSectionId',
+		            title : '班次编号'
+		        },
+		        {
+		            field: 'instructor.name',
+		            title : '教师姓名'
+		        },
+		        {
+		            field: 'dayOfWeek',
+		            title : '星期'
+		        },
+		        {
+		            field: 'timeOfDay',
+		            title : '时间'
+		        },
+		        {
+		            field: 'room',
+		            title : '教室'
+		        }
 // 			,{
 // 					title : '操作',
 // 					align : 'center',
@@ -108,73 +126,91 @@
 		
 		// 子表
 		function childTable(index, row, $detail){
-			 	var parentid = row.courseId;
+			 	var courseId = row.representedCourse.courseId;
+			 	var sectionId = row.sectionId;
+			 	console.log(sectionId);
 			    var group_com = $detail.html('<table></table>').find('table');
 			    $(group_com).bootstrapTable('destroy');
 			    $(group_com).bootstrapTable({
-			    	url: '${basePath}findSectionByCourseId',
+			    	url: '${basePath}findStudentForGrade',
 			    	method: 'get',
-			    	queryParams: { courseId: parentid },
-			    	ajaxOptions: { courseId: parentid },
+			    	queryParams:  function(params) {
+						params.pageSize = this.pageSize;
+						params.pageNumber = this.pageNumber;
+						params.search = $('#select').val();
+						params.courseId = row.representedCourse.courseId;
+						params.sectionId = row.sectionId
+						return params
+						},
+			    	ajaxOptions: { courseId: courseId },
 //  			    	toolbar : '#toolbar',
 			    	sidePagination : 'server',
 			    	clickToSelect: true,
 			    	cache :　false,
+			    	pageNumber : 1,
+					pageSize : 10,
+					pageList : [ 5, 10, 15, 'ALL' ],
 			    	uniqueId: "",
 			    	dataField : "rows",
+			    	totalField : 'total',
 			    	onLoadSuccess : function(data) {
 						
 					},
 			        columns: [ {
-						radio : true
-					}, {
-			            field: 'fullSectionId',
-			            title : '班次编号'
+			            field: 'id',
+			            title : '学生编号'
 			        },
 			        {
-			            field: 'instructor.name',
-			            title : '教师姓名'
+			            field: 'name',
+			            title : '学生姓名'
 			        },
 			        {
-			            field: 'dayOfWeek',
+			            field: 'major',
 			            title : '星期'
 			        },
 			        {
-			            field: 'timeOfDay',
-			            title : '时间'
-			        },
-			        {
-			            field: 'room',
-			            title : '教室'
-			        },
-			        {
-			            field: 'seatingCapacity',
-			            title : '容量'
-			        },{
-			            title : '操作',
-			            align : 'center',
-			            events : operateEvents,
-			            formatter : function (value,row,index){
-			            		var teacherId = $('#teacherId').val();
-			            		if(row.instructor==null){
-			            			return '<div id="toolbar" class="btn-group"  >'+
-				            		'<button  type="button"  class="teach btn btn-default" >'+
-				            		 	'<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>授课'+
-				            		'</button>'+
-				            	'</div>';
-			            		}
-			            		else if(row.instructor.id==teacherId){
-			            			return  '<div id="toolbar" class="btn-group"  >'+
-// 				            		'<button  type="button"  class="exitTeach btn btn-default" >'+
-// 			            		 	'<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>退选'+
-// 			            		'</button>'+
-			            	'</div>';
-			            		}
-			           	 	}
-			        }
-			        ]
+			            field: 'grade',
+			            title : '成绩',
+			            editable: {
+		                    type: 'text',
+		                    title: '成绩',
+		                    validate: function (v) {
+		                        if (!v) return '用户名不能为空';
+		                    }
+		                },
+		                formatter: function (value, row, index) {
+		                    return "<a class=\"edit\" href=\"#\" id=\""+sectionId+"\" name=\""+courseId+"\" data-type=\"text\" data-pk=\""+row.id+"\" data-title=\"成绩\">" + '请输入成绩' + "</a>";
+		                }
+			        }],
+			        onLoadSuccess: function (detail) {
+		                $("#table .edit").editable({
+		                    url: function (data) {
+		                        console.log(data);
+		                        var courseId = $(this).attr('name');
+		                        var sectionId = $(this).attr('id');
+		                        var studentId=data.pk;
+		                        var grade = data.value;
+		                        $.ajax({
+		                            type: 'POST',
+		                            url: "appointGrade",
+		                            data: {courseId : courseId, sectionId : sectionId, studentId : studentId,grade : grade},
+		                            dataType: 'JSON',
+		                            success: function (data) {
+		                                alert('保存成功！');
+		                            },
+		                            error: function () { alert("error");}
+		                        });
+		                    },
+		                    type: 'text'
+		                });
+		            }
 			    });
 		}
+		
+		$("#select").change(function () {  
+		    var ss = $(this).children('option:selected').val();  
+		    $('#table').bootstrapTable('refresh');
+		});	
 	
 });
 
@@ -204,6 +240,13 @@ window.operateEvents = {
 </script>
 </head>
 <body>
+	<div id="toolbar" class="btn-group">
+	<select name="semester" id="select"  class="form-control"> 
+		<option selected="selected">学期</option>
+		<option value="1">1</option> 
+		<option value="2">2</option> 
+	</select>	
+	</div>
 	<input type="hidden" value="${teacher.id}" id="teacherId"/>
 	<div class="container-fluid">
 		<table id="table"></table>

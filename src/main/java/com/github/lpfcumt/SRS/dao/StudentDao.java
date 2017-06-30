@@ -42,4 +42,43 @@ public interface StudentDao{
 	 * @return ArrayList
 	 */
 	ArrayList<Student> findStudentBySectionId(@Param("sectionId")String sectionId, @Param("courseId")String courseId);
+
+	/**
+	 * @method 统计参与班次的学生总数 
+	 * @author 林鹏飞
+	 * @param sectionId
+	 * @param courseId
+	 * @return int
+	 */
+	int countStudentOfSection(@Param("sectionId")String sectionId, @Param("courseId")String courseId);
+
+	/**
+	 * @method 
+	 * @author 林鹏飞
+	 * @param courseId
+	 * @param sectionId
+	 * @param semester
+	 * @return
+	 */
+	ArrayList<Student> findStudentForGrade(@Param("courseId")String courseId, @Param("sectionId")String sectionId, @Param("semester")String semester);
+
+	/**
+	 * @method 
+	 * @author 林鹏飞
+	 * @param courseId
+	 * @param sectionId
+	 * @param search
+	 * @return
+	 */
+	int countStudentForGrade(@Param("courseId")String courseId, @Param("sectionId")String sectionId, @Param("semester")String semester);
+
+	/**
+	 * @method 
+	 * @author 林鹏飞
+	 * @param courseId
+	 * @param sectionId
+	 * @param studentId
+	 * @param grade 
+	 */
+	void appointGrade(@Param("courseId")String courseId, @Param("sectionId")String sectionId, @Param("studentId")String studentId, @Param("grade")String grade);
 }

@@ -78,13 +78,13 @@
             <div title="学生选课" iconcls="icon-save" style="overflow: auto; padding: 10px;">
                 <ul class="easyui-tree">
                     <li>
-                        <span><a onclick="addTab('学生选课','course/course')" href="#">学生选课</a></span>
+                        <span><a onclick="addTab('学生选课','course/selectCourse')" href="#">学生选课</a></span>
                     </li>
                     <li>
-                        <span><a onclick="addTab('课表查询','course/course')" href="#">课表查询</a></span>
+                        <span><a onclick="addTab('课表查询','course/studentSchedule')" href="#">课表查询</a></span>
                     </li>
                     <li>
-                        <span><a onclick="addTab('成绩查询','course/course')" href="#">成绩查询</a></span>
+                        <span><a onclick="addTab('成绩查询','course/studentGrade')" href="#">成绩查询</a></span>
                     </li>
                 </ul>
             </div>

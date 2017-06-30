@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.apache.ibatis.annotations.Param;
 
 import com.github.lpfcumt.SRS.domain.Course;
+import com.github.lpfcumt.SRS.domain.Student;
 
 public interface CourseDao {
 	
@@ -51,6 +52,31 @@ public interface CourseDao {
 	 * @param precoursId
 	 */
 	void addPreCourse(@Param("courseId")String courseId, @Param("precourseId")String precoursId);
+
+	/**
+	 * @method 
+	 * @author 林鹏飞
+	 * @param student
+	 * @param semester
+	 * @return ArrayList
+	 */
+	ArrayList<Course> listCourseForStudent(@Param("student")Student student, @Param("semester")String semester);
+
+	/**
+	 * @method 
+	 * @author 林鹏飞
+	 * @param semester
+	 * @return
+	 */
+	int countCourseForStudent(String semester);
+
+	/**
+	 * @method 
+	 * @author 林鹏飞
+	 * @param courseId
+	 * @return
+	 */
+	ArrayList<Course> findPreCourse(String courseId);
 	
 	
 }

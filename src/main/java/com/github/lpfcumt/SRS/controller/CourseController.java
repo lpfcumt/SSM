@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.lpfcumt.SRS.domain.Course;
+import com.github.lpfcumt.SRS.domain.Student;
 import com.github.lpfcumt.SRS.service.CourseService;
 import com.github.lpfcumt.SRS.until.MapToList;
 
@@ -32,6 +33,12 @@ public class CourseController extends BaseController{
 		@ResponseBody
 		public ModelAndView sendCourse(HttpSession session) throws Exception{
 			return new ModelAndView("course");
+		}
+		
+		@RequestMapping("/selectCourse")
+		@ResponseBody
+		public ModelAndView selectCourse(HttpSession session) throws Exception{
+			return new ModelAndView("selectCourse");
 		}
 	
 	// 输出所有课程
@@ -73,5 +80,16 @@ public class CourseController extends BaseController{
 			return ajaxSuccessResponse();
 		}
 		else return ajaxFailureResponse();
+	}
+	
+	// 输出选课总课程
+	@RequestMapping("/listCourseForStudent")
+	@ResponseBody
+	public Map<String, Object> listCourseForStudent(@RequestParam(required=true,defaultValue="0")int pageNumber,
+			@RequestParam(required=true,defaultValue="0")int pageSize,HttpSession session, String search) throws Exception{
+		Student student = (Student)session.getAttribute("student");
+		data.put("total", courseService.countCourseForStudent(search));
+		data.put("rows", courseService.listCourseForStudent(student, search, pageNumber, pageSize ));
+		return data;
 	}
 }

@@ -1,5 +1,6 @@
 package com.github.lpfcumt.SRS.controller;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.lpfcumt.SRS.domain.Student;
+import com.github.lpfcumt.SRS.domain.Transcript;
+import com.github.lpfcumt.SRS.domain.TranscriptEntry;
 import com.github.lpfcumt.SRS.service.StudentService;
 
 @Controller
@@ -27,7 +30,12 @@ public class StudentController extends BaseController{
 			@RequestParam(required=true,defaultValue="0")String password, HttpSession session) throws Exception{
 		// 判断账号密码是否正确
 		if (studentService.checkLogin(id, password)){
-			session.setAttribute("student",studentService.findStudentById(id)); // 将student放入session
+			Student student = studentService.findStudentById(id);
+			ArrayList<TranscriptEntry> transcriptEntries = studentService.findTranscriptForStudent(student);
+			Transcript transcript = new Transcript(student);
+			transcript.setTranscriptEntries(transcriptEntries);
+			student.setTranscript(transcript);
+			session.setAttribute("student",student); // 将student放入session
 			return ajaxSuccessResponse(); // 返回正确信息
 		}
 		else return ajaxFailureResponse();	// 返回错误信息

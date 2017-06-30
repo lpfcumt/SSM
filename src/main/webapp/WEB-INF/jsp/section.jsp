@@ -194,6 +194,7 @@
 		    	cache :　false,
 		    	uniqueId: "",
 		    	dataField : "rows",
+		    	totalField : 'total',
 		    	onLoadSuccess : function(data) {
 					
 				},
@@ -206,12 +207,12 @@
 		            title : '学生姓名'
 		        },
 		        {
-		            field: 'grade',
-		            title : '年级'
-		        },
-		        {
 		            field: 'major',
 		            title : '专业'
+		        },
+		        {
+		            field: 'grade',
+		            title : '成绩'
 		        }]
 		    });
 	}

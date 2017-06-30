@@ -23,6 +23,7 @@ public class PlanOfStudy {
 	
 	public PlanOfStudy(Student student){
 		this.setStudent(student);
+		this.planOfStudys=new HashMap<Student, PlanOfStudyEntry>();
 	}
 	
 	

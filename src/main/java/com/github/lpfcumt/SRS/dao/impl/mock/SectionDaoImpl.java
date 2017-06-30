@@ -108,6 +108,24 @@ public class SectionDaoImpl implements SectionDao{
 		return null;
 	}
 
+	@Override
+	public ArrayList<Section> findSectionforStudent(String courseId, String sectionId, String search, Student student) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Section> findSectionByStudent(Student student) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void selectSection(Student student, String s, String c, String semester) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 	
 

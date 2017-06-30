@@ -12,7 +12,17 @@ public class Transcript {
 
 	private ArrayList<TranscriptEntry> transcriptEntries; // 成绩集合
 	private Student studentOwner; // 学生
+	
+	
+	
+	public ArrayList<TranscriptEntry> getTranscriptEntries() {
+		return transcriptEntries;
+	}
 
+	public void setTranscriptEntries(ArrayList<TranscriptEntry> transcriptEntries) {
+		this.transcriptEntries = transcriptEntries;
+	}
+	
 	public Transcript(Student student) {
 		setStudentOwner(student);
 		transcriptEntries = new ArrayList<TranscriptEntry>();

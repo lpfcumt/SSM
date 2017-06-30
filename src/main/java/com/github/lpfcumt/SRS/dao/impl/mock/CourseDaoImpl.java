@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.github.lpfcumt.SRS.dao.CourseDao;
 import com.github.lpfcumt.SRS.domain.Course;
+import com.github.lpfcumt.SRS.domain.Student;
 
 @Repository("courseMockDao")
 public class CourseDaoImpl implements CourseDao{
@@ -62,6 +63,24 @@ public class CourseDaoImpl implements CourseDao{
 	public void addPreCourse(String courseId, String precoursId) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public ArrayList<Course> listCourseForStudent(Student student, String semester) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int countCourseForStudent(String semester) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public ArrayList<Course> findPreCourse(String courseId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

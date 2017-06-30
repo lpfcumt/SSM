@@ -100,7 +100,7 @@
             <div title="指派成绩" iconcls="icon-reload"  style="padding: 10px;">
                 <ul class="easyui-tree">
                 	<li>
-                		<span><a href="#">指派成绩</a></span>
+                		<span><a onclick="addTab('指派成绩','section/assignGrade')" href="#">指派成绩</a></span>
                 	</li>
                 </ul> 
             </div>

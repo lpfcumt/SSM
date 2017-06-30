@@ -10,7 +10,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>授课管理</title>
+<title>课表管理</title>
 
 <link
 	href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
@@ -33,14 +33,14 @@
 	$(function() {
 		$('#table').bootstrapTable('destroy');
 		$('#table').bootstrapTable({
-			url : '/course/listAllCourse',
+			url : '/schedule/listScheduleOfTeacher',
 			queryParamsType:'',
 			pagination : true,
 			sidePagination : 'server',
-			
+			toolbar : '#toolbar',
 			striped : true,
-			detailView: true,
-			search : true,
+// 			detailView: true,
+// 			search : true,
 			cache :　false,
 			showColumns : true,
 			showRefresh : true,
@@ -64,147 +64,78 @@
 				params.sortOrder = this.sortOrder;
 				params.pageSize = this.pageSize;
 				params.pageNumber = this.pageNumber;
-				params.search = $('.search input').val();
+				params.search = $('#select').val();
 				return params
 				},
 			onCheck : function(row) {
-				$('#remove').attr('disabled', false)
 			},
 			onLoadSuccess : function(data) {
-				$('#remove').attr('disabled', 'disabled')
 				
 			},
-			columns : [{
-				field : 'courseId',
-				title : '课程编号',
-				sortable:true
-			}, {
-				field : 'courseName',
-				title : '课程名称',
-				sortable:true
-			}, {
-				field : 'credits',
-				title : '课程学分',
-				sortable:true
-			}
-// 			,{
-// 					title : '操作',
-// 					align : 'center',
-// 					formatter : function (value,row,index){
-// 									return '<a id="'+row.courseId+'"  onclick="addCourseId(\''+ row.courseId +'\')" class="add_btn btn btn-default" " data-toggle="modal"'+
-// 									'data-target="#myModal1"> 添加班次</a>'
-// 					}	
-// 				}
-			],
+			columns : [ {
+		            field: 'representedCourse.courseId',
+		            title : '课程编号'
+		        },{
+		            field: 'representedCourse.courseName',
+		            title : '课程名称'
+		        },{
+		            field: 'fullSectionId',
+		            title : '班次编号'
+		        },
+		        {
+		            field: 'instructor.name',
+		            title : '教师姓名'
+		        },
+		        {
+		            field: 'dayOfWeek',
+		            title : '星期'
+		        },
+		        {
+		            field: 'timeOfDay',
+		            title : '时间'
+		        },
+		        {
+		            field: 'room',
+		            title : '教室'
+		        }],
 			onExpandRow: function (index, row, $detail) {
 				
-				childTable(index, row, $detail);
+				
 				
 		    },
-		    onCollapseRow : function(index, row){	
+		    onCollapseRow : function(index, row){
+		    	
 		    }
 			
 		});
 		
-		// 子表
-		function childTable(index, row, $detail){
-			 	var parentid = row.courseId;
-			    var group_com = $detail.html('<table></table>').find('table');
-			    $(group_com).bootstrapTable('destroy');
-			    $(group_com).bootstrapTable({
-			    	url: '${basePath}findSectionByCourseId',
-			    	method: 'get',
-			    	queryParams: { courseId: parentid },
-			    	ajaxOptions: { courseId: parentid },
-//  			    	toolbar : '#toolbar',
-			    	sidePagination : 'server',
-			    	clickToSelect: true,
-			    	cache :　false,
-			    	uniqueId: "",
-			    	dataField : "rows",
-			    	onLoadSuccess : function(data) {
-						
-					},
-			        columns: [ {
-						radio : true
-					}, {
-			            field: 'fullSectionId',
-			            title : '班次编号'
-			        },
-			        {
-			            field: 'instructor.name',
-			            title : '教师姓名'
-			        },
-			        {
-			            field: 'dayOfWeek',
-			            title : '星期'
-			        },
-			        {
-			            field: 'timeOfDay',
-			            title : '时间'
-			        },
-			        {
-			            field: 'room',
-			            title : '教室'
-			        },
-			        {
-			            field: 'seatingCapacity',
-			            title : '容量'
-			        },{
-			            title : '操作',
-			            align : 'center',
-			            events : operateEvents,
-			            formatter : function (value,row,index){
-			            		var teacherId = $('#teacherId').val();
-			            		if(row.instructor==null){
-			            			return '<div id="toolbar" class="btn-group"  >'+
-				            		'<button  type="button"  class="teach btn btn-default" >'+
-				            		 	'<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>授课'+
-				            		'</button>'+
-				            	'</div>';
-			            		}
-			            		else if(row.instructor.id==teacherId){
-			            			return  '<div id="toolbar" class="btn-group"  >'+
-// 				            		'<button  type="button"  class="exitTeach btn btn-default" >'+
-// 			            		 	'<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>退选'+
-// 			            		'</button>'+
-			            	'</div>';
-			            		}
-			           	 	}
-			        }
-			        ]
-			    });
-		}
-	
+		$("#select").change(function () {  
+		    var ss = $(this).children('option:selected').val();  
+		    $('#table').bootstrapTable('refresh');
+		});	
 });
 
 
 // 编辑时给 form 赋值
 window.operateEvents = {
-		'click .teach': function (e, value, row, index) {
-			$.ajax({
-				url : '/section/appointInstructor',
-				data : {sectionId : row.sectionId , courseId : row.representedCourse.courseId},
-				dataType : 'json',
-				method : 'POST',
-				success : function(data) {
-					
-					if (data.success) {
-						alert('授课成功！')
-						$('#table').bootstrapTable('refresh');
-					} else {
-						alert('修改失败！')
-					}
-				}
-			});
+		'change #select': function (e, value, row, index) {
+
+			
 		      }
 };
-	
+
+
 
 </script>
 </head>
 <body>
-	<input type="hidden" value="${teacher.id}" id="teacherId"/>
+	<div id="toolbar" class="btn-group">
+	<select name="semester" id="select"  class="form-control"> 
+		<option selected="selected">学期</option>
+		<option value="1">1</option> 
+		<option value="2">2</option> 
+	</select>	
+	</div>
 	<div class="container-fluid">
 		<table id="table"></table>
 	</div>

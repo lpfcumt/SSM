@@ -70,5 +70,43 @@ public interface SectionDao {
 	 */
 	ArrayList<Student> findStudentBySectionId(Section section);
 
+	/**
+	 * @method 查询具体班次
+	 * @author 林鹏飞
+	 * @param courseId
+	 * @param sectionId
+	 * @return Section
+	 */
 	Section findSectionByCourseId_SectionId(@Param("courseId")String courseId, @Param("sectionId")String sectionId);
+
+	/**
+	 * @method 
+	 * @author 林鹏飞
+	 * @param courseId
+	 * @param sectionId
+	 * @param search
+	 * @param student
+	 * @return ArrayList<Section>
+	 */
+	ArrayList<Section> findSectionforStudent(@Param("courseId")String courseId, @Param("sectionId")String sectionId,
+			@Param("semester")String search, @Param("student")Student student);
+
+	/**
+	 * @method 查询学生所选所有课程
+	 * @author 林鹏飞
+	 * @param student
+	 * @return ArrayList
+	 */
+	ArrayList<Section> findSectionByStudent(@Param("student")Student student);
+
+	/**
+	 * @method 学生选课
+	 * @author 林鹏飞
+	 * @param student
+	 * @param semester 
+	 * @param section
+	 */
+	void selectSection(@Param("student")Student student, @Param("sectionId")String sectionId, @Param("courseId")String courseId, @Param("semester")String semester);
+
+	
 }

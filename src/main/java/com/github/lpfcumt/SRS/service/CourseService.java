@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.github.lpfcumt.SRS.domain.Course;
+import com.github.lpfcumt.SRS.domain.Student;
 
 public interface CourseService {
 
@@ -47,4 +48,23 @@ public interface CourseService {
 	 * @return ArrayList
 	 */
 	ArrayList<Course> fuzzyfindCourse(String search, int pageNumber, int pageSize);
+
+	/**
+	 * @method 
+	 * @author 林鹏飞
+	 * @param student
+	 * @param semester
+	 * @param pageSize 
+	 * @param pageNumber 
+	 * @return
+	 */
+	ArrayList<Course> listCourseForStudent(Student student, String semester, int pageNumber, int pageSize);
+
+	/**
+	 * @method 
+	 * @author 林鹏飞
+	 * @param search
+	 * @return int
+	 */
+	int countCourseForStudent(String search);
 }
