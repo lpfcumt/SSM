@@ -101,4 +101,10 @@
         WHERE sectionid=#{sectionId} and courseid=#{representedCourse.courseId}
     </update>
     
+    <!--退选课程  -->
+    <delete id="cancelSection">
+        DELETE FROM transcriptentry WHERE studentid=#{student.id} AND courseid=#{courseId} 
+        	AND sectionid=#{sectionId} AND semester=#{semester} 
+    </delete>
+    
 </mapper>

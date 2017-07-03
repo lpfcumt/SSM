@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.github.lpfcumt.SRS.domain.Section;
+import com.github.lpfcumt.SRS.domain.Student;
 import com.github.lpfcumt.SRS.domain.Teacher;
 
 public interface ScheduleService {
@@ -24,4 +25,13 @@ public interface ScheduleService {
 	 * @return ArrayList
 	 */
 	ArrayList<Section> findScheduleBySemester(Teacher teacher, String semester);
+
+	/**
+	 * @method 
+	 * @author 林鹏飞
+	 * @param student
+	 * @param search 
+	 * @return ArrayList
+	 */
+	ArrayList<Section> findScheduleForStudent(Student student, String search);
 }

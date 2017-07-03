@@ -48,6 +48,12 @@ public class SectionController extends BaseController{
 		return new ModelAndView("assignGrade");
 	}
 	
+	@RequestMapping("/studentTranscript")
+	@ResponseBody
+	public ModelAndView studentTranscript(HttpSession session) throws Exception{
+		return new ModelAndView("studentTranscript");
+	}
+	
 	/*根据 courseId 查询班次*/
 	@RequestMapping("/findSectionByCourseId")
 	@ResponseBody
@@ -145,6 +151,29 @@ public class SectionController extends BaseController{
 			sectionService.selectSection(student, sectionId, courseId, semester);
 			System.out.println("45646465465465");
 		}
+		session.setAttribute("student", student);
 		return ajaxSuccessResponse(enrollmentStatus.value());
 	}
-} 
+	
+	/*退选课程*/
+	@RequestMapping("/cancelSection")
+	@ResponseBody
+	public Map<String,Object> cancelSection(HttpSession session, String sectionId, String courseId, String semester) throws Exception{
+		
+		Student student = (Student)session.getAttribute("student");
+		if (sectionService.cancelSection(student,sectionId,courseId,semester)){
+			session.setAttribute("student", student);
+			return ajaxSuccessResponse();
+		}
+		else return ajaxFailureResponse();
+	}
+	
+	/*查看成绩单*/
+	@RequestMapping("/findTranscriptForStudent")
+	@ResponseBody
+	public Map<String, Object> findTranscriptForStudent(HttpSession session) throws Exception{
+		Student student = (Student)session.getAttribute("student");
+		data.put("rows",student.getTranscript().getTranscriptEntries());
+		return data;
+	}
+}  

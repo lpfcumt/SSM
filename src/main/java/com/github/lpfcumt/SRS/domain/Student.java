@@ -164,9 +164,12 @@ public class Student extends Person{
 	 * @return boolean
 	 */
 	public boolean isEnrolledIn(Section section){
-		if (sections.contains(section)) {
-			return true;
+		for (Section section1 : sections) {
+			if (section.getFullSectionId().equals(section1.getFullSectionId())) {
+				return true;
+			}
 		}
+		
 		return false;
 	}
 	

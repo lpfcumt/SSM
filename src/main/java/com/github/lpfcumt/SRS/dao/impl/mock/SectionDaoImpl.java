@@ -126,6 +126,12 @@ public class SectionDaoImpl implements SectionDao{
 		
 	}
 
+	@Override
+	public void cancelSection(Student student, String sectionId, String courseId, String semesterr) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 	
 

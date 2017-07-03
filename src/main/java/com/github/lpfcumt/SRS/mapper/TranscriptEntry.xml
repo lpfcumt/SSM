@@ -15,15 +15,19 @@
         <result property="section.representedCourse.courseId" column="courseId"/>
         <result property="section.representedCourse.courseName" column="courseName"/>
         <result property="section.representedCourse.credits" column="credits"/>
+        <result property="section.instructor.id" column="id"/>
+        <result property="section.instructor.name" column="name"/>
     </resultMap>
     
    <!-- 查询 成绩-->
    <select id="findTranscriptForStudent" resultMap="transcriptMap" >
        SELECT * FROM transcriptentry AS te 
-       INNER JOIN section AS s
-       ON te.studentid=#{student.id} AND s.sectionid=te.sectionid AND s.courseid=te.courseid
-       INNER JOIN course AS c
-       On te.courseid=c.courseid
+       	 INNER JOIN section AS s
+      		 ON te.studentid=#{student.id} AND s.sectionid=te.sectionid AND s.courseid=te.courseid
+         INNER JOIN course AS c
+       		 ON te.courseid=c.courseid
+         LEFT JOIN teacher AS t
+      		 ON t.id=s.teacherid 
    </select>
    
 </mapper>

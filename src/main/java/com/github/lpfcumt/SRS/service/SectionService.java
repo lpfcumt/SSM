@@ -138,5 +138,24 @@ public interface SectionService {
 	 */
 	EnrollmentStatus appointSection(Student student, String sectionId, String courseId);
 	
+	/**
+	 * @method 保存选课
+	 * @author 林鹏飞
+	 * @param student
+	 * @param sectionId
+	 * @param courseId
+	 * @param semester
+	 */
 	void selectSection(Student student, String sectionId, String courseId, String semester);
+
+	/**
+	 * @method 退选课程
+	 * @author 林鹏飞
+	 * @param student
+	 * @param sectionId
+	 * @param courseId
+	 * @param semester
+	 * @return boolean
+	 */
+	boolean cancelSection(Student student, String sectionId, String courseId, String semester);
 }

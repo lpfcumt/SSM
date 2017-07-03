@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.github.lpfcumt.SRS.domain.ScheduleOfClasses;
 import com.github.lpfcumt.SRS.domain.Section;
+import com.github.lpfcumt.SRS.domain.Student;
 import com.github.lpfcumt.SRS.domain.Teacher;
 
 public interface ScheduleDao{
@@ -35,6 +36,15 @@ public interface ScheduleDao{
 	 * @return ArrayList
 	 */
 	ArrayList<Section> findScheduleBySemester(@Param("teacher")Teacher teacher, @Param("semester")String semester);
+
+	/**
+	 * @method 
+	 * @author 林鹏飞
+	 * @param student
+	 * @param search
+	 * @return
+	 */
+	ArrayList<Section> findScheduleForStudent(@Param("student")Student student, @Param("search")String search);
 	
 	
 

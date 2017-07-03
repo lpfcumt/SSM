@@ -37,6 +37,16 @@
       			teacher as t on s.teacherid=t.id 
     </select>
     
+     <select id="findScheduleForStudent" resultMap="sectionMap">
+        SELECT * FROM section as s 
+        	inner join course as c
+      			ON s.courseid=c.courseid  
+      		inner join transcriptentry as te
+      			ON s.courseid=te.courseid AND s.sectionid=te.sectionid AND te.semester=#{search} AND te.studentid=#{student.id}
+      		left join teacher as th
+      			on th.id=s.teacherid
+    </select>
+    
     <insert id="addSchedule" >
         INSERT INTO scheduleofclasses(courseid,sectionid,semester)
         	VALUES(#{section.representedCourse.courseId},#{section.sectionId},#{semester})

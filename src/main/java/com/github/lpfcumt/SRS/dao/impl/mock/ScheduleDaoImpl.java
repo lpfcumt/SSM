@@ -10,6 +10,7 @@ import com.github.lpfcumt.SRS.dao.ScheduleDao;
 import com.github.lpfcumt.SRS.dao.SectionDao;
 import com.github.lpfcumt.SRS.domain.ScheduleOfClasses;
 import com.github.lpfcumt.SRS.domain.Section;
+import com.github.lpfcumt.SRS.domain.Student;
 import com.github.lpfcumt.SRS.domain.Teacher;
 
 @Repository("scheduleMockDao")
@@ -28,6 +29,11 @@ public class ScheduleDaoImpl implements ScheduleDao{
 	}
 	@Override
 	public ArrayList<Section> findScheduleBySemester(Teacher teacher, String semester) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public ArrayList<Section> findScheduleForStudent(Student student, String search) {
 		// TODO Auto-generated method stub
 		return null;
 	}

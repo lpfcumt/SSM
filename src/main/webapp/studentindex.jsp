@@ -81,10 +81,10 @@
                         <span><a onclick="addTab('学生选课','course/selectCourse')" href="#">学生选课</a></span>
                     </li>
                     <li>
-                        <span><a onclick="addTab('课表查询','course/studentSchedule')" href="#">课表查询</a></span>
+                        <span><a onclick="addTab('课表查询','schedule/studentSchedule')" href="#">课表查询</a></span>
                     </li>
                     <li>
-                        <span><a onclick="addTab('成绩查询','course/studentGrade')" href="#">成绩查询</a></span>
+                        <span><a onclick="addTab('成绩查询','section/studentTranscript')" href="#">成绩查询</a></span>
                     </li>
                 </ul>
             </div>

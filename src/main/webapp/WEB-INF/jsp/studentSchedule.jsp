@@ -33,10 +33,10 @@
 	$(function() {
 		$('#table').bootstrapTable('destroy');
 		$('#table').bootstrapTable({
-			url : '/schedule/listScheduleOfTeacher',
+			url : '/schedule/listScheduleOfStudent',
 			queryParamsType:'',
-			pagination : true,
-			sidePagination : 'server',
+// 			pagination : true,
+ 			sidePagination : 'server',
 			toolbar : '#toolbar',
 			striped : true,
 // 			detailView: true,
@@ -51,7 +51,7 @@
 			singleSelect : true,
 			pageNumber : 1,
 			pageSize : 3,
-			pageList : [ 5, 10, 15, 'ALL' ],
+// 			pageList : [ 5, 10, 15, 'ALL' ],
 			dataField : 'rows',
 			totalField : 'total',
 			sortable: true,

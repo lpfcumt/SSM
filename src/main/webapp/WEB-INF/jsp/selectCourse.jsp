@@ -193,15 +193,16 @@ window.operateEvents = {
 			});
 		      },
 	'click .exitSelect': function (e, value, row, index) {
+		var semester = $('#select').val();
 		$.ajax({
 			url : '/section/cancelSection',
-			data : {sectionId : row.sectionId , courseId : row.representedCourse.courseId},
+			data : {sectionId : row.sectionId , courseId : row.representedCourse.courseId, semester : semester},
 			dataType : 'json',
 			method : 'POST',
 			success : function(data) {
 				
 				if (data.success) {
-					alert(data.msg)
+					alert('退选成功！')
 					$('#table').bootstrapTable('refresh');
 				} else {
 					alert('选课失败！')

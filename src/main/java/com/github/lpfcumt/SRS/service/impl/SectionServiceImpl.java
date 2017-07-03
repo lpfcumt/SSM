@@ -87,7 +87,16 @@ public class SectionServiceImpl implements SectionService{
 
 	@Override
 	public Section findSectionByCourseId(String courseId, String sectionId) {
-		return sectionDao.findSectionByCourseId_SectionId(courseId, sectionId);
+		HashMap<String, Student> studentMap = new HashMap<String, Student>();
+		Section section = sectionDao.findSectionByCourseId_SectionId(courseId, sectionId);
+		ArrayList<Course> courses = courseDao.findPreCourse(courseId);
+		ArrayList<Student> students= studentDao.findStudentBySectionId(sectionId, courseId);
+		for (Student student2 : students) {
+			studentMap.put(student2.getId(), student2);
+		}
+		section.getRepresentedCourse().setPrerequisites(courses);
+		section.setEnrolledStudents(studentMap);
+		return section;
 	}
 
 	@Override
@@ -125,23 +134,27 @@ public class SectionServiceImpl implements SectionService{
 
 	@Override
 	public EnrollmentStatus appointSection(Student student, String sectionId, String courseId) {
-		Section section=sectionDao.findSectionByCourseId_SectionId(courseId, sectionId);
-		ArrayList<Student> students= studentDao.findStudentBySectionId(sectionId, courseId);
-		ArrayList<Course> courses = courseDao.findPreCourse(courseId);
-		for (Student student2 : students) {
-			studentMap.put(student2.getId(), student2);
-		}
+		Section section=findSectionByCourseId(courseId, sectionId);
 		student.setSections(sectionDao.findSectionByStudent(student));
-		section.setEnrolledStudents(studentMap);
-		section.getRepresentedCourse().setPrerequisites(courses);
 		section.setStudent(student);
-		
 		return section.enroll(student);
 	}
 
 	@Override
 	public void selectSection(Student student, String sectionId, String courseId, String semester) {
-		// TODO Auto-generated method stub
+		
 		sectionDao.selectSection(student, sectionId, courseId, semester);
+	}
+
+	@Override
+	public boolean cancelSection(Student student, String sectionId, String courseId, String semester) {
+		Section section=findSectionByCourseId(courseId, sectionId);
+		student.setSections(sectionDao.findSectionByStudent(student));
+		section.setStudent(student);
+		if(section.drop(student)){
+			sectionDao.cancelSection(student, sectionId, courseId, semester);
+			return true;
+		}
+		return false;
 	}
 }

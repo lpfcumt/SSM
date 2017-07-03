@@ -108,5 +108,15 @@ public interface SectionDao {
 	 */
 	void selectSection(@Param("student")Student student, @Param("sectionId")String sectionId, @Param("courseId")String courseId, @Param("semester")String semester);
 
+	/**
+	 * @method 退选课程
+	 * @author 林鹏飞
+	 * @param student
+	 * @param sectionId
+	 * @param courseId
+	 * @param semester
+	 */
+	void cancelSection(@Param("student")Student student, @Param("sectionId")String sectionId, @Param("courseId")String courseId, @Param("semester")String semesterr);
+
 	
 }

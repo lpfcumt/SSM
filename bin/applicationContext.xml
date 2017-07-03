@@ -37,6 +37,26 @@
         <property name="basePackage" value="com.github.lpfcumt.SRS.dao" />
     </bean>
     
+	<!--配置springemail  -->
+	<!-- 引入配置文件 -->
+	<!--   <bean id="propertyConfigurer"  
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+        <property name="location" value="classpath:spring-email.properties" />  
+	    </bean> 
+		<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	        <property name="host" value="smtp.vip.sina.com" />
+	        <property name="port" value="25" />
+	        <property name="username" value="${mail_username}"/>
+	        <property name="password" value="${mail_password}" />
+	        <property name="defaultEncoding" value="UTF-8"></property>  
+	        <property name="javaMailProperties">
+	            <props>
+	                <prop key="mail.smtp.auth">true</prop>
+	                <prop key="mail.smtp.timeout">0</prop>
+	            </props>
+	        </property>
+    </bean> -->
+	
 	<bean id="vendorProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 	  <property name="properties">
 	    <props>
@@ -84,15 +104,15 @@
 	<!-- 启用支持annotation注解方式事务管理 -->
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	<!-- 加载mysql数据源 -->
-	<beans profile="mysql">  
+	<beans profile="mysql">
        <!-- 使用PropertyOverrideConfigurer后处理器加载数据源参数 -->
 		<context:property-override location="classpath*:mysql-db.properties"/>
     </beans>
 <!--     加载sqlite数据源 -->
- 	<beans profile="sqlite">  
+ 	<beans profile="sqlite">
 <!--        使用PropertyOverrideConfigurer后处理器加载数据源参数 -->
  		<context:property-override location="classpath*:sqlite-db.properties"/> 
      </beans>
-    
+
 	
 </beans>

@@ -37,7 +37,7 @@
 	<!-- 用于切换数据库，sqlite/mysql -->
 	<context-param>  
         <param-name>spring.profiles.active</param-name>  
-        <param-value>sqlite</param-value>  
+        <param-value>sqlite</param-value>
 	</context-param>
 	
 	<!-- 定义Spring MVC的前端控制器 -->
@@ -81,6 +81,6 @@
 	
 	<!--默认页面  -->
 	<welcome-file-list>
-	  <welcome-file>login.jsp</welcome-file>
+	  <welcome-file>studentlogin.jsp</welcome-file>
 	</welcome-file-list>
 </web-app>

@@ -34,7 +34,7 @@ public class StudentController extends BaseController{
 			ArrayList<TranscriptEntry> transcriptEntries = studentService.findTranscriptForStudent(student);
 			Transcript transcript = new Transcript(student);
 			transcript.setTranscriptEntries(transcriptEntries);
-			student.setTranscript(transcript);
+			student.setTranscript(transcript);// 给学生加载课程表
 			session.setAttribute("student",student); // 将student放入session
 			return ajaxSuccessResponse(); // 返回正确信息
 		}
