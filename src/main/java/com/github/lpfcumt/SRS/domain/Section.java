@@ -7,6 +7,11 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.github.lpfcumt.SRS.Specification.ConfirmSeatAvailability;
+import com.github.lpfcumt.SRS.Specification.IsCurrentlyEnrolledSimilar;
+import com.github.lpfcumt.SRS.Specification.IsSatisfyPlan;
+import com.github.lpfcumt.SRS.Specification.IsSatisfyPreCourse;
+import com.github.lpfcumt.SRS.Specification.Specification;
 import com.github.lpfcumt.SRS.dao.SectionDao;
 import com.github.lpfcumt.SRS.service.SectionService;
 
@@ -157,27 +162,19 @@ public class Section {
 	 * @return EnrollmentStatus
 	 */
 	public EnrollmentStatus enroll(Student student) {
-		Transcript transcript = student.getTranscript();
-		// 判断学生是否参加过类似的课程，或者参加过并没有通过考试
-		if (student.isCurrentlyEnrolledSimilar(this) || 
-		    transcript.verifyCompletion(this.getRepresentedCourse())) {
-			return EnrollmentStatus.prevEnroll;
-		}
-
-		// 判断学生是否满足该课程的前置课程
-		Course c = this.getRepresentedCourse();
-		if (c.hasPrerequisites()) {
-			for (Course pre : c.getPrerequisites()) {
-				if (!transcript.verifyCompletion(pre)) {
-					return EnrollmentStatus.prereq;
-				}
-			}
-		}
+		// 取出规约
+		Specification isSimilar = new IsCurrentlyEnrolledSimilar();
+		Specification isSatisfyPreCourse = new IsSatisfyPreCourse();
+		Specification isSatisfyPlan = new IsSatisfyPlan();
+		Specification confirmSeatAvailability = new ConfirmSeatAvailability();
 		
-		// 判断班次学生数量是否已满
-		if (!this.confirmSeatAvailability()) {
-			return EnrollmentStatus.secFull;
-		}
+		if (!isSimilar.enroll(student, this)) return EnrollmentStatus.prevEnroll; // 判断是否参加过类似的课程
+		
+		else if (!isSatisfyPreCourse.enroll(student, this)) return EnrollmentStatus.prereq; // 判断是否满足前置课程
+			
+		else if (!isSatisfyPlan.enroll(student, this)) return EnrollmentStatus.outOfPlan; // 是否满足学习计划
+			
+		else if (!confirmSeatAvailability.enroll(student, this)) return EnrollmentStatus.secFull; // 是否有座位
 		
 		// 双向绑定
 		enrolledStudents.put(student.getId(), student);
@@ -208,7 +205,7 @@ public class Section {
 	 * @author 林鹏飞
 	 * @return boolean
 	 */
-	private boolean confirmSeatAvailability() {
+	public boolean confirmSeatAvailability() {
 		if (enrolledStudents.size() < getSeatingCapacity()) return true;
 		else return false;
 	}

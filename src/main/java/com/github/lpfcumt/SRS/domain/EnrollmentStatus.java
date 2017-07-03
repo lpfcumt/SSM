@@ -4,7 +4,8 @@ public enum EnrollmentStatus {
 	success("报名成功!  :o)"), 
 	secFull("报名失败;  班次已排满.  :op"), 
 	prereq("报名失败; 未满足前置课程.  :op"), 
-	prevEnroll("报名失败; 已报名.  :op");
+	prevEnroll("报名失败; 已报名.  :op"),
+	outOfPlan("报名失败; 该课程不在学习计划内. :op");
 
 	// 枚举实例的值
 	private final String value;

@@ -1,6 +1,5 @@
 package com.github.lpfcumt.SRS.domain;
 
-import java.util.HashMap;
 
 /**
  * @author 林鹏飞
@@ -10,9 +9,7 @@ import java.util.HashMap;
  */
 public class PlanOfStudy {
 	private Student student; // 学生
-	HashMap<String, Course> courseOffered; // 提供的课程
-	HashMap<Student, PlanOfStudyEntry> planOfStudys; // 学习计划
-
+	private PlanOfStudyEntry planOfStudyEntry;
 	public Student getStudent() {
 		return student;
 	}
@@ -21,10 +18,26 @@ public class PlanOfStudy {
 		this.student = student;
 	}
 	
-	public PlanOfStudy(Student student){
-		this.setStudent(student);
-		this.planOfStudys=new HashMap<Student, PlanOfStudyEntry>();
+	public PlanOfStudyEntry getPlanOfStudyEntry() {
+		return planOfStudyEntry;
+	}
+
+	public void setPlanOfStudyEntry(PlanOfStudyEntry planOfStudyEntry) {
+		this.planOfStudyEntry = planOfStudyEntry;
 	}
 	
+	public PlanOfStudy(){
+		
+	}
 	
+	public PlanOfStudy(Student student){
+		this.setStudent(student);
+	}
+	
+	public boolean isInPlanOfStudy(Course course){
+		for (Course course2 : planOfStudyEntry.getCourseOffered()) {
+			if (course.getCourseId().equals(course2.getCourseId())) return true;
+		}
+		return false;
+	} 
 }

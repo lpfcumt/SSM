@@ -91,4 +91,11 @@ public class CourseController extends BaseController{
 		data.put("rows", courseService.listCourseForStudent(student, search, pageNumber, pageSize ));
 		return data;
 	}
+	
+	/*制定学习计划*/
+	@RequestMapping("/appointPlanOfStudy")
+	@ResponseBody
+	public Map<String, Object> appointPlanOfStudy(String[] courseIds, String major, HttpSession session){
+		return data;
+	}
 }
