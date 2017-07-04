@@ -1,6 +1,7 @@
 package com.github.lpfcumt.SRS.dao.impl.mock;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
@@ -79,6 +80,18 @@ public class CourseDaoImpl implements CourseDao{
 
 	@Override
 	public ArrayList<Course> findPreCourse(String courseId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void appointPlanOfStudy(List<String> courseIds, String major) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<Course> findPlanOfStudy(Student student) {
 		// TODO Auto-generated method stub
 		return null;
 	}

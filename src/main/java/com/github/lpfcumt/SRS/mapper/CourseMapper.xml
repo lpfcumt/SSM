@@ -44,6 +44,13 @@
         	ON c.courseid=pc.precourseid AND pc.courseid=#{courseId}
     </select>
     
+    <!--查询学习计划  -->
+    <select id="findPlanOfStudy" resultMap="courseMap">
+        SELECT * FROM course AS c
+        	INNER JOIN planofstudyentry AS ps
+        	ON c.courseid=ps.courseid AND ps.major=#{student.major}
+    </select>
+    
     <!--添加课程  -->
     <insert id="addCourse" parameterType="com.github.lpfcumt.SRS.domain.Course">
         INSERT INTO course(courseid,courseName,credits) VALUES(#{courseId},#{courseName},#{credits})
@@ -51,6 +58,14 @@
     
     <insert id="addPreCourse" >
         INSERT INTO precourse(courseid,precourseId) VALUES(#{courseId},#{precourseId})
+    </insert>
+    
+    <!--制定学习计划  -->
+    <insert id="appointPlanOfStudy" >
+        INSERT INTO planofstudyentry(courseid,major) VALUES
+        <foreach collection="courseIds" item="courseId" index="index" separator=",">
+            (#{courseId},#{major})
+        </foreach>
     </insert>
     
     <!--修改课程  -->

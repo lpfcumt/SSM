@@ -13,6 +13,12 @@ public class PlanOfStudyEntry {
 		
 	}
 	
+	public PlanOfStudyEntry(Student student, ArrayList<Course> courseOffered){	
+		this.setStudent(student);
+		this.setCourseOffered(courseOffered);
+			
+	}
+	
 	public ArrayList<Course> getCourseOffered() {
 		return courseOffered;
 	}

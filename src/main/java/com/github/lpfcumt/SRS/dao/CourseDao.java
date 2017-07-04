@@ -1,6 +1,7 @@
 package com.github.lpfcumt.SRS.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -77,6 +78,22 @@ public interface CourseDao {
 	 * @return
 	 */
 	ArrayList<Course> findPreCourse(String courseId);
+
+	/**
+	 * @method 制定学习计划
+	 * @author 林鹏飞
+	 * @param courseIds
+	 * @param major
+	 */
+	void appointPlanOfStudy(@Param("courseIds")List<String> courseIds, @Param("major")String major);
+
+	/**
+	 * @method 查询学习计划
+	 * @author 林鹏飞
+	 * @param student
+	 * @return ArrayList
+	 */
+	ArrayList<Course> findPlanOfStudy(@Param("student")Student student);
 	
 	
 }

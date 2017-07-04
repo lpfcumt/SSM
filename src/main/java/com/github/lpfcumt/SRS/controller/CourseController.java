@@ -1,6 +1,7 @@
 package com.github.lpfcumt.SRS.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -38,6 +39,12 @@ public class CourseController extends BaseController{
 		@ResponseBody
 		public ModelAndView selectCourse(HttpSession session) throws Exception{
 			return new ModelAndView("selectCourse");
+		}
+		
+		@RequestMapping("/addPlanOfStudy")
+		@ResponseBody
+		public ModelAndView addPlanOfStudy() throws Exception{
+			return new ModelAndView("addPlanOfStudy");
 		}
 	
 	// 输出所有课程
@@ -95,7 +102,8 @@ public class CourseController extends BaseController{
 	/*制定学习计划*/
 	@RequestMapping("/appointPlanOfStudy")
 	@ResponseBody
-	public Map<String, Object> appointPlanOfStudy(String[] courseIds, String major, HttpSession session){
-		return data;
+	public Map<String, Object> appointPlanOfStudy( @RequestParam(value = "courseIds[]") ArrayList<String>  courseIds, String major, HttpSession session){
+		courseService.appointPlanOfStudy(courseIds,major);
+		return ajaxSuccessResponse();
 	}
 }

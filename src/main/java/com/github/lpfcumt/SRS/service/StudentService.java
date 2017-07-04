@@ -3,6 +3,7 @@ package com.github.lpfcumt.SRS.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.github.lpfcumt.SRS.domain.Course;
 import com.github.lpfcumt.SRS.domain.Student;
 import com.github.lpfcumt.SRS.domain.TranscriptEntry;
 
@@ -39,5 +40,13 @@ public interface StudentService {
 	 * @return
 	 */
 	ArrayList<TranscriptEntry> findTranscriptForStudent(Student student);
+
+	/**
+	 * @method 查询学习计划
+	 * @author 林鹏飞
+	 * @param student
+	 * @return ArrayList
+	 */
+	ArrayList<Course> findPlanOfStudy(Student student);
 	
 }

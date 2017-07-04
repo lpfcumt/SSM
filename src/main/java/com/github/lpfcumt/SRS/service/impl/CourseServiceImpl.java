@@ -2,6 +2,7 @@ package com.github.lpfcumt.SRS.service.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -68,6 +69,11 @@ public class CourseServiceImpl implements CourseService{
 	@Override
 	public int countCourseForStudent(String search) {
 		return courseDao.countCourseForStudent(search);
+	}
+
+	@Override
+	public void appointPlanOfStudy(List<String> courseIds, String major) {
+		courseDao.appointPlanOfStudy(courseIds, major);
 	}
 
 }

@@ -107,7 +107,7 @@
             <div title="学习计划" iconcls="icon-reload"  style="padding: 10px;">
                 <ul class="easyui-tree">
                 	<li>
-                		<span><a href="#">学习计划</a></span>
+                		<span><a onclick="addTab('学习计划','course/addPlanOfStudy')" href="#">学习计划</a></span>
                 	</li>
                 </ul> 
             </div>

@@ -8,8 +8,10 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.lpfcumt.SRS.dao.CourseDao;
 import com.github.lpfcumt.SRS.dao.StudentDao;
 import com.github.lpfcumt.SRS.dao.TranscriptDao;
+import com.github.lpfcumt.SRS.domain.Course;
 import com.github.lpfcumt.SRS.domain.Student;
 import com.github.lpfcumt.SRS.domain.TranscriptEntry;
 import com.github.lpfcumt.SRS.pojo.poStudent;
@@ -21,6 +23,8 @@ public class StudentServiceImpl implements StudentService{
 	protected StudentDao studentDao;
 	@Autowired 
 	protected TranscriptDao transcriptDao;
+	@Autowired
+	protected CourseDao courseDao;
 	
 	ArrayList<Student> listAllStudent;
 	HashMap<String , Student> mapStudent;
@@ -50,6 +54,11 @@ public class StudentServiceImpl implements StudentService{
 	@Override
 	public ArrayList<TranscriptEntry> findTranscriptForStudent(Student student) {
 		return transcriptDao.findTranscriptForStudent(student);
+	}
+
+	@Override
+	public ArrayList<Course> findPlanOfStudy(Student student) {
+		return courseDao.findPlanOfStudy(student);
 	}
 
 }

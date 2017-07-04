@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.github.lpfcumt.SRS.domain.Course;
+import com.github.lpfcumt.SRS.domain.PlanOfStudy;
+import com.github.lpfcumt.SRS.domain.PlanOfStudyEntry;
 import com.github.lpfcumt.SRS.domain.Student;
 import com.github.lpfcumt.SRS.domain.Transcript;
 import com.github.lpfcumt.SRS.domain.TranscriptEntry;
@@ -32,6 +35,10 @@ public class StudentController extends BaseController{
 		if (studentService.checkLogin(id, password)){
 			Student student = studentService.findStudentById(id);
 			ArrayList<TranscriptEntry> transcriptEntries = studentService.findTranscriptForStudent(student);
+			ArrayList<Course> planOfStudy = studentService.findPlanOfStudy(student);
+			PlanOfStudy pOfStudy = new PlanOfStudy();
+			pOfStudy.setPlanOfStudyEntry(new PlanOfStudyEntry(student,planOfStudy));
+			student.setPlanOfStudy(pOfStudy);
 			Transcript transcript = new Transcript(student);
 			transcript.setTranscriptEntries(transcriptEntries);
 			student.setTranscript(transcript);// 给学生加载课程表

@@ -2,6 +2,7 @@ package com.github.lpfcumt.SRS.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import com.github.lpfcumt.SRS.domain.Course;
 import com.github.lpfcumt.SRS.domain.Student;
@@ -67,4 +68,12 @@ public interface CourseService {
 	 * @return int
 	 */
 	int countCourseForStudent(String search);
+
+	/**
+	 * @method 制定学习计划
+	 * @author 林鹏飞
+	 * @param courseIds
+	 * @param major
+	 */
+	void appointPlanOfStudy(List<String> courseIds, String major);
 }
