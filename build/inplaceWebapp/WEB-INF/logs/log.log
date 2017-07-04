@@ -640,3 +640,444 @@
 16:05:46,517 DEBUG findAll:145 : ==>  Preparing: select * from course ORDER BY courseid asc LIMIT 3 
 16:05:46,518 DEBUG findAll:145 : ==> Parameters: 
 16:05:46,519 DEBUG findAll:145 : <==      Total: 3
+16:48:27,979 DEBUG findStudentById:145 : ==>  Preparing: select * from student where id=? 
+16:48:27,989 DEBUG findStudentById:145 : ==> Parameters: 09143627(String)
+16:48:27,996 DEBUG findStudentById:145 : <==      Total: 1
+16:48:27,998 DEBUG findStudentById:145 : ==>  Preparing: select * from student where id=? 
+16:48:27,998 DEBUG findStudentById:145 : ==> Parameters: 09143627(String)
+16:48:27,999 DEBUG findStudentById:145 : <==      Total: 1
+16:48:28,000 DEBUG findStudentById:145 : ==>  Preparing: select * from student where id=? 
+16:48:28,001 DEBUG findStudentById:145 : ==> Parameters: 09143627(String)
+16:48:28,002 DEBUG findStudentById:145 : <==      Total: 1
+16:48:28,004 DEBUG findTranscriptForStudent:145 : ==>  Preparing: SELECT * FROM transcriptentry AS te INNER JOIN section AS s ON te.studentid=? AND s.sectionid=te.sectionid AND s.courseid=te.courseid INNER JOIN course AS c ON te.courseid=c.courseid LEFT JOIN teacher AS t ON t.id=s.teacherid 
+16:48:28,005 DEBUG findTranscriptForStudent:145 : ==> Parameters: 09143627(String)
+16:48:28,008 DEBUG findTranscriptForStudent:145 : <==      Total: 2
+16:48:28,010 DEBUG findPlanOfStudy:145 : ==>  Preparing: SELECT * FROM course AS c INNER JOIN planofstudyentry AS ps ON c.courseid=ps.courseid AND ps.major=? 
+16:48:28,012 DEBUG findPlanOfStudy:145 : ==> Parameters: 电子商务(String)
+16:48:28,013 DEBUG findPlanOfStudy:145 : <==      Total: 4
+16:48:30,716 DEBUG countCourseForStudent:145 : ==>  Preparing: SELECT count(distinct c.courseid) FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid=so.courseid AND so.semester=? 
+16:48:30,717 DEBUG countCourseForStudent:145 : ==> Parameters: 学期(String)
+16:48:30,719 DEBUG countCourseForStudent:145 : <==      Total: 1
+16:48:30,722 DEBUG listCourseForStudent_COUNT:145 : ==>  Preparing: SELECT count(0) FROM (SELECT DISTINCT c.courseid, c.coursename, c.credits FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid = so.courseid AND so.semester = ?) table_count 
+16:48:30,723 DEBUG listCourseForStudent_COUNT:145 : ==> Parameters: 学期(String)
+16:48:30,725 DEBUG listCourseForStudent_COUNT:145 : <==      Total: 1
+16:48:32,889 DEBUG countCourseForStudent:145 : ==>  Preparing: SELECT count(distinct c.courseid) FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid=so.courseid AND so.semester=? 
+16:48:32,890 DEBUG countCourseForStudent:145 : ==> Parameters: 1(String)
+16:48:32,891 DEBUG countCourseForStudent:145 : <==      Total: 1
+16:48:32,893 DEBUG listCourseForStudent_COUNT:145 : ==>  Preparing: SELECT count(0) FROM (SELECT DISTINCT c.courseid, c.coursename, c.credits FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid = so.courseid AND so.semester = ?) table_count 
+16:48:32,894 DEBUG listCourseForStudent_COUNT:145 : ==> Parameters: 1(String)
+16:48:32,895 DEBUG listCourseForStudent_COUNT:145 : <==      Total: 1
+16:48:32,896 DEBUG listCourseForStudent:145 : ==>  Preparing: SELECT distinct c.courseid,c.coursename,c.credits FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid=so.courseid AND so.semester=? LIMIT 3 
+16:48:32,897 DEBUG listCourseForStudent:145 : ==> Parameters: 1(String)
+16:48:32,898 DEBUG listCourseForStudent:145 : <==      Total: 2
+16:48:35,066 DEBUG findSectionforStudent:145 : ==>  Preparing: SELECT * FROM section AS s INNER JOIN scheduleofclasses AS sd ON s.courseid=sd.courseid AND s.sectionid=sd.sectionid AND sd.courseid=? AND sd.semester=? LEFT JOIN teacher AS t ON t.id = s.teacherid LEFT JOIN transcriptentry AS te ON s.courseid=te.courseid AND s.sectionid=te.sectionid 
+16:48:35,067 DEBUG findSectionforStudent:145 : ==> Parameters: ABC-101(String), 1(String)
+16:48:35,069 DEBUG findSectionforStudent:145 : <==      Total: 1
+16:48:43,849 DEBUG findSectionByCourseId_SectionId:145 : ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=? ) as c on s.courseid=c.courseid and s.sectionid=? left join teacher as t on s.teacherid=t.id 
+16:48:43,850 DEBUG findSectionByCourseId_SectionId:145 : ==> Parameters: ABC-101(String), 1(String)
+16:48:43,853 DEBUG findSectionByCourseId_SectionId:145 : <==      Total: 1
+16:48:43,854 DEBUG findPreCourse:145 : ==>  Preparing: SELECT * FROM course AS c INNER JOIN precourse AS pc ON c.courseid=pc.precourseid AND pc.courseid=? 
+16:48:43,854 DEBUG findPreCourse:145 : ==> Parameters: ABC-101(String)
+16:48:43,855 DEBUG findPreCourse:145 : <==      Total: 0
+16:48:43,856 DEBUG findStudentBySectionId:145 : ==>  Preparing: SELECT s.id,s.name,s.major,tn.grade FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid=? AND tn.courseid=? AND s.id=tn.studentid 
+16:48:43,856 DEBUG findStudentBySectionId:145 : ==> Parameters: 1(String), ABC-101(String)
+16:48:43,857 DEBUG findStudentBySectionId:145 : <==      Total: 0
+16:48:43,858 DEBUG findSectionByStudent:145 : ==>  Preparing: SELECT * FROM section AS s INNER JOIN transcriptentry te ON s.courseid=te.courseid AND s.sectionid=te.sectionid AND te.studentid=? 
+16:48:43,858 DEBUG findSectionByStudent:145 : ==> Parameters: 09143627(String)
+16:48:43,860 DEBUG findSectionByStudent:145 : <==      Total: 2
+16:48:54,482 DEBUG countCourseForStudent:145 : ==>  Preparing: SELECT count(distinct c.courseid) FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid=so.courseid AND so.semester=? 
+16:48:54,485 DEBUG countCourseForStudent:145 : ==> Parameters: 1(String)
+16:48:54,486 DEBUG countCourseForStudent:145 : <==      Total: 1
+16:48:54,488 DEBUG listCourseForStudent_COUNT:145 : ==>  Preparing: SELECT count(0) FROM (SELECT DISTINCT c.courseid, c.coursename, c.credits FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid = so.courseid AND so.semester = ?) table_count 
+16:48:54,489 DEBUG listCourseForStudent_COUNT:145 : ==> Parameters: 1(String)
+16:48:54,490 DEBUG listCourseForStudent_COUNT:145 : <==      Total: 1
+16:48:54,491 DEBUG listCourseForStudent:145 : ==>  Preparing: SELECT distinct c.courseid,c.coursename,c.credits FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid=so.courseid AND so.semester=? LIMIT 3 
+16:48:54,492 DEBUG listCourseForStudent:145 : ==> Parameters: 1(String)
+16:48:54,493 DEBUG listCourseForStudent:145 : <==      Total: 2
+16:48:56,100 DEBUG findSectionforStudent:145 : ==>  Preparing: SELECT * FROM section AS s INNER JOIN scheduleofclasses AS sd ON s.courseid=sd.courseid AND s.sectionid=sd.sectionid AND sd.courseid=? AND sd.semester=? LEFT JOIN teacher AS t ON t.id = s.teacherid LEFT JOIN transcriptentry AS te ON s.courseid=te.courseid AND s.sectionid=te.sectionid 
+16:48:56,101 DEBUG findSectionforStudent:145 : ==> Parameters: ABC-105(String), 1(String)
+16:48:56,103 DEBUG findSectionforStudent:145 : <==      Total: 1
+16:48:57,056 DEBUG findSectionByCourseId_SectionId:145 : ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=? ) as c on s.courseid=c.courseid and s.sectionid=? left join teacher as t on s.teacherid=t.id 
+16:48:57,057 DEBUG findSectionByCourseId_SectionId:145 : ==> Parameters: ABC-105(String), 4(String)
+16:48:57,059 DEBUG findSectionByCourseId_SectionId:145 : <==      Total: 1
+16:48:57,061 DEBUG findPreCourse:145 : ==>  Preparing: SELECT * FROM course AS c INNER JOIN precourse AS pc ON c.courseid=pc.precourseid AND pc.courseid=? 
+16:48:57,061 DEBUG findPreCourse:145 : ==> Parameters: ABC-105(String)
+16:48:57,062 DEBUG findPreCourse:145 : <==      Total: 1
+16:48:57,063 DEBUG findStudentBySectionId:145 : ==>  Preparing: SELECT s.id,s.name,s.major,tn.grade FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid=? AND tn.courseid=? AND s.id=tn.studentid 
+16:48:57,063 DEBUG findStudentBySectionId:145 : ==> Parameters: 4(String), ABC-105(String)
+16:48:57,064 DEBUG findStudentBySectionId:145 : <==      Total: 1
+16:48:57,065 DEBUG findSectionByStudent:145 : ==>  Preparing: SELECT * FROM section AS s INNER JOIN transcriptentry te ON s.courseid=te.courseid AND s.sectionid=te.sectionid AND te.studentid=? 
+16:48:57,066 DEBUG findSectionByStudent:145 : ==> Parameters: 09143627(String)
+16:48:57,067 DEBUG findSectionByStudent:145 : <==      Total: 2
+16:48:57,068 DEBUG cancelSection:145 : ==>  Preparing: DELETE FROM transcriptentry WHERE studentid=? AND courseid=? AND sectionid=? AND semester=? 
+16:48:57,068 DEBUG cancelSection:145 : ==> Parameters: 09143627(String), ABC-105(String), 4(String), 1(String)
+16:48:57,262 DEBUG cancelSection:145 : <==    Updates: 1
+16:48:59,545 DEBUG countCourseForStudent:145 : ==>  Preparing: SELECT count(distinct c.courseid) FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid=so.courseid AND so.semester=? 
+16:48:59,546 DEBUG countCourseForStudent:145 : ==> Parameters: 1(String)
+16:48:59,547 DEBUG countCourseForStudent:145 : <==      Total: 1
+16:48:59,549 DEBUG listCourseForStudent_COUNT:145 : ==>  Preparing: SELECT count(0) FROM (SELECT DISTINCT c.courseid, c.coursename, c.credits FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid = so.courseid AND so.semester = ?) table_count 
+16:48:59,550 DEBUG listCourseForStudent_COUNT:145 : ==> Parameters: 1(String)
+16:48:59,552 DEBUG listCourseForStudent_COUNT:145 : <==      Total: 1
+16:48:59,553 DEBUG listCourseForStudent:145 : ==>  Preparing: SELECT distinct c.courseid,c.coursename,c.credits FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid=so.courseid AND so.semester=? LIMIT 3 
+16:48:59,554 DEBUG listCourseForStudent:145 : ==> Parameters: 1(String)
+16:48:59,554 DEBUG listCourseForStudent:145 : <==      Total: 2
+16:49:01,190 DEBUG findSectionforStudent:145 : ==>  Preparing: SELECT * FROM section AS s INNER JOIN scheduleofclasses AS sd ON s.courseid=sd.courseid AND s.sectionid=sd.sectionid AND sd.courseid=? AND sd.semester=? LEFT JOIN teacher AS t ON t.id = s.teacherid LEFT JOIN transcriptentry AS te ON s.courseid=te.courseid AND s.sectionid=te.sectionid 
+16:49:01,191 DEBUG findSectionforStudent:145 : ==> Parameters: ABC-105(String), 1(String)
+16:49:01,194 DEBUG findSectionforStudent:145 : <==      Total: 1
+16:49:03,535 DEBUG findSectionByCourseId_SectionId:145 : ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=? ) as c on s.courseid=c.courseid and s.sectionid=? left join teacher as t on s.teacherid=t.id 
+16:49:03,536 DEBUG findSectionByCourseId_SectionId:145 : ==> Parameters: ABC-105(String), 4(String)
+16:49:03,537 DEBUG findSectionByCourseId_SectionId:145 : <==      Total: 1
+16:49:03,538 DEBUG findPreCourse:145 : ==>  Preparing: SELECT * FROM course AS c INNER JOIN precourse AS pc ON c.courseid=pc.precourseid AND pc.courseid=? 
+16:49:03,539 DEBUG findPreCourse:145 : ==> Parameters: ABC-105(String)
+16:49:03,540 DEBUG findPreCourse:145 : <==      Total: 1
+16:49:03,541 DEBUG findStudentBySectionId:145 : ==>  Preparing: SELECT s.id,s.name,s.major,tn.grade FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid=? AND tn.courseid=? AND s.id=tn.studentid 
+16:49:03,541 DEBUG findStudentBySectionId:145 : ==> Parameters: 4(String), ABC-105(String)
+16:49:03,542 DEBUG findStudentBySectionId:145 : <==      Total: 0
+16:49:03,543 DEBUG findSectionByStudent:145 : ==>  Preparing: SELECT * FROM section AS s INNER JOIN transcriptentry te ON s.courseid=te.courseid AND s.sectionid=te.sectionid AND te.studentid=? 
+16:49:03,543 DEBUG findSectionByStudent:145 : ==> Parameters: 09143627(String)
+16:49:03,544 DEBUG findSectionByStudent:145 : <==      Total: 1
+16:49:15,793 DEBUG findSectionforStudent:145 : ==>  Preparing: SELECT * FROM section AS s INNER JOIN scheduleofclasses AS sd ON s.courseid=sd.courseid AND s.sectionid=sd.sectionid AND sd.courseid=? AND sd.semester=? LEFT JOIN teacher AS t ON t.id = s.teacherid LEFT JOIN transcriptentry AS te ON s.courseid=te.courseid AND s.sectionid=te.sectionid 
+16:49:15,794 DEBUG findSectionforStudent:145 : ==> Parameters: ABC-105(String), 1(String)
+16:49:15,797 DEBUG findSectionforStudent:145 : <==      Total: 1
+16:49:16,839 DEBUG findSectionByCourseId_SectionId:145 : ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=? ) as c on s.courseid=c.courseid and s.sectionid=? left join teacher as t on s.teacherid=t.id 
+16:49:16,840 DEBUG findSectionByCourseId_SectionId:145 : ==> Parameters: ABC-105(String), 4(String)
+16:49:16,841 DEBUG findSectionByCourseId_SectionId:145 : <==      Total: 1
+16:49:16,843 DEBUG findPreCourse:145 : ==>  Preparing: SELECT * FROM course AS c INNER JOIN precourse AS pc ON c.courseid=pc.precourseid AND pc.courseid=? 
+16:49:16,844 DEBUG findPreCourse:145 : ==> Parameters: ABC-105(String)
+16:49:16,845 DEBUG findPreCourse:145 : <==      Total: 1
+16:49:16,846 DEBUG findStudentBySectionId:145 : ==>  Preparing: SELECT s.id,s.name,s.major,tn.grade FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid=? AND tn.courseid=? AND s.id=tn.studentid 
+16:49:16,846 DEBUG findStudentBySectionId:145 : ==> Parameters: 4(String), ABC-105(String)
+16:49:16,847 DEBUG findStudentBySectionId:145 : <==      Total: 0
+16:49:16,848 DEBUG findSectionByStudent:145 : ==>  Preparing: SELECT * FROM section AS s INNER JOIN transcriptentry te ON s.courseid=te.courseid AND s.sectionid=te.sectionid AND te.studentid=? 
+16:49:16,849 DEBUG findSectionByStudent:145 : ==> Parameters: 09143627(String)
+16:49:16,850 DEBUG findSectionByStudent:145 : <==      Total: 1
+16:49:22,742 DEBUG findStudentById:145 : ==>  Preparing: select * from student where id=? 
+16:49:22,742 DEBUG findStudentById:145 : ==> Parameters: 09143627(String)
+16:49:22,744 DEBUG findStudentById:145 : <==      Total: 1
+16:49:22,745 DEBUG findStudentById:145 : ==>  Preparing: select * from student where id=? 
+16:49:22,747 DEBUG findStudentById:145 : ==> Parameters: 09143627(String)
+16:49:22,749 DEBUG findStudentById:145 : <==      Total: 1
+16:49:22,751 DEBUG findStudentById:145 : ==>  Preparing: select * from student where id=? 
+16:49:22,751 DEBUG findStudentById:145 : ==> Parameters: 09143627(String)
+16:49:22,752 DEBUG findStudentById:145 : <==      Total: 1
+16:49:22,753 DEBUG findTranscriptForStudent:145 : ==>  Preparing: SELECT * FROM transcriptentry AS te INNER JOIN section AS s ON te.studentid=? AND s.sectionid=te.sectionid AND s.courseid=te.courseid INNER JOIN course AS c ON te.courseid=c.courseid LEFT JOIN teacher AS t ON t.id=s.teacherid 
+16:49:22,754 DEBUG findTranscriptForStudent:145 : ==> Parameters: 09143627(String)
+16:49:22,755 DEBUG findTranscriptForStudent:145 : <==      Total: 1
+16:49:22,756 DEBUG findPlanOfStudy:145 : ==>  Preparing: SELECT * FROM course AS c INNER JOIN planofstudyentry AS ps ON c.courseid=ps.courseid AND ps.major=? 
+16:49:22,756 DEBUG findPlanOfStudy:145 : ==> Parameters: 电子商务(String)
+16:49:22,757 DEBUG findPlanOfStudy:145 : <==      Total: 4
+16:49:24,706 DEBUG countCourseForStudent:145 : ==>  Preparing: SELECT count(distinct c.courseid) FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid=so.courseid AND so.semester=? 
+16:49:24,707 DEBUG countCourseForStudent:145 : ==> Parameters: 学期(String)
+16:49:24,708 DEBUG countCourseForStudent:145 : <==      Total: 1
+16:49:24,710 DEBUG listCourseForStudent_COUNT:145 : ==>  Preparing: SELECT count(0) FROM (SELECT DISTINCT c.courseid, c.coursename, c.credits FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid = so.courseid AND so.semester = ?) table_count 
+16:49:24,711 DEBUG listCourseForStudent_COUNT:145 : ==> Parameters: 学期(String)
+16:49:24,712 DEBUG listCourseForStudent_COUNT:145 : <==      Total: 1
+16:49:26,089 DEBUG countCourseForStudent:145 : ==>  Preparing: SELECT count(distinct c.courseid) FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid=so.courseid AND so.semester=? 
+16:49:26,090 DEBUG countCourseForStudent:145 : ==> Parameters: 1(String)
+16:49:26,091 DEBUG countCourseForStudent:145 : <==      Total: 1
+16:49:26,094 DEBUG listCourseForStudent_COUNT:145 : ==>  Preparing: SELECT count(0) FROM (SELECT DISTINCT c.courseid, c.coursename, c.credits FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid = so.courseid AND so.semester = ?) table_count 
+16:49:26,094 DEBUG listCourseForStudent_COUNT:145 : ==> Parameters: 1(String)
+16:49:26,096 DEBUG listCourseForStudent_COUNT:145 : <==      Total: 1
+16:49:26,097 DEBUG listCourseForStudent:145 : ==>  Preparing: SELECT distinct c.courseid,c.coursename,c.credits FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid=so.courseid AND so.semester=? LIMIT 3 
+16:49:26,098 DEBUG listCourseForStudent:145 : ==> Parameters: 1(String)
+16:49:26,099 DEBUG listCourseForStudent:145 : <==      Total: 2
+16:49:26,821 DEBUG findSectionforStudent:145 : ==>  Preparing: SELECT * FROM section AS s INNER JOIN scheduleofclasses AS sd ON s.courseid=sd.courseid AND s.sectionid=sd.sectionid AND sd.courseid=? AND sd.semester=? LEFT JOIN teacher AS t ON t.id = s.teacherid LEFT JOIN transcriptentry AS te ON s.courseid=te.courseid AND s.sectionid=te.sectionid 
+16:49:26,823 DEBUG findSectionforStudent:145 : ==> Parameters: ABC-105(String), 1(String)
+16:49:26,825 DEBUG findSectionforStudent:145 : <==      Total: 1
+16:49:27,712 DEBUG findSectionByCourseId_SectionId:145 : ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=? ) as c on s.courseid=c.courseid and s.sectionid=? left join teacher as t on s.teacherid=t.id 
+16:49:27,713 DEBUG findSectionByCourseId_SectionId:145 : ==> Parameters: ABC-105(String), 4(String)
+16:49:27,715 DEBUG findSectionByCourseId_SectionId:145 : <==      Total: 1
+16:49:27,716 DEBUG findPreCourse:145 : ==>  Preparing: SELECT * FROM course AS c INNER JOIN precourse AS pc ON c.courseid=pc.precourseid AND pc.courseid=? 
+16:49:27,717 DEBUG findPreCourse:145 : ==> Parameters: ABC-105(String)
+16:49:27,718 DEBUG findPreCourse:145 : <==      Total: 1
+16:49:27,719 DEBUG findStudentBySectionId:145 : ==>  Preparing: SELECT s.id,s.name,s.major,tn.grade FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid=? AND tn.courseid=? AND s.id=tn.studentid 
+16:49:27,720 DEBUG findStudentBySectionId:145 : ==> Parameters: 4(String), ABC-105(String)
+16:49:27,720 DEBUG findStudentBySectionId:145 : <==      Total: 0
+16:49:27,722 DEBUG findSectionByStudent:145 : ==>  Preparing: SELECT * FROM section AS s INNER JOIN transcriptentry te ON s.courseid=te.courseid AND s.sectionid=te.sectionid AND te.studentid=? 
+16:49:27,723 DEBUG findSectionByStudent:145 : ==> Parameters: 09143627(String)
+16:49:27,724 DEBUG findSectionByStudent:145 : <==      Total: 1
+16:49:27,725 DEBUG selectSection:145 : ==>  Preparing: INSERT INTO transcriptentry(studentid,sectionid,courseid,semester) VALUES(?,?,?,?) 
+16:49:27,726 DEBUG selectSection:145 : ==> Parameters: 09143627(String), 4(String), ABC-105(String), 1(String)
+16:49:27,791 DEBUG selectSection:145 : <==    Updates: 1
+16:49:37,025 DEBUG countCourseForStudent:145 : ==>  Preparing: SELECT count(distinct c.courseid) FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid=so.courseid AND so.semester=? 
+16:49:37,026 DEBUG countCourseForStudent:145 : ==> Parameters: 1(String)
+16:49:37,027 DEBUG countCourseForStudent:145 : <==      Total: 1
+16:49:37,029 DEBUG listCourseForStudent_COUNT:145 : ==>  Preparing: SELECT count(0) FROM (SELECT DISTINCT c.courseid, c.coursename, c.credits FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid = so.courseid AND so.semester = ?) table_count 
+16:49:37,030 DEBUG listCourseForStudent_COUNT:145 : ==> Parameters: 1(String)
+16:49:37,032 DEBUG listCourseForStudent_COUNT:145 : <==      Total: 1
+16:49:37,032 DEBUG listCourseForStudent:145 : ==>  Preparing: SELECT distinct c.courseid,c.coursename,c.credits FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid=so.courseid AND so.semester=? LIMIT 3 
+16:49:37,033 DEBUG listCourseForStudent:145 : ==> Parameters: 1(String)
+16:49:37,035 DEBUG listCourseForStudent:145 : <==      Total: 2
+16:49:38,422 DEBUG findScheduleForStudent:145 : ==>  Preparing: SELECT * FROM section as s inner join course as c ON s.courseid=c.courseid inner join transcriptentry as te ON s.courseid=te.courseid AND s.sectionid=te.sectionid AND te.semester=? AND te.studentid=? left join teacher as th on th.id=s.teacherid 
+16:49:38,423 DEBUG findScheduleForStudent:145 : ==> Parameters: 学期(String), 09143627(String)
+16:49:38,424 DEBUG findScheduleForStudent:145 : <==      Total: 0
+16:49:39,743 DEBUG findScheduleForStudent:145 : ==>  Preparing: SELECT * FROM section as s inner join course as c ON s.courseid=c.courseid inner join transcriptentry as te ON s.courseid=te.courseid AND s.sectionid=te.sectionid AND te.semester=? AND te.studentid=? left join teacher as th on th.id=s.teacherid 
+16:49:39,745 DEBUG findScheduleForStudent:145 : ==> Parameters: 1(String), 09143627(String)
+16:49:39,747 DEBUG findScheduleForStudent:145 : <==      Total: 2
+16:53:19,932 DEBUG findTeacherById:145 : ==>  Preparing: select * from teacher where id=? 
+16:53:19,933 DEBUG findTeacherById:145 : ==> Parameters: 111111(String)
+16:53:19,934 DEBUG findTeacherById:145 : <==      Total: 1
+16:53:19,935 DEBUG findTeacherById:145 : ==>  Preparing: select * from teacher where id=? 
+16:53:19,936 DEBUG findTeacherById:145 : ==> Parameters: 111111(String)
+16:53:19,938 DEBUG findTeacherById:145 : <==      Total: 1
+16:53:19,939 DEBUG findTeacherById:145 : ==>  Preparing: select * from teacher where id=? 
+16:53:19,940 DEBUG findTeacherById:145 : ==> Parameters: 111111(String)
+16:53:19,941 DEBUG findTeacherById:145 : <==      Total: 1
+16:53:19,943 DEBUG findSectionBy_TreacherId:145 : ==>  Preparing: SELECT * FROM section as s inner join course as c inner join teacher as t on s.courseid=c.courseid and s.teacherid=t.id and t.id=? 
+16:53:19,944 DEBUG findSectionBy_TreacherId:145 : ==> Parameters: 111111(String)
+16:53:19,945 DEBUG findSectionBy_TreacherId:145 : <==      Total: 4
+16:53:21,730 DEBUG countAllCourse:145 : ==>  Preparing: SELECT count(*) FROM course 
+16:53:21,731 DEBUG countAllCourse:145 : ==> Parameters: 
+16:53:21,731 DEBUG countAllCourse:145 : <==      Total: 1
+16:53:21,733 DEBUG findAll_COUNT:145 : ==>  Preparing: SELECT count(0) FROM course 
+16:53:21,734 DEBUG findAll_COUNT:145 : ==> Parameters: 
+16:53:21,735 DEBUG findAll_COUNT:145 : <==      Total: 1
+16:53:21,736 DEBUG findAll:145 : ==>  Preparing: select * from course ORDER BY courseid asc LIMIT 3 
+16:53:21,737 DEBUG findAll:145 : ==> Parameters: 
+16:53:21,738 DEBUG findAll:145 : <==      Total: 3
+16:53:23,965 DEBUG findSectionByCourseId:145 : ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=?) as c on s.courseid=c.courseid left join teacher as t on s.teacherid=t.id 
+16:53:23,965 DEBUG findSectionByCourseId:145 : ==> Parameters: ABC-101(String)
+16:53:23,967 DEBUG findSectionByCourseId:145 : <==      Total: 2
+16:53:25,037 DEBUG findSectionByCourseId:145 : ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=?) as c on s.courseid=c.courseid left join teacher as t on s.teacherid=t.id 
+16:53:25,038 DEBUG findSectionByCourseId:145 : ==> Parameters: ABC-102(String)
+16:53:25,039 DEBUG findSectionByCourseId:145 : <==      Total: 1
+16:54:17,957 DEBUG addCourse:145 : ==>  Preparing: INSERT INTO course(courseid,courseName,credits) VALUES(?,?,?) 
+16:54:17,958 DEBUG addCourse:145 : ==> Parameters: ABC-106(String), 金融学(String), 3.0(Double)
+16:54:18,063 DEBUG addCourse:145 : <==    Updates: 1
+16:54:18,064 DEBUG addPreCourse:145 : ==>  Preparing: INSERT INTO precourse(courseid,precourseId) VALUES(?,?) 
+16:54:18,064 DEBUG addPreCourse:145 : ==> Parameters: ABC-106(String), ABC-102(String)
+16:54:18,159 DEBUG addPreCourse:145 : <==    Updates: 1
+16:54:18,160 DEBUG addPreCourse:145 : ==>  Preparing: INSERT INTO precourse(courseid,precourseId) VALUES(?,?) 
+16:54:18,160 DEBUG addPreCourse:145 : ==> Parameters: ABC-106(String), ABC-101(String)
+16:54:18,296 DEBUG addPreCourse:145 : <==    Updates: 1
+16:54:18,320 DEBUG countAllCourse:145 : ==>  Preparing: SELECT count(*) FROM course 
+16:54:18,320 DEBUG countAllCourse:145 : ==> Parameters: 
+16:54:18,321 DEBUG countAllCourse:145 : <==      Total: 1
+16:54:18,322 DEBUG findAll_COUNT:145 : ==>  Preparing: SELECT count(0) FROM course 
+16:54:18,322 DEBUG findAll_COUNT:145 : ==> Parameters: 
+16:54:18,323 DEBUG findAll_COUNT:145 : <==      Total: 1
+16:54:18,324 DEBUG findAll:145 : ==>  Preparing: select * from course ORDER BY courseid asc LIMIT 3 
+16:54:18,324 DEBUG findAll:145 : ==> Parameters: 
+16:54:18,325 DEBUG findAll:145 : <==      Total: 3
+16:54:20,955 DEBUG countAllCourse:145 : ==>  Preparing: SELECT count(*) FROM course 
+16:54:20,956 DEBUG countAllCourse:145 : ==> Parameters: 
+16:54:20,957 DEBUG countAllCourse:145 : <==      Total: 1
+16:54:20,958 DEBUG findAll_COUNT:145 : ==>  Preparing: SELECT count(0) FROM course 
+16:54:20,958 DEBUG findAll_COUNT:145 : ==> Parameters: 
+16:54:20,959 DEBUG findAll_COUNT:145 : <==      Total: 1
+16:54:20,960 DEBUG findAll:145 : ==>  Preparing: select * from course ORDER BY courseid asc LIMIT 3,3 
+16:54:20,960 DEBUG findAll:145 : ==> Parameters: 
+16:54:20,961 DEBUG findAll:145 : <==      Total: 3
+16:54:28,348 DEBUG findSectionByCourseId:145 : ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=?) as c on s.courseid=c.courseid left join teacher as t on s.teacherid=t.id 
+16:54:28,349 DEBUG findSectionByCourseId:145 : ==> Parameters: ABC-106(String)
+16:54:28,350 DEBUG findSectionByCourseId:145 : <==      Total: 0
+16:54:30,670 DEBUG countAllCourse:145 : ==>  Preparing: SELECT count(*) FROM course 
+16:54:30,671 DEBUG countAllCourse:145 : ==> Parameters: 
+16:54:30,672 DEBUG countAllCourse:145 : <==      Total: 1
+16:54:30,674 DEBUG findAll_COUNT:145 : ==>  Preparing: SELECT count(0) FROM course 
+16:54:30,675 DEBUG findAll_COUNT:145 : ==> Parameters: 
+16:54:30,676 DEBUG findAll_COUNT:145 : <==      Total: 1
+16:54:30,679 DEBUG findAll:145 : ==>  Preparing: select * from course ORDER BY courseid asc LIMIT 3 
+16:54:30,680 DEBUG findAll:145 : ==> Parameters: 
+16:54:30,681 DEBUG findAll:145 : <==      Total: 3
+16:54:32,146 DEBUG findSectionByCourseId:145 : ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=?) as c on s.courseid=c.courseid left join teacher as t on s.teacherid=t.id 
+16:54:32,147 DEBUG findSectionByCourseId:145 : ==> Parameters: ABC-101(String)
+16:54:32,148 DEBUG findSectionByCourseId:145 : <==      Total: 2
+16:54:33,415 DEBUG findSectionByCourseId:145 : ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=?) as c on s.courseid=c.courseid left join teacher as t on s.teacherid=t.id 
+16:54:33,416 DEBUG findSectionByCourseId:145 : ==> Parameters: ABC-102(String)
+16:54:33,418 DEBUG findSectionByCourseId:145 : <==      Total: 1
+16:54:47,601 DEBUG countAllCourse:145 : ==>  Preparing: SELECT count(*) FROM course 
+16:54:47,602 DEBUG countAllCourse:145 : ==> Parameters: 
+16:54:47,602 DEBUG countAllCourse:145 : <==      Total: 1
+16:54:47,605 DEBUG findAll_COUNT:145 : ==>  Preparing: SELECT count(0) FROM course 
+16:54:47,605 DEBUG findAll_COUNT:145 : ==> Parameters: 
+16:54:47,606 DEBUG findAll_COUNT:145 : <==      Total: 1
+16:54:47,607 DEBUG findAll:145 : ==>  Preparing: select * from course ORDER BY courseid asc LIMIT 3,3 
+16:54:47,607 DEBUG findAll:145 : ==> Parameters: 
+16:54:47,608 DEBUG findAll:145 : <==      Total: 3
+16:55:09,628 DEBUG addSection:145 : ==>  Preparing: INSERT INTO section(sectionid,courseid,teacherid,dayofweek,timeofday,room,seatingcapacity) VALUES(?,?,?,?, ?,?,?) 
+16:55:09,629 DEBUG addSection:145 : ==> Parameters: 1(Integer), ABC-106(String), null, M(String), 14：00-16:00(String), B2B201(String), 30(Integer)
+16:55:09,757 DEBUG addSection:145 : <==    Updates: 1
+16:55:09,758 DEBUG addSchedule:145 : ==>  Preparing: INSERT INTO scheduleofclasses(courseid,sectionid,semester) VALUES(?,?,?) 
+16:55:09,758 DEBUG addSchedule:145 : ==> Parameters: ABC-106(String), 1(Integer), 学期(String)
+16:55:09,840 DEBUG addSchedule:145 : <==    Updates: 1
+16:55:09,855 DEBUG countAllCourse:145 : ==>  Preparing: SELECT count(*) FROM course 
+16:55:09,856 DEBUG countAllCourse:145 : ==> Parameters: 
+16:55:09,858 DEBUG countAllCourse:145 : <==      Total: 1
+16:55:09,859 DEBUG findAll_COUNT:145 : ==>  Preparing: SELECT count(0) FROM course 
+16:55:09,860 DEBUG findAll_COUNT:145 : ==> Parameters: 
+16:55:09,861 DEBUG findAll_COUNT:145 : <==      Total: 1
+16:55:09,861 DEBUG findAll:145 : ==>  Preparing: select * from course ORDER BY courseid asc LIMIT 3,3 
+16:55:09,862 DEBUG findAll:145 : ==> Parameters: 
+16:55:09,863 DEBUG findAll:145 : <==      Total: 3
+16:55:12,084 DEBUG findSectionByCourseId:145 : ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=?) as c on s.courseid=c.courseid left join teacher as t on s.teacherid=t.id 
+16:55:12,085 DEBUG findSectionByCourseId:145 : ==> Parameters: ABC-106(String)
+16:55:12,086 DEBUG findSectionByCourseId:145 : <==      Total: 1
+16:55:26,942 DEBUG countAllCourse:145 : ==>  Preparing: SELECT count(*) FROM course 
+16:55:26,943 DEBUG countAllCourse:145 : ==> Parameters: 
+16:55:26,944 DEBUG countAllCourse:145 : <==      Total: 1
+16:55:26,947 DEBUG findAll_COUNT:145 : ==>  Preparing: SELECT count(0) FROM course 
+16:55:26,948 DEBUG findAll_COUNT:145 : ==> Parameters: 
+16:55:26,949 DEBUG findAll_COUNT:145 : <==      Total: 1
+16:55:26,950 DEBUG findAll:145 : ==>  Preparing: select * from course ORDER BY courseid asc LIMIT 3 
+16:55:26,951 DEBUG findAll:145 : ==> Parameters: 
+16:55:26,952 DEBUG findAll:145 : <==      Total: 3
+16:55:28,032 DEBUG findSectionByCourseId:145 : ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=?) as c on s.courseid=c.courseid left join teacher as t on s.teacherid=t.id 
+16:55:28,032 DEBUG findSectionByCourseId:145 : ==> Parameters: ABC-101(String)
+16:55:28,034 DEBUG findSectionByCourseId:145 : <==      Total: 2
+16:55:31,337 DEBUG findSectionByCourseId:145 : ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=?) as c on s.courseid=c.courseid left join teacher as t on s.teacherid=t.id 
+16:55:31,338 DEBUG findSectionByCourseId:145 : ==> Parameters: ABC-102(String)
+16:55:31,339 DEBUG findSectionByCourseId:145 : <==      Total: 1
+16:55:33,660 DEBUG findSectionByCourseId:145 : ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=?) as c on s.courseid=c.courseid left join teacher as t on s.teacherid=t.id 
+16:55:33,661 DEBUG findSectionByCourseId:145 : ==> Parameters: ABC-103(String)
+16:55:33,662 DEBUG findSectionByCourseId:145 : <==      Total: 0
+16:55:35,153 DEBUG countAllCourse:145 : ==>  Preparing: SELECT count(*) FROM course 
+16:55:35,153 DEBUG countAllCourse:145 : ==> Parameters: 
+16:55:35,154 DEBUG countAllCourse:145 : <==      Total: 1
+16:55:35,155 DEBUG findAll_COUNT:145 : ==>  Preparing: SELECT count(0) FROM course 
+16:55:35,156 DEBUG findAll_COUNT:145 : ==> Parameters: 
+16:55:35,157 DEBUG findAll_COUNT:145 : <==      Total: 1
+16:55:35,157 DEBUG findAll:145 : ==>  Preparing: select * from course ORDER BY courseid asc LIMIT 3,3 
+16:55:35,158 DEBUG findAll:145 : ==> Parameters: 
+16:55:35,159 DEBUG findAll:145 : <==      Total: 3
+16:55:36,497 DEBUG findSectionByCourseId:145 : ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=?) as c on s.courseid=c.courseid left join teacher as t on s.teacherid=t.id 
+16:55:36,499 DEBUG findSectionByCourseId:145 : ==> Parameters: ABC-106(String)
+16:55:36,501 DEBUG findSectionByCourseId:145 : <==      Total: 1
+16:55:51,033 DEBUG findSectionByCourseId_SectionId:145 : ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=? ) as c on s.courseid=c.courseid and s.sectionid=? left join teacher as t on s.teacherid=t.id 
+16:55:51,033 DEBUG findSectionByCourseId_SectionId:145 : ==> Parameters: ABC-106(String), 1(String)
+16:55:51,035 DEBUG findSectionByCourseId_SectionId:145 : <==      Total: 1
+16:55:51,036 DEBUG findPreCourse:145 : ==>  Preparing: SELECT * FROM course AS c INNER JOIN precourse AS pc ON c.courseid=pc.precourseid AND pc.courseid=? 
+16:55:51,037 DEBUG findPreCourse:145 : ==> Parameters: ABC-106(String)
+16:55:51,038 DEBUG findPreCourse:145 : <==      Total: 2
+16:55:51,038 DEBUG findStudentBySectionId:145 : ==>  Preparing: SELECT s.id,s.name,s.major,tn.grade FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid=? AND tn.courseid=? AND s.id=tn.studentid 
+16:55:51,039 DEBUG findStudentBySectionId:145 : ==> Parameters: 1(String), ABC-106(String)
+16:55:51,039 DEBUG findStudentBySectionId:145 : <==      Total: 0
+16:55:51,040 DEBUG appointInstructor:145 : ==>  Preparing: UPDATE section SET teacherid=? WHERE sectionid=? and courseid=? 
+16:55:51,041 DEBUG appointInstructor:145 : ==> Parameters: 111111(String), 1(String), ABC-106(String)
+16:55:51,144 DEBUG appointInstructor:145 : <==    Updates: 1
+16:55:57,712 DEBUG countAllCourse:145 : ==>  Preparing: SELECT count(*) FROM course 
+16:55:57,714 DEBUG countAllCourse:145 : ==> Parameters: 
+16:55:57,716 DEBUG countAllCourse:145 : <==      Total: 1
+16:55:57,718 DEBUG findAll_COUNT:145 : ==>  Preparing: SELECT count(0) FROM course 
+16:55:57,718 DEBUG findAll_COUNT:145 : ==> Parameters: 
+16:55:57,719 DEBUG findAll_COUNT:145 : <==      Total: 1
+16:55:57,719 DEBUG findAll:145 : ==>  Preparing: select * from course ORDER BY courseid asc LIMIT 3,3 
+16:55:57,720 DEBUG findAll:145 : ==> Parameters: 
+16:55:57,721 DEBUG findAll:145 : <==      Total: 3
+16:55:58,952 DEBUG findSectionByCourseId:145 : ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=?) as c on s.courseid=c.courseid left join teacher as t on s.teacherid=t.id 
+16:55:58,952 DEBUG findSectionByCourseId:145 : ==> Parameters: ABC-106(String)
+16:55:58,954 DEBUG findSectionByCourseId:145 : <==      Total: 1
+16:56:06,953 DEBUG findScheduleBySemester:145 : ==>  Preparing: SELECT * FROM section as s inner join course as c inner join (SELECT * FROM scheduleofclasses WHERE semester = ?) as soc on s.courseid=c.courseid and s.teacherid=? and s.sectionid = soc.sectionid and c.courseid=soc.courseid left join teacher as t on s.teacherid=t.id 
+16:56:06,954 DEBUG findScheduleBySemester:145 : ==> Parameters: 学期(String), 111111(String)
+16:56:06,957 DEBUG findScheduleBySemester:145 : <==      Total: 1
+16:56:08,936 DEBUG findScheduleBySemester:145 : ==>  Preparing: SELECT * FROM section as s inner join course as c inner join (SELECT * FROM scheduleofclasses WHERE semester = ?) as soc on s.courseid=c.courseid and s.teacherid=? and s.sectionid = soc.sectionid and c.courseid=soc.courseid left join teacher as t on s.teacherid=t.id 
+16:56:08,937 DEBUG findScheduleBySemester:145 : ==> Parameters: 1(String), 111111(String)
+16:56:08,939 DEBUG findScheduleBySemester:145 : <==      Total: 1
+16:56:18,988 DEBUG findScheduleBySemester:145 : ==>  Preparing: SELECT * FROM section as s inner join course as c inner join (SELECT * FROM scheduleofclasses WHERE semester = ?) as soc on s.courseid=c.courseid and s.teacherid=? and s.sectionid = soc.sectionid and c.courseid=soc.courseid left join teacher as t on s.teacherid=t.id 
+16:56:18,989 DEBUG findScheduleBySemester:145 : ==> Parameters: 1(String), 111111(String)
+16:56:18,990 DEBUG findScheduleBySemester:145 : <==      Total: 1
+16:56:20,791 DEBUG findScheduleBySemester:145 : ==>  Preparing: SELECT * FROM section as s inner join course as c inner join (SELECT * FROM scheduleofclasses WHERE semester = ?) as soc on s.courseid=c.courseid and s.teacherid=? and s.sectionid = soc.sectionid and c.courseid=soc.courseid left join teacher as t on s.teacherid=t.id 
+16:56:20,792 DEBUG findScheduleBySemester:145 : ==> Parameters: 2(String), 111111(String)
+16:56:20,794 DEBUG findScheduleBySemester:145 : <==      Total: 1
+16:56:23,894 DEBUG findScheduleBySemester:145 : ==>  Preparing: SELECT * FROM section as s inner join course as c inner join (SELECT * FROM scheduleofclasses WHERE semester = ?) as soc on s.courseid=c.courseid and s.teacherid=? and s.sectionid = soc.sectionid and c.courseid=soc.courseid left join teacher as t on s.teacherid=t.id 
+16:56:23,895 DEBUG findScheduleBySemester:145 : ==> Parameters: 学期(String), 111111(String)
+16:56:23,897 DEBUG findScheduleBySemester:145 : <==      Total: 1
+16:56:24,920 DEBUG countStudentForGrade:145 : ==>  Preparing: SELECT count(*) FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid=? AND tn.courseid=? AND s.id=tn.studentid AND tn.semester=? AND (tn.grade is null OR tn.grade='') 
+16:56:24,921 DEBUG countStudentForGrade:145 : ==> Parameters: 1(String), ABC-106(String), 学期(String)
+16:56:24,922 DEBUG countStudentForGrade:145 : <==      Total: 1
+16:56:24,929 DEBUG findStudentForGrade_COUNT:145 : ==>  Preparing: SELECT count(0) FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid = ? AND tn.courseid = ? AND s.id = tn.studentid AND tn.semester = ? AND (tn.grade IS NULL OR tn.grade = '') 
+16:56:24,929 DEBUG findStudentForGrade_COUNT:145 : ==> Parameters: 1(String), ABC-106(String), 学期(String)
+16:56:24,931 DEBUG findStudentForGrade_COUNT:145 : <==      Total: 1
+16:56:28,825 DEBUG findScheduleBySemester:145 : ==>  Preparing: SELECT * FROM section as s inner join course as c inner join (SELECT * FROM scheduleofclasses WHERE semester = ?) as soc on s.courseid=c.courseid and s.teacherid=? and s.sectionid = soc.sectionid and c.courseid=soc.courseid left join teacher as t on s.teacherid=t.id 
+16:56:28,826 DEBUG findScheduleBySemester:145 : ==> Parameters: 1(String), 111111(String)
+16:56:28,828 DEBUG findScheduleBySemester:145 : <==      Total: 1
+16:56:30,064 DEBUG countStudentForGrade:145 : ==>  Preparing: SELECT count(*) FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid=? AND tn.courseid=? AND s.id=tn.studentid AND tn.semester=? AND (tn.grade is null OR tn.grade='') 
+16:56:30,065 DEBUG countStudentForGrade:145 : ==> Parameters: 1(String), ABC-101(String), 1(String)
+16:56:30,066 DEBUG countStudentForGrade:145 : <==      Total: 1
+16:56:30,068 DEBUG findStudentForGrade_COUNT:145 : ==>  Preparing: SELECT count(0) FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid = ? AND tn.courseid = ? AND s.id = tn.studentid AND tn.semester = ? AND (tn.grade IS NULL OR tn.grade = '') 
+16:56:30,069 DEBUG findStudentForGrade_COUNT:145 : ==> Parameters: 1(String), ABC-101(String), 1(String)
+16:56:30,070 DEBUG findStudentForGrade_COUNT:145 : <==      Total: 1
+16:56:32,861 DEBUG countStudentForGrade:145 : ==>  Preparing: SELECT count(*) FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid=? AND tn.courseid=? AND s.id=tn.studentid AND tn.semester=? AND (tn.grade is null OR tn.grade='') 
+16:56:32,862 DEBUG countStudentForGrade:145 : ==> Parameters: 1(String), ABC-101(String), 1(String)
+16:56:32,863 DEBUG countStudentForGrade:145 : <==      Total: 1
+16:56:32,865 DEBUG findStudentForGrade_COUNT:145 : ==>  Preparing: SELECT count(0) FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid = ? AND tn.courseid = ? AND s.id = tn.studentid AND tn.semester = ? AND (tn.grade IS NULL OR tn.grade = '') 
+16:56:32,866 DEBUG findStudentForGrade_COUNT:145 : ==> Parameters: 1(String), ABC-101(String), 1(String)
+16:56:32,867 DEBUG findStudentForGrade_COUNT:145 : <==      Total: 1
+16:56:54,093 DEBUG countStudentForGrade:145 : ==>  Preparing: SELECT count(*) FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid=? AND tn.courseid=? AND s.id=tn.studentid AND tn.semester=? AND (tn.grade is null OR tn.grade='') 
+16:56:54,093 DEBUG countStudentForGrade:145 : ==> Parameters: 1(String), ABC-101(String), 1(String)
+16:56:54,095 DEBUG countStudentForGrade:145 : <==      Total: 1
+16:56:54,097 DEBUG findStudentForGrade_COUNT:145 : ==>  Preparing: SELECT count(0) FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid = ? AND tn.courseid = ? AND s.id = tn.studentid AND tn.semester = ? AND (tn.grade IS NULL OR tn.grade = '') 
+16:56:54,098 DEBUG findStudentForGrade_COUNT:145 : ==> Parameters: 1(String), ABC-101(String), 1(String)
+16:56:54,099 DEBUG findStudentForGrade_COUNT:145 : <==      Total: 1
+16:56:56,812 DEBUG countStudentForGrade:145 : ==>  Preparing: SELECT count(*) FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid=? AND tn.courseid=? AND s.id=tn.studentid AND tn.semester=? AND (tn.grade is null OR tn.grade='') 
+16:56:56,812 DEBUG countStudentForGrade:145 : ==> Parameters: 1(String), ABC-101(String), 1(String)
+16:56:56,814 DEBUG countStudentForGrade:145 : <==      Total: 1
+16:56:56,816 DEBUG findStudentForGrade_COUNT:145 : ==>  Preparing: SELECT count(0) FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid = ? AND tn.courseid = ? AND s.id = tn.studentid AND tn.semester = ? AND (tn.grade IS NULL OR tn.grade = '') 
+16:56:56,817 DEBUG findStudentForGrade_COUNT:145 : ==> Parameters: 1(String), ABC-101(String), 1(String)
+16:56:56,818 DEBUG findStudentForGrade_COUNT:145 : <==      Total: 1
+16:57:07,345 DEBUG findScheduleBySemester:145 : ==>  Preparing: SELECT * FROM section as s inner join course as c inner join (SELECT * FROM scheduleofclasses WHERE semester = ?) as soc on s.courseid=c.courseid and s.teacherid=? and s.sectionid = soc.sectionid and c.courseid=soc.courseid left join teacher as t on s.teacherid=t.id 
+16:57:07,347 DEBUG findScheduleBySemester:145 : ==> Parameters: 学期(String), 111111(String)
+16:57:07,349 DEBUG findScheduleBySemester:145 : <==      Total: 1
+16:57:08,888 DEBUG findScheduleBySemester:145 : ==>  Preparing: SELECT * FROM section as s inner join course as c inner join (SELECT * FROM scheduleofclasses WHERE semester = ?) as soc on s.courseid=c.courseid and s.teacherid=? and s.sectionid = soc.sectionid and c.courseid=soc.courseid left join teacher as t on s.teacherid=t.id 
+16:57:08,889 DEBUG findScheduleBySemester:145 : ==> Parameters: 1(String), 111111(String)
+16:57:08,891 DEBUG findScheduleBySemester:145 : <==      Total: 1
+16:57:10,920 DEBUG countStudentForGrade:145 : ==>  Preparing: SELECT count(*) FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid=? AND tn.courseid=? AND s.id=tn.studentid AND tn.semester=? AND (tn.grade is null OR tn.grade='') 
+16:57:10,921 DEBUG countStudentForGrade:145 : ==> Parameters: 1(String), ABC-101(String), 1(String)
+16:57:10,922 DEBUG countStudentForGrade:145 : <==      Total: 1
+16:57:10,924 DEBUG findStudentForGrade_COUNT:145 : ==>  Preparing: SELECT count(0) FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid = ? AND tn.courseid = ? AND s.id = tn.studentid AND tn.semester = ? AND (tn.grade IS NULL OR tn.grade = '') 
+16:57:10,925 DEBUG findStudentForGrade_COUNT:145 : ==> Parameters: 1(String), ABC-101(String), 1(String)
+16:57:10,926 DEBUG findStudentForGrade_COUNT:145 : <==      Total: 1
+16:57:34,493 DEBUG countStudentForGrade:145 : ==>  Preparing: SELECT count(*) FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid=? AND tn.courseid=? AND s.id=tn.studentid AND tn.semester=? AND (tn.grade is null OR tn.grade='') 
+16:57:34,493 DEBUG countStudentForGrade:145 : ==> Parameters: 1(String), ABC-101(String), 1(String)
+16:57:34,494 DEBUG countStudentForGrade:145 : <==      Total: 1
+16:57:34,497 DEBUG findStudentForGrade_COUNT:145 : ==>  Preparing: SELECT count(0) FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid = ? AND tn.courseid = ? AND s.id = tn.studentid AND tn.semester = ? AND (tn.grade IS NULL OR tn.grade = '') 
+16:57:34,497 DEBUG findStudentForGrade_COUNT:145 : ==> Parameters: 1(String), ABC-101(String), 1(String)
+16:57:34,498 DEBUG findStudentForGrade_COUNT:145 : <==      Total: 1
+16:57:34,499 DEBUG findStudentForGrade:145 : ==>  Preparing: SELECT s.id,s.name,s.major,tn.grade FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid=? AND tn.courseid=? AND s.id=tn.studentid AND tn.semester=? AND (tn.grade is null OR tn.grade='') LIMIT 10 
+16:57:34,500 DEBUG findStudentForGrade:145 : ==> Parameters: 1(String), ABC-101(String), 1(String)
+16:57:34,502 DEBUG findStudentForGrade:145 : <==      Total: 1
+16:57:56,125 DEBUG appointGrade:145 : ==>  Preparing: UPDATE transcriptentry SET grade=? WHERE studentid=? AND courseid=? AND sectionid=? 
+16:57:56,127 DEBUG appointGrade:145 : ==> Parameters: A(String), 09143627(String), ABC-101(String), 1(String)
+16:57:56,261 DEBUG appointGrade:145 : <==    Updates: 1
+16:58:03,544 DEBUG countAllCourse:145 : ==>  Preparing: SELECT count(*) FROM course 
+16:58:03,544 DEBUG countAllCourse:145 : ==> Parameters: 
+16:58:03,545 DEBUG countAllCourse:145 : <==      Total: 1
+16:58:03,547 DEBUG findAll_COUNT:145 : ==>  Preparing: SELECT count(0) FROM course 
+16:58:03,548 DEBUG findAll_COUNT:145 : ==> Parameters: 
+16:58:03,549 DEBUG findAll_COUNT:145 : <==      Total: 1
+16:58:03,549 DEBUG findAll:145 : ==>  Preparing: select * from course ORDER BY courseid asc LIMIT 10 
+16:58:03,550 DEBUG findAll:145 : ==> Parameters: 
+16:58:03,553 DEBUG findAll:145 : <==      Total: 6
+16:58:23,826 DEBUG appointPlanOfStudy:145 : ==>  Preparing: INSERT INTO planofstudyentry(courseid,major) VALUES (?,?) , (?,?) , (?,?) 
+16:58:23,826 DEBUG appointPlanOfStudy:145 : ==> Parameters: ABC-101(String), 市场营销(String), ABC-102(String), 市场营销(String), ABC-103(String), 市场营销(String)
+16:58:23,937 DEBUG appointPlanOfStudy:145 : <==    Updates: 3
+16:58:29,049 DEBUG countAllCourse:145 : ==>  Preparing: SELECT count(*) FROM course 
+16:58:29,050 DEBUG countAllCourse:145 : ==> Parameters: 
+16:58:29,051 DEBUG countAllCourse:145 : <==      Total: 1
+16:58:29,053 DEBUG findAll_COUNT:145 : ==>  Preparing: SELECT count(0) FROM course 
+16:58:29,054 DEBUG findAll_COUNT:145 : ==> Parameters: 
+16:58:29,054 DEBUG findAll_COUNT:145 : <==      Total: 1
+16:58:29,055 DEBUG findAll:145 : ==>  Preparing: select * from course ORDER BY courseid asc LIMIT 10 
+16:58:29,056 DEBUG findAll:145 : ==> Parameters: 
+16:58:29,057 DEBUG findAll:145 : <==      Total: 6
+16:59:46,295 DEBUG findStudentById:145 : ==>  Preparing: select * from student where id=? 
+16:59:46,296 DEBUG findStudentById:145 : ==> Parameters: 09143627(String)
+16:59:46,297 DEBUG findStudentById:145 : <==      Total: 1
+16:59:46,298 DEBUG findStudentById:145 : ==>  Preparing: select * from student where id=? 
+16:59:46,299 DEBUG findStudentById:145 : ==> Parameters: 09143627(String)
+16:59:46,299 DEBUG findStudentById:145 : <==      Total: 1
+16:59:46,301 DEBUG findStudentById:145 : ==>  Preparing: select * from student where id=? 
+16:59:46,302 DEBUG findStudentById:145 : ==> Parameters: 09143627(String)
+16:59:46,303 DEBUG findStudentById:145 : <==      Total: 1
+16:59:46,304 DEBUG findTranscriptForStudent:145 : ==>  Preparing: SELECT * FROM transcriptentry AS te INNER JOIN section AS s ON te.studentid=? AND s.sectionid=te.sectionid AND s.courseid=te.courseid INNER JOIN course AS c ON te.courseid=c.courseid LEFT JOIN teacher AS t ON t.id=s.teacherid 
+16:59:46,304 DEBUG findTranscriptForStudent:145 : ==> Parameters: 09143627(String)
+16:59:46,307 DEBUG findTranscriptForStudent:145 : <==      Total: 2
+16:59:46,308 DEBUG findPlanOfStudy:145 : ==>  Preparing: SELECT * FROM course AS c INNER JOIN planofstudyentry AS ps ON c.courseid=ps.courseid AND ps.major=? 
+16:59:46,309 DEBUG findPlanOfStudy:145 : ==> Parameters: 电子商务(String)
+16:59:46,310 DEBUG findPlanOfStudy:145 : <==      Total: 4
+16:59:48,294 DEBUG findScheduleForStudent:145 : ==>  Preparing: SELECT * FROM section as s inner join course as c ON s.courseid=c.courseid inner join transcriptentry as te ON s.courseid=te.courseid AND s.sectionid=te.sectionid AND te.semester=? AND te.studentid=? left join teacher as th on th.id=s.teacherid 
+16:59:48,295 DEBUG findScheduleForStudent:145 : ==> Parameters: 学期(String), 09143627(String)
+16:59:48,296 DEBUG findScheduleForStudent:145 : <==      Total: 0
+16:59:50,481 DEBUG findScheduleForStudent:145 : ==>  Preparing: SELECT * FROM section as s inner join course as c ON s.courseid=c.courseid inner join transcriptentry as te ON s.courseid=te.courseid AND s.sectionid=te.sectionid AND te.semester=? AND te.studentid=? left join teacher as th on th.id=s.teacherid 
+16:59:50,482 DEBUG findScheduleForStudent:145 : ==> Parameters: 1(String), 09143627(String)
+16:59:50,484 DEBUG findScheduleForStudent:145 : <==      Total: 2

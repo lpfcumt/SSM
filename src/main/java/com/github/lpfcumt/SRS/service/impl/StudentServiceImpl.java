@@ -3,7 +3,6 @@ package com.github.lpfcumt.SRS.service.impl;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +13,6 @@ import com.github.lpfcumt.SRS.dao.TranscriptDao;
 import com.github.lpfcumt.SRS.domain.Course;
 import com.github.lpfcumt.SRS.domain.Student;
 import com.github.lpfcumt.SRS.domain.TranscriptEntry;
-import com.github.lpfcumt.SRS.pojo.poStudent;
 import com.github.lpfcumt.SRS.service.StudentService;
 
 @Service("studentService")

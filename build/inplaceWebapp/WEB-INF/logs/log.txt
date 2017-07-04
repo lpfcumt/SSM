@@ -640,3 +640,444 @@
 2017-07-04 16:05:46,517 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] ==>  Preparing: select * from course ORDER BY courseid asc LIMIT 3 
 2017-07-04 16:05:46,518 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] ==> Parameters: 
 2017-07-04 16:05:46,519 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] <==      Total: 3
+2017-07-04 16:48:27,979 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==>  Preparing: select * from student where id=? 
+2017-07-04 16:48:27,989 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==> Parameters: 09143627(String)
+2017-07-04 16:48:27,996 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] <==      Total: 1
+2017-07-04 16:48:27,998 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==>  Preparing: select * from student where id=? 
+2017-07-04 16:48:27,998 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==> Parameters: 09143627(String)
+2017-07-04 16:48:27,999 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] <==      Total: 1
+2017-07-04 16:48:28,000 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==>  Preparing: select * from student where id=? 
+2017-07-04 16:48:28,001 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==> Parameters: 09143627(String)
+2017-07-04 16:48:28,002 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] <==      Total: 1
+2017-07-04 16:48:28,004 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.TranscriptDao.findTranscriptForStudent] ==>  Preparing: SELECT * FROM transcriptentry AS te INNER JOIN section AS s ON te.studentid=? AND s.sectionid=te.sectionid AND s.courseid=te.courseid INNER JOIN course AS c ON te.courseid=c.courseid LEFT JOIN teacher AS t ON t.id=s.teacherid 
+2017-07-04 16:48:28,005 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.TranscriptDao.findTranscriptForStudent] ==> Parameters: 09143627(String)
+2017-07-04 16:48:28,008 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.TranscriptDao.findTranscriptForStudent] <==      Total: 2
+2017-07-04 16:48:28,010 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findPlanOfStudy] ==>  Preparing: SELECT * FROM course AS c INNER JOIN planofstudyentry AS ps ON c.courseid=ps.courseid AND ps.major=? 
+2017-07-04 16:48:28,012 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findPlanOfStudy] ==> Parameters: 电子商务(String)
+2017-07-04 16:48:28,013 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findPlanOfStudy] <==      Total: 4
+2017-07-04 16:48:30,716 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countCourseForStudent] ==>  Preparing: SELECT count(distinct c.courseid) FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid=so.courseid AND so.semester=? 
+2017-07-04 16:48:30,717 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countCourseForStudent] ==> Parameters: 学期(String)
+2017-07-04 16:48:30,719 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countCourseForStudent] <==      Total: 1
+2017-07-04 16:48:30,722 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent_COUNT] ==>  Preparing: SELECT count(0) FROM (SELECT DISTINCT c.courseid, c.coursename, c.credits FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid = so.courseid AND so.semester = ?) table_count 
+2017-07-04 16:48:30,723 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent_COUNT] ==> Parameters: 学期(String)
+2017-07-04 16:48:30,725 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent_COUNT] <==      Total: 1
+2017-07-04 16:48:32,889 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countCourseForStudent] ==>  Preparing: SELECT count(distinct c.courseid) FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid=so.courseid AND so.semester=? 
+2017-07-04 16:48:32,890 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countCourseForStudent] ==> Parameters: 1(String)
+2017-07-04 16:48:32,891 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countCourseForStudent] <==      Total: 1
+2017-07-04 16:48:32,893 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent_COUNT] ==>  Preparing: SELECT count(0) FROM (SELECT DISTINCT c.courseid, c.coursename, c.credits FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid = so.courseid AND so.semester = ?) table_count 
+2017-07-04 16:48:32,894 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent_COUNT] ==> Parameters: 1(String)
+2017-07-04 16:48:32,895 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent_COUNT] <==      Total: 1
+2017-07-04 16:48:32,896 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent] ==>  Preparing: SELECT distinct c.courseid,c.coursename,c.credits FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid=so.courseid AND so.semester=? LIMIT 3 
+2017-07-04 16:48:32,897 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent] ==> Parameters: 1(String)
+2017-07-04 16:48:32,898 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent] <==      Total: 2
+2017-07-04 16:48:35,066 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionforStudent] ==>  Preparing: SELECT * FROM section AS s INNER JOIN scheduleofclasses AS sd ON s.courseid=sd.courseid AND s.sectionid=sd.sectionid AND sd.courseid=? AND sd.semester=? LEFT JOIN teacher AS t ON t.id = s.teacherid LEFT JOIN transcriptentry AS te ON s.courseid=te.courseid AND s.sectionid=te.sectionid 
+2017-07-04 16:48:35,067 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionforStudent] ==> Parameters: ABC-101(String), 1(String)
+2017-07-04 16:48:35,069 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionforStudent] <==      Total: 1
+2017-07-04 16:48:43,849 http-nio-8070-exec-3 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId_SectionId] ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=? ) as c on s.courseid=c.courseid and s.sectionid=? left join teacher as t on s.teacherid=t.id 
+2017-07-04 16:48:43,850 http-nio-8070-exec-3 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId_SectionId] ==> Parameters: ABC-101(String), 1(String)
+2017-07-04 16:48:43,853 http-nio-8070-exec-3 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId_SectionId] <==      Total: 1
+2017-07-04 16:48:43,854 http-nio-8070-exec-3 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findPreCourse] ==>  Preparing: SELECT * FROM course AS c INNER JOIN precourse AS pc ON c.courseid=pc.precourseid AND pc.courseid=? 
+2017-07-04 16:48:43,854 http-nio-8070-exec-3 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findPreCourse] ==> Parameters: ABC-101(String)
+2017-07-04 16:48:43,855 http-nio-8070-exec-3 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findPreCourse] <==      Total: 0
+2017-07-04 16:48:43,856 http-nio-8070-exec-3 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentBySectionId] ==>  Preparing: SELECT s.id,s.name,s.major,tn.grade FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid=? AND tn.courseid=? AND s.id=tn.studentid 
+2017-07-04 16:48:43,856 http-nio-8070-exec-3 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentBySectionId] ==> Parameters: 1(String), ABC-101(String)
+2017-07-04 16:48:43,857 http-nio-8070-exec-3 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentBySectionId] <==      Total: 0
+2017-07-04 16:48:43,858 http-nio-8070-exec-3 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByStudent] ==>  Preparing: SELECT * FROM section AS s INNER JOIN transcriptentry te ON s.courseid=te.courseid AND s.sectionid=te.sectionid AND te.studentid=? 
+2017-07-04 16:48:43,858 http-nio-8070-exec-3 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByStudent] ==> Parameters: 09143627(String)
+2017-07-04 16:48:43,860 http-nio-8070-exec-3 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByStudent] <==      Total: 2
+2017-07-04 16:48:54,482 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countCourseForStudent] ==>  Preparing: SELECT count(distinct c.courseid) FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid=so.courseid AND so.semester=? 
+2017-07-04 16:48:54,485 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countCourseForStudent] ==> Parameters: 1(String)
+2017-07-04 16:48:54,486 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countCourseForStudent] <==      Total: 1
+2017-07-04 16:48:54,488 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent_COUNT] ==>  Preparing: SELECT count(0) FROM (SELECT DISTINCT c.courseid, c.coursename, c.credits FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid = so.courseid AND so.semester = ?) table_count 
+2017-07-04 16:48:54,489 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent_COUNT] ==> Parameters: 1(String)
+2017-07-04 16:48:54,490 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent_COUNT] <==      Total: 1
+2017-07-04 16:48:54,491 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent] ==>  Preparing: SELECT distinct c.courseid,c.coursename,c.credits FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid=so.courseid AND so.semester=? LIMIT 3 
+2017-07-04 16:48:54,492 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent] ==> Parameters: 1(String)
+2017-07-04 16:48:54,493 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent] <==      Total: 2
+2017-07-04 16:48:56,100 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionforStudent] ==>  Preparing: SELECT * FROM section AS s INNER JOIN scheduleofclasses AS sd ON s.courseid=sd.courseid AND s.sectionid=sd.sectionid AND sd.courseid=? AND sd.semester=? LEFT JOIN teacher AS t ON t.id = s.teacherid LEFT JOIN transcriptentry AS te ON s.courseid=te.courseid AND s.sectionid=te.sectionid 
+2017-07-04 16:48:56,101 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionforStudent] ==> Parameters: ABC-105(String), 1(String)
+2017-07-04 16:48:56,103 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionforStudent] <==      Total: 1
+2017-07-04 16:48:57,056 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId_SectionId] ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=? ) as c on s.courseid=c.courseid and s.sectionid=? left join teacher as t on s.teacherid=t.id 
+2017-07-04 16:48:57,057 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId_SectionId] ==> Parameters: ABC-105(String), 4(String)
+2017-07-04 16:48:57,059 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId_SectionId] <==      Total: 1
+2017-07-04 16:48:57,061 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findPreCourse] ==>  Preparing: SELECT * FROM course AS c INNER JOIN precourse AS pc ON c.courseid=pc.precourseid AND pc.courseid=? 
+2017-07-04 16:48:57,061 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findPreCourse] ==> Parameters: ABC-105(String)
+2017-07-04 16:48:57,062 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findPreCourse] <==      Total: 1
+2017-07-04 16:48:57,063 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentBySectionId] ==>  Preparing: SELECT s.id,s.name,s.major,tn.grade FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid=? AND tn.courseid=? AND s.id=tn.studentid 
+2017-07-04 16:48:57,063 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentBySectionId] ==> Parameters: 4(String), ABC-105(String)
+2017-07-04 16:48:57,064 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentBySectionId] <==      Total: 1
+2017-07-04 16:48:57,065 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByStudent] ==>  Preparing: SELECT * FROM section AS s INNER JOIN transcriptentry te ON s.courseid=te.courseid AND s.sectionid=te.sectionid AND te.studentid=? 
+2017-07-04 16:48:57,066 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByStudent] ==> Parameters: 09143627(String)
+2017-07-04 16:48:57,067 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByStudent] <==      Total: 2
+2017-07-04 16:48:57,068 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.cancelSection] ==>  Preparing: DELETE FROM transcriptentry WHERE studentid=? AND courseid=? AND sectionid=? AND semester=? 
+2017-07-04 16:48:57,068 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.cancelSection] ==> Parameters: 09143627(String), ABC-105(String), 4(String), 1(String)
+2017-07-04 16:48:57,262 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.cancelSection] <==    Updates: 1
+2017-07-04 16:48:59,545 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countCourseForStudent] ==>  Preparing: SELECT count(distinct c.courseid) FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid=so.courseid AND so.semester=? 
+2017-07-04 16:48:59,546 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countCourseForStudent] ==> Parameters: 1(String)
+2017-07-04 16:48:59,547 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countCourseForStudent] <==      Total: 1
+2017-07-04 16:48:59,549 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent_COUNT] ==>  Preparing: SELECT count(0) FROM (SELECT DISTINCT c.courseid, c.coursename, c.credits FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid = so.courseid AND so.semester = ?) table_count 
+2017-07-04 16:48:59,550 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent_COUNT] ==> Parameters: 1(String)
+2017-07-04 16:48:59,552 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent_COUNT] <==      Total: 1
+2017-07-04 16:48:59,553 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent] ==>  Preparing: SELECT distinct c.courseid,c.coursename,c.credits FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid=so.courseid AND so.semester=? LIMIT 3 
+2017-07-04 16:48:59,554 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent] ==> Parameters: 1(String)
+2017-07-04 16:48:59,554 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent] <==      Total: 2
+2017-07-04 16:49:01,190 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionforStudent] ==>  Preparing: SELECT * FROM section AS s INNER JOIN scheduleofclasses AS sd ON s.courseid=sd.courseid AND s.sectionid=sd.sectionid AND sd.courseid=? AND sd.semester=? LEFT JOIN teacher AS t ON t.id = s.teacherid LEFT JOIN transcriptentry AS te ON s.courseid=te.courseid AND s.sectionid=te.sectionid 
+2017-07-04 16:49:01,191 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionforStudent] ==> Parameters: ABC-105(String), 1(String)
+2017-07-04 16:49:01,194 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionforStudent] <==      Total: 1
+2017-07-04 16:49:03,535 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId_SectionId] ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=? ) as c on s.courseid=c.courseid and s.sectionid=? left join teacher as t on s.teacherid=t.id 
+2017-07-04 16:49:03,536 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId_SectionId] ==> Parameters: ABC-105(String), 4(String)
+2017-07-04 16:49:03,537 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId_SectionId] <==      Total: 1
+2017-07-04 16:49:03,538 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findPreCourse] ==>  Preparing: SELECT * FROM course AS c INNER JOIN precourse AS pc ON c.courseid=pc.precourseid AND pc.courseid=? 
+2017-07-04 16:49:03,539 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findPreCourse] ==> Parameters: ABC-105(String)
+2017-07-04 16:49:03,540 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findPreCourse] <==      Total: 1
+2017-07-04 16:49:03,541 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentBySectionId] ==>  Preparing: SELECT s.id,s.name,s.major,tn.grade FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid=? AND tn.courseid=? AND s.id=tn.studentid 
+2017-07-04 16:49:03,541 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentBySectionId] ==> Parameters: 4(String), ABC-105(String)
+2017-07-04 16:49:03,542 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentBySectionId] <==      Total: 0
+2017-07-04 16:49:03,543 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByStudent] ==>  Preparing: SELECT * FROM section AS s INNER JOIN transcriptentry te ON s.courseid=te.courseid AND s.sectionid=te.sectionid AND te.studentid=? 
+2017-07-04 16:49:03,543 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByStudent] ==> Parameters: 09143627(String)
+2017-07-04 16:49:03,544 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByStudent] <==      Total: 1
+2017-07-04 16:49:15,793 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionforStudent] ==>  Preparing: SELECT * FROM section AS s INNER JOIN scheduleofclasses AS sd ON s.courseid=sd.courseid AND s.sectionid=sd.sectionid AND sd.courseid=? AND sd.semester=? LEFT JOIN teacher AS t ON t.id = s.teacherid LEFT JOIN transcriptentry AS te ON s.courseid=te.courseid AND s.sectionid=te.sectionid 
+2017-07-04 16:49:15,794 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionforStudent] ==> Parameters: ABC-105(String), 1(String)
+2017-07-04 16:49:15,797 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionforStudent] <==      Total: 1
+2017-07-04 16:49:16,839 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId_SectionId] ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=? ) as c on s.courseid=c.courseid and s.sectionid=? left join teacher as t on s.teacherid=t.id 
+2017-07-04 16:49:16,840 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId_SectionId] ==> Parameters: ABC-105(String), 4(String)
+2017-07-04 16:49:16,841 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId_SectionId] <==      Total: 1
+2017-07-04 16:49:16,843 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findPreCourse] ==>  Preparing: SELECT * FROM course AS c INNER JOIN precourse AS pc ON c.courseid=pc.precourseid AND pc.courseid=? 
+2017-07-04 16:49:16,844 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findPreCourse] ==> Parameters: ABC-105(String)
+2017-07-04 16:49:16,845 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findPreCourse] <==      Total: 1
+2017-07-04 16:49:16,846 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentBySectionId] ==>  Preparing: SELECT s.id,s.name,s.major,tn.grade FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid=? AND tn.courseid=? AND s.id=tn.studentid 
+2017-07-04 16:49:16,846 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentBySectionId] ==> Parameters: 4(String), ABC-105(String)
+2017-07-04 16:49:16,847 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentBySectionId] <==      Total: 0
+2017-07-04 16:49:16,848 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByStudent] ==>  Preparing: SELECT * FROM section AS s INNER JOIN transcriptentry te ON s.courseid=te.courseid AND s.sectionid=te.sectionid AND te.studentid=? 
+2017-07-04 16:49:16,849 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByStudent] ==> Parameters: 09143627(String)
+2017-07-04 16:49:16,850 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByStudent] <==      Total: 1
+2017-07-04 16:49:22,742 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==>  Preparing: select * from student where id=? 
+2017-07-04 16:49:22,742 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==> Parameters: 09143627(String)
+2017-07-04 16:49:22,744 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] <==      Total: 1
+2017-07-04 16:49:22,745 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==>  Preparing: select * from student where id=? 
+2017-07-04 16:49:22,747 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==> Parameters: 09143627(String)
+2017-07-04 16:49:22,749 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] <==      Total: 1
+2017-07-04 16:49:22,751 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==>  Preparing: select * from student where id=? 
+2017-07-04 16:49:22,751 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==> Parameters: 09143627(String)
+2017-07-04 16:49:22,752 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] <==      Total: 1
+2017-07-04 16:49:22,753 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.TranscriptDao.findTranscriptForStudent] ==>  Preparing: SELECT * FROM transcriptentry AS te INNER JOIN section AS s ON te.studentid=? AND s.sectionid=te.sectionid AND s.courseid=te.courseid INNER JOIN course AS c ON te.courseid=c.courseid LEFT JOIN teacher AS t ON t.id=s.teacherid 
+2017-07-04 16:49:22,754 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.TranscriptDao.findTranscriptForStudent] ==> Parameters: 09143627(String)
+2017-07-04 16:49:22,755 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.TranscriptDao.findTranscriptForStudent] <==      Total: 1
+2017-07-04 16:49:22,756 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findPlanOfStudy] ==>  Preparing: SELECT * FROM course AS c INNER JOIN planofstudyentry AS ps ON c.courseid=ps.courseid AND ps.major=? 
+2017-07-04 16:49:22,756 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findPlanOfStudy] ==> Parameters: 电子商务(String)
+2017-07-04 16:49:22,757 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findPlanOfStudy] <==      Total: 4
+2017-07-04 16:49:24,706 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countCourseForStudent] ==>  Preparing: SELECT count(distinct c.courseid) FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid=so.courseid AND so.semester=? 
+2017-07-04 16:49:24,707 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countCourseForStudent] ==> Parameters: 学期(String)
+2017-07-04 16:49:24,708 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countCourseForStudent] <==      Total: 1
+2017-07-04 16:49:24,710 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent_COUNT] ==>  Preparing: SELECT count(0) FROM (SELECT DISTINCT c.courseid, c.coursename, c.credits FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid = so.courseid AND so.semester = ?) table_count 
+2017-07-04 16:49:24,711 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent_COUNT] ==> Parameters: 学期(String)
+2017-07-04 16:49:24,712 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent_COUNT] <==      Total: 1
+2017-07-04 16:49:26,089 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countCourseForStudent] ==>  Preparing: SELECT count(distinct c.courseid) FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid=so.courseid AND so.semester=? 
+2017-07-04 16:49:26,090 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countCourseForStudent] ==> Parameters: 1(String)
+2017-07-04 16:49:26,091 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countCourseForStudent] <==      Total: 1
+2017-07-04 16:49:26,094 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent_COUNT] ==>  Preparing: SELECT count(0) FROM (SELECT DISTINCT c.courseid, c.coursename, c.credits FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid = so.courseid AND so.semester = ?) table_count 
+2017-07-04 16:49:26,094 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent_COUNT] ==> Parameters: 1(String)
+2017-07-04 16:49:26,096 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent_COUNT] <==      Total: 1
+2017-07-04 16:49:26,097 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent] ==>  Preparing: SELECT distinct c.courseid,c.coursename,c.credits FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid=so.courseid AND so.semester=? LIMIT 3 
+2017-07-04 16:49:26,098 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent] ==> Parameters: 1(String)
+2017-07-04 16:49:26,099 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent] <==      Total: 2
+2017-07-04 16:49:26,821 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionforStudent] ==>  Preparing: SELECT * FROM section AS s INNER JOIN scheduleofclasses AS sd ON s.courseid=sd.courseid AND s.sectionid=sd.sectionid AND sd.courseid=? AND sd.semester=? LEFT JOIN teacher AS t ON t.id = s.teacherid LEFT JOIN transcriptentry AS te ON s.courseid=te.courseid AND s.sectionid=te.sectionid 
+2017-07-04 16:49:26,823 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionforStudent] ==> Parameters: ABC-105(String), 1(String)
+2017-07-04 16:49:26,825 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionforStudent] <==      Total: 1
+2017-07-04 16:49:27,712 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId_SectionId] ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=? ) as c on s.courseid=c.courseid and s.sectionid=? left join teacher as t on s.teacherid=t.id 
+2017-07-04 16:49:27,713 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId_SectionId] ==> Parameters: ABC-105(String), 4(String)
+2017-07-04 16:49:27,715 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId_SectionId] <==      Total: 1
+2017-07-04 16:49:27,716 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findPreCourse] ==>  Preparing: SELECT * FROM course AS c INNER JOIN precourse AS pc ON c.courseid=pc.precourseid AND pc.courseid=? 
+2017-07-04 16:49:27,717 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findPreCourse] ==> Parameters: ABC-105(String)
+2017-07-04 16:49:27,718 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findPreCourse] <==      Total: 1
+2017-07-04 16:49:27,719 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentBySectionId] ==>  Preparing: SELECT s.id,s.name,s.major,tn.grade FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid=? AND tn.courseid=? AND s.id=tn.studentid 
+2017-07-04 16:49:27,720 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentBySectionId] ==> Parameters: 4(String), ABC-105(String)
+2017-07-04 16:49:27,720 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentBySectionId] <==      Total: 0
+2017-07-04 16:49:27,722 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByStudent] ==>  Preparing: SELECT * FROM section AS s INNER JOIN transcriptentry te ON s.courseid=te.courseid AND s.sectionid=te.sectionid AND te.studentid=? 
+2017-07-04 16:49:27,723 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByStudent] ==> Parameters: 09143627(String)
+2017-07-04 16:49:27,724 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByStudent] <==      Total: 1
+2017-07-04 16:49:27,725 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.selectSection] ==>  Preparing: INSERT INTO transcriptentry(studentid,sectionid,courseid,semester) VALUES(?,?,?,?) 
+2017-07-04 16:49:27,726 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.selectSection] ==> Parameters: 09143627(String), 4(String), ABC-105(String), 1(String)
+2017-07-04 16:49:27,791 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.selectSection] <==    Updates: 1
+2017-07-04 16:49:37,025 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countCourseForStudent] ==>  Preparing: SELECT count(distinct c.courseid) FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid=so.courseid AND so.semester=? 
+2017-07-04 16:49:37,026 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countCourseForStudent] ==> Parameters: 1(String)
+2017-07-04 16:49:37,027 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countCourseForStudent] <==      Total: 1
+2017-07-04 16:49:37,029 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent_COUNT] ==>  Preparing: SELECT count(0) FROM (SELECT DISTINCT c.courseid, c.coursename, c.credits FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid = so.courseid AND so.semester = ?) table_count 
+2017-07-04 16:49:37,030 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent_COUNT] ==> Parameters: 1(String)
+2017-07-04 16:49:37,032 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent_COUNT] <==      Total: 1
+2017-07-04 16:49:37,032 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent] ==>  Preparing: SELECT distinct c.courseid,c.coursename,c.credits FROM course AS c INNER JOIN scheduleofclasses AS so ON c.courseid=so.courseid AND so.semester=? LIMIT 3 
+2017-07-04 16:49:37,033 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent] ==> Parameters: 1(String)
+2017-07-04 16:49:37,035 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.listCourseForStudent] <==      Total: 2
+2017-07-04 16:49:38,422 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleForStudent] ==>  Preparing: SELECT * FROM section as s inner join course as c ON s.courseid=c.courseid inner join transcriptentry as te ON s.courseid=te.courseid AND s.sectionid=te.sectionid AND te.semester=? AND te.studentid=? left join teacher as th on th.id=s.teacherid 
+2017-07-04 16:49:38,423 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleForStudent] ==> Parameters: 学期(String), 09143627(String)
+2017-07-04 16:49:38,424 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleForStudent] <==      Total: 0
+2017-07-04 16:49:39,743 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleForStudent] ==>  Preparing: SELECT * FROM section as s inner join course as c ON s.courseid=c.courseid inner join transcriptentry as te ON s.courseid=te.courseid AND s.sectionid=te.sectionid AND te.semester=? AND te.studentid=? left join teacher as th on th.id=s.teacherid 
+2017-07-04 16:49:39,745 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleForStudent] ==> Parameters: 1(String), 09143627(String)
+2017-07-04 16:49:39,747 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleForStudent] <==      Total: 2
+2017-07-04 16:53:19,932 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.TeacherDao.findTeacherById] ==>  Preparing: select * from teacher where id=? 
+2017-07-04 16:53:19,933 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.TeacherDao.findTeacherById] ==> Parameters: 111111(String)
+2017-07-04 16:53:19,934 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.TeacherDao.findTeacherById] <==      Total: 1
+2017-07-04 16:53:19,935 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.TeacherDao.findTeacherById] ==>  Preparing: select * from teacher where id=? 
+2017-07-04 16:53:19,936 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.TeacherDao.findTeacherById] ==> Parameters: 111111(String)
+2017-07-04 16:53:19,938 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.TeacherDao.findTeacherById] <==      Total: 1
+2017-07-04 16:53:19,939 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.TeacherDao.findTeacherById] ==>  Preparing: select * from teacher where id=? 
+2017-07-04 16:53:19,940 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.TeacherDao.findTeacherById] ==> Parameters: 111111(String)
+2017-07-04 16:53:19,941 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.TeacherDao.findTeacherById] <==      Total: 1
+2017-07-04 16:53:19,943 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionBy_TreacherId] ==>  Preparing: SELECT * FROM section as s inner join course as c inner join teacher as t on s.courseid=c.courseid and s.teacherid=t.id and t.id=? 
+2017-07-04 16:53:19,944 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionBy_TreacherId] ==> Parameters: 111111(String)
+2017-07-04 16:53:19,945 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionBy_TreacherId] <==      Total: 4
+2017-07-04 16:53:21,730 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] ==>  Preparing: SELECT count(*) FROM course 
+2017-07-04 16:53:21,731 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] ==> Parameters: 
+2017-07-04 16:53:21,731 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] <==      Total: 1
+2017-07-04 16:53:21,733 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] ==>  Preparing: SELECT count(0) FROM course 
+2017-07-04 16:53:21,734 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] ==> Parameters: 
+2017-07-04 16:53:21,735 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] <==      Total: 1
+2017-07-04 16:53:21,736 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] ==>  Preparing: select * from course ORDER BY courseid asc LIMIT 3 
+2017-07-04 16:53:21,737 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] ==> Parameters: 
+2017-07-04 16:53:21,738 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] <==      Total: 3
+2017-07-04 16:53:23,965 http-nio-8070-exec-3 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=?) as c on s.courseid=c.courseid left join teacher as t on s.teacherid=t.id 
+2017-07-04 16:53:23,965 http-nio-8070-exec-3 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] ==> Parameters: ABC-101(String)
+2017-07-04 16:53:23,967 http-nio-8070-exec-3 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] <==      Total: 2
+2017-07-04 16:53:25,037 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=?) as c on s.courseid=c.courseid left join teacher as t on s.teacherid=t.id 
+2017-07-04 16:53:25,038 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] ==> Parameters: ABC-102(String)
+2017-07-04 16:53:25,039 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] <==      Total: 1
+2017-07-04 16:54:17,957 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.addCourse] ==>  Preparing: INSERT INTO course(courseid,courseName,credits) VALUES(?,?,?) 
+2017-07-04 16:54:17,958 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.addCourse] ==> Parameters: ABC-106(String), 金融学(String), 3.0(Double)
+2017-07-04 16:54:18,063 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.addCourse] <==    Updates: 1
+2017-07-04 16:54:18,064 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.addPreCourse] ==>  Preparing: INSERT INTO precourse(courseid,precourseId) VALUES(?,?) 
+2017-07-04 16:54:18,064 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.addPreCourse] ==> Parameters: ABC-106(String), ABC-102(String)
+2017-07-04 16:54:18,159 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.addPreCourse] <==    Updates: 1
+2017-07-04 16:54:18,160 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.addPreCourse] ==>  Preparing: INSERT INTO precourse(courseid,precourseId) VALUES(?,?) 
+2017-07-04 16:54:18,160 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.addPreCourse] ==> Parameters: ABC-106(String), ABC-101(String)
+2017-07-04 16:54:18,296 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.addPreCourse] <==    Updates: 1
+2017-07-04 16:54:18,320 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] ==>  Preparing: SELECT count(*) FROM course 
+2017-07-04 16:54:18,320 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] ==> Parameters: 
+2017-07-04 16:54:18,321 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] <==      Total: 1
+2017-07-04 16:54:18,322 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] ==>  Preparing: SELECT count(0) FROM course 
+2017-07-04 16:54:18,322 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] ==> Parameters: 
+2017-07-04 16:54:18,323 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] <==      Total: 1
+2017-07-04 16:54:18,324 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] ==>  Preparing: select * from course ORDER BY courseid asc LIMIT 3 
+2017-07-04 16:54:18,324 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] ==> Parameters: 
+2017-07-04 16:54:18,325 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] <==      Total: 3
+2017-07-04 16:54:20,955 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] ==>  Preparing: SELECT count(*) FROM course 
+2017-07-04 16:54:20,956 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] ==> Parameters: 
+2017-07-04 16:54:20,957 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] <==      Total: 1
+2017-07-04 16:54:20,958 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] ==>  Preparing: SELECT count(0) FROM course 
+2017-07-04 16:54:20,958 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] ==> Parameters: 
+2017-07-04 16:54:20,959 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] <==      Total: 1
+2017-07-04 16:54:20,960 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] ==>  Preparing: select * from course ORDER BY courseid asc LIMIT 3,3 
+2017-07-04 16:54:20,960 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] ==> Parameters: 
+2017-07-04 16:54:20,961 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] <==      Total: 3
+2017-07-04 16:54:28,348 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=?) as c on s.courseid=c.courseid left join teacher as t on s.teacherid=t.id 
+2017-07-04 16:54:28,349 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] ==> Parameters: ABC-106(String)
+2017-07-04 16:54:28,350 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] <==      Total: 0
+2017-07-04 16:54:30,670 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] ==>  Preparing: SELECT count(*) FROM course 
+2017-07-04 16:54:30,671 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] ==> Parameters: 
+2017-07-04 16:54:30,672 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] <==      Total: 1
+2017-07-04 16:54:30,674 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] ==>  Preparing: SELECT count(0) FROM course 
+2017-07-04 16:54:30,675 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] ==> Parameters: 
+2017-07-04 16:54:30,676 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] <==      Total: 1
+2017-07-04 16:54:30,679 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] ==>  Preparing: select * from course ORDER BY courseid asc LIMIT 3 
+2017-07-04 16:54:30,680 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] ==> Parameters: 
+2017-07-04 16:54:30,681 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] <==      Total: 3
+2017-07-04 16:54:32,146 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=?) as c on s.courseid=c.courseid left join teacher as t on s.teacherid=t.id 
+2017-07-04 16:54:32,147 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] ==> Parameters: ABC-101(String)
+2017-07-04 16:54:32,148 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] <==      Total: 2
+2017-07-04 16:54:33,415 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=?) as c on s.courseid=c.courseid left join teacher as t on s.teacherid=t.id 
+2017-07-04 16:54:33,416 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] ==> Parameters: ABC-102(String)
+2017-07-04 16:54:33,418 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] <==      Total: 1
+2017-07-04 16:54:47,601 http-nio-8070-exec-3 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] ==>  Preparing: SELECT count(*) FROM course 
+2017-07-04 16:54:47,602 http-nio-8070-exec-3 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] ==> Parameters: 
+2017-07-04 16:54:47,602 http-nio-8070-exec-3 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] <==      Total: 1
+2017-07-04 16:54:47,605 http-nio-8070-exec-3 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] ==>  Preparing: SELECT count(0) FROM course 
+2017-07-04 16:54:47,605 http-nio-8070-exec-3 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] ==> Parameters: 
+2017-07-04 16:54:47,606 http-nio-8070-exec-3 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] <==      Total: 1
+2017-07-04 16:54:47,607 http-nio-8070-exec-3 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] ==>  Preparing: select * from course ORDER BY courseid asc LIMIT 3,3 
+2017-07-04 16:54:47,607 http-nio-8070-exec-3 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] ==> Parameters: 
+2017-07-04 16:54:47,608 http-nio-8070-exec-3 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] <==      Total: 3
+2017-07-04 16:55:09,628 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.addSection] ==>  Preparing: INSERT INTO section(sectionid,courseid,teacherid,dayofweek,timeofday,room,seatingcapacity) VALUES(?,?,?,?, ?,?,?) 
+2017-07-04 16:55:09,629 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.addSection] ==> Parameters: 1(Integer), ABC-106(String), null, M(String), 14：00-16:00(String), B2B201(String), 30(Integer)
+2017-07-04 16:55:09,757 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.addSection] <==    Updates: 1
+2017-07-04 16:55:09,758 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.addSchedule] ==>  Preparing: INSERT INTO scheduleofclasses(courseid,sectionid,semester) VALUES(?,?,?) 
+2017-07-04 16:55:09,758 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.addSchedule] ==> Parameters: ABC-106(String), 1(Integer), 学期(String)
+2017-07-04 16:55:09,840 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.addSchedule] <==    Updates: 1
+2017-07-04 16:55:09,855 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] ==>  Preparing: SELECT count(*) FROM course 
+2017-07-04 16:55:09,856 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] ==> Parameters: 
+2017-07-04 16:55:09,858 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] <==      Total: 1
+2017-07-04 16:55:09,859 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] ==>  Preparing: SELECT count(0) FROM course 
+2017-07-04 16:55:09,860 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] ==> Parameters: 
+2017-07-04 16:55:09,861 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] <==      Total: 1
+2017-07-04 16:55:09,861 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] ==>  Preparing: select * from course ORDER BY courseid asc LIMIT 3,3 
+2017-07-04 16:55:09,862 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] ==> Parameters: 
+2017-07-04 16:55:09,863 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] <==      Total: 3
+2017-07-04 16:55:12,084 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=?) as c on s.courseid=c.courseid left join teacher as t on s.teacherid=t.id 
+2017-07-04 16:55:12,085 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] ==> Parameters: ABC-106(String)
+2017-07-04 16:55:12,086 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] <==      Total: 1
+2017-07-04 16:55:26,942 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] ==>  Preparing: SELECT count(*) FROM course 
+2017-07-04 16:55:26,943 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] ==> Parameters: 
+2017-07-04 16:55:26,944 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] <==      Total: 1
+2017-07-04 16:55:26,947 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] ==>  Preparing: SELECT count(0) FROM course 
+2017-07-04 16:55:26,948 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] ==> Parameters: 
+2017-07-04 16:55:26,949 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] <==      Total: 1
+2017-07-04 16:55:26,950 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] ==>  Preparing: select * from course ORDER BY courseid asc LIMIT 3 
+2017-07-04 16:55:26,951 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] ==> Parameters: 
+2017-07-04 16:55:26,952 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] <==      Total: 3
+2017-07-04 16:55:28,032 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=?) as c on s.courseid=c.courseid left join teacher as t on s.teacherid=t.id 
+2017-07-04 16:55:28,032 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] ==> Parameters: ABC-101(String)
+2017-07-04 16:55:28,034 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] <==      Total: 2
+2017-07-04 16:55:31,337 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=?) as c on s.courseid=c.courseid left join teacher as t on s.teacherid=t.id 
+2017-07-04 16:55:31,338 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] ==> Parameters: ABC-102(String)
+2017-07-04 16:55:31,339 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] <==      Total: 1
+2017-07-04 16:55:33,660 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=?) as c on s.courseid=c.courseid left join teacher as t on s.teacherid=t.id 
+2017-07-04 16:55:33,661 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] ==> Parameters: ABC-103(String)
+2017-07-04 16:55:33,662 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] <==      Total: 0
+2017-07-04 16:55:35,153 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] ==>  Preparing: SELECT count(*) FROM course 
+2017-07-04 16:55:35,153 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] ==> Parameters: 
+2017-07-04 16:55:35,154 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] <==      Total: 1
+2017-07-04 16:55:35,155 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] ==>  Preparing: SELECT count(0) FROM course 
+2017-07-04 16:55:35,156 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] ==> Parameters: 
+2017-07-04 16:55:35,157 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] <==      Total: 1
+2017-07-04 16:55:35,157 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] ==>  Preparing: select * from course ORDER BY courseid asc LIMIT 3,3 
+2017-07-04 16:55:35,158 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] ==> Parameters: 
+2017-07-04 16:55:35,159 http-nio-8070-exec-10 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] <==      Total: 3
+2017-07-04 16:55:36,497 http-nio-8070-exec-3 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=?) as c on s.courseid=c.courseid left join teacher as t on s.teacherid=t.id 
+2017-07-04 16:55:36,499 http-nio-8070-exec-3 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] ==> Parameters: ABC-106(String)
+2017-07-04 16:55:36,501 http-nio-8070-exec-3 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] <==      Total: 1
+2017-07-04 16:55:51,033 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId_SectionId] ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=? ) as c on s.courseid=c.courseid and s.sectionid=? left join teacher as t on s.teacherid=t.id 
+2017-07-04 16:55:51,033 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId_SectionId] ==> Parameters: ABC-106(String), 1(String)
+2017-07-04 16:55:51,035 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId_SectionId] <==      Total: 1
+2017-07-04 16:55:51,036 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findPreCourse] ==>  Preparing: SELECT * FROM course AS c INNER JOIN precourse AS pc ON c.courseid=pc.precourseid AND pc.courseid=? 
+2017-07-04 16:55:51,037 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findPreCourse] ==> Parameters: ABC-106(String)
+2017-07-04 16:55:51,038 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findPreCourse] <==      Total: 2
+2017-07-04 16:55:51,038 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentBySectionId] ==>  Preparing: SELECT s.id,s.name,s.major,tn.grade FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid=? AND tn.courseid=? AND s.id=tn.studentid 
+2017-07-04 16:55:51,039 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentBySectionId] ==> Parameters: 1(String), ABC-106(String)
+2017-07-04 16:55:51,039 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentBySectionId] <==      Total: 0
+2017-07-04 16:55:51,040 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.appointInstructor] ==>  Preparing: UPDATE section SET teacherid=? WHERE sectionid=? and courseid=? 
+2017-07-04 16:55:51,041 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.appointInstructor] ==> Parameters: 111111(String), 1(String), ABC-106(String)
+2017-07-04 16:55:51,144 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.appointInstructor] <==    Updates: 1
+2017-07-04 16:55:57,712 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] ==>  Preparing: SELECT count(*) FROM course 
+2017-07-04 16:55:57,714 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] ==> Parameters: 
+2017-07-04 16:55:57,716 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] <==      Total: 1
+2017-07-04 16:55:57,718 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] ==>  Preparing: SELECT count(0) FROM course 
+2017-07-04 16:55:57,718 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] ==> Parameters: 
+2017-07-04 16:55:57,719 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] <==      Total: 1
+2017-07-04 16:55:57,719 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] ==>  Preparing: select * from course ORDER BY courseid asc LIMIT 3,3 
+2017-07-04 16:55:57,720 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] ==> Parameters: 
+2017-07-04 16:55:57,721 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] <==      Total: 3
+2017-07-04 16:55:58,952 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] ==>  Preparing: SELECT * FROM section as s inner join (select * from Course where courseid=?) as c on s.courseid=c.courseid left join teacher as t on s.teacherid=t.id 
+2017-07-04 16:55:58,952 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] ==> Parameters: ABC-106(String)
+2017-07-04 16:55:58,954 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.SectionDao.findSectionByCourseId] <==      Total: 1
+2017-07-04 16:56:06,953 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleBySemester] ==>  Preparing: SELECT * FROM section as s inner join course as c inner join (SELECT * FROM scheduleofclasses WHERE semester = ?) as soc on s.courseid=c.courseid and s.teacherid=? and s.sectionid = soc.sectionid and c.courseid=soc.courseid left join teacher as t on s.teacherid=t.id 
+2017-07-04 16:56:06,954 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleBySemester] ==> Parameters: 学期(String), 111111(String)
+2017-07-04 16:56:06,957 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleBySemester] <==      Total: 1
+2017-07-04 16:56:08,936 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleBySemester] ==>  Preparing: SELECT * FROM section as s inner join course as c inner join (SELECT * FROM scheduleofclasses WHERE semester = ?) as soc on s.courseid=c.courseid and s.teacherid=? and s.sectionid = soc.sectionid and c.courseid=soc.courseid left join teacher as t on s.teacherid=t.id 
+2017-07-04 16:56:08,937 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleBySemester] ==> Parameters: 1(String), 111111(String)
+2017-07-04 16:56:08,939 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleBySemester] <==      Total: 1
+2017-07-04 16:56:18,988 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleBySemester] ==>  Preparing: SELECT * FROM section as s inner join course as c inner join (SELECT * FROM scheduleofclasses WHERE semester = ?) as soc on s.courseid=c.courseid and s.teacherid=? and s.sectionid = soc.sectionid and c.courseid=soc.courseid left join teacher as t on s.teacherid=t.id 
+2017-07-04 16:56:18,989 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleBySemester] ==> Parameters: 1(String), 111111(String)
+2017-07-04 16:56:18,990 http-nio-8070-exec-6 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleBySemester] <==      Total: 1
+2017-07-04 16:56:20,791 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleBySemester] ==>  Preparing: SELECT * FROM section as s inner join course as c inner join (SELECT * FROM scheduleofclasses WHERE semester = ?) as soc on s.courseid=c.courseid and s.teacherid=? and s.sectionid = soc.sectionid and c.courseid=soc.courseid left join teacher as t on s.teacherid=t.id 
+2017-07-04 16:56:20,792 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleBySemester] ==> Parameters: 2(String), 111111(String)
+2017-07-04 16:56:20,794 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleBySemester] <==      Total: 1
+2017-07-04 16:56:23,894 http-nio-8070-exec-3 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleBySemester] ==>  Preparing: SELECT * FROM section as s inner join course as c inner join (SELECT * FROM scheduleofclasses WHERE semester = ?) as soc on s.courseid=c.courseid and s.teacherid=? and s.sectionid = soc.sectionid and c.courseid=soc.courseid left join teacher as t on s.teacherid=t.id 
+2017-07-04 16:56:23,895 http-nio-8070-exec-3 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleBySemester] ==> Parameters: 学期(String), 111111(String)
+2017-07-04 16:56:23,897 http-nio-8070-exec-3 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleBySemester] <==      Total: 1
+2017-07-04 16:56:24,920 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.countStudentForGrade] ==>  Preparing: SELECT count(*) FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid=? AND tn.courseid=? AND s.id=tn.studentid AND tn.semester=? AND (tn.grade is null OR tn.grade='') 
+2017-07-04 16:56:24,921 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.countStudentForGrade] ==> Parameters: 1(String), ABC-106(String), 学期(String)
+2017-07-04 16:56:24,922 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.countStudentForGrade] <==      Total: 1
+2017-07-04 16:56:24,929 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentForGrade_COUNT] ==>  Preparing: SELECT count(0) FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid = ? AND tn.courseid = ? AND s.id = tn.studentid AND tn.semester = ? AND (tn.grade IS NULL OR tn.grade = '') 
+2017-07-04 16:56:24,929 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentForGrade_COUNT] ==> Parameters: 1(String), ABC-106(String), 学期(String)
+2017-07-04 16:56:24,931 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentForGrade_COUNT] <==      Total: 1
+2017-07-04 16:56:28,825 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleBySemester] ==>  Preparing: SELECT * FROM section as s inner join course as c inner join (SELECT * FROM scheduleofclasses WHERE semester = ?) as soc on s.courseid=c.courseid and s.teacherid=? and s.sectionid = soc.sectionid and c.courseid=soc.courseid left join teacher as t on s.teacherid=t.id 
+2017-07-04 16:56:28,826 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleBySemester] ==> Parameters: 1(String), 111111(String)
+2017-07-04 16:56:28,828 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleBySemester] <==      Total: 1
+2017-07-04 16:56:30,064 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.countStudentForGrade] ==>  Preparing: SELECT count(*) FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid=? AND tn.courseid=? AND s.id=tn.studentid AND tn.semester=? AND (tn.grade is null OR tn.grade='') 
+2017-07-04 16:56:30,065 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.countStudentForGrade] ==> Parameters: 1(String), ABC-101(String), 1(String)
+2017-07-04 16:56:30,066 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.countStudentForGrade] <==      Total: 1
+2017-07-04 16:56:30,068 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentForGrade_COUNT] ==>  Preparing: SELECT count(0) FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid = ? AND tn.courseid = ? AND s.id = tn.studentid AND tn.semester = ? AND (tn.grade IS NULL OR tn.grade = '') 
+2017-07-04 16:56:30,069 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentForGrade_COUNT] ==> Parameters: 1(String), ABC-101(String), 1(String)
+2017-07-04 16:56:30,070 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentForGrade_COUNT] <==      Total: 1
+2017-07-04 16:56:32,861 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.countStudentForGrade] ==>  Preparing: SELECT count(*) FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid=? AND tn.courseid=? AND s.id=tn.studentid AND tn.semester=? AND (tn.grade is null OR tn.grade='') 
+2017-07-04 16:56:32,862 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.countStudentForGrade] ==> Parameters: 1(String), ABC-101(String), 1(String)
+2017-07-04 16:56:32,863 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.countStudentForGrade] <==      Total: 1
+2017-07-04 16:56:32,865 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentForGrade_COUNT] ==>  Preparing: SELECT count(0) FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid = ? AND tn.courseid = ? AND s.id = tn.studentid AND tn.semester = ? AND (tn.grade IS NULL OR tn.grade = '') 
+2017-07-04 16:56:32,866 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentForGrade_COUNT] ==> Parameters: 1(String), ABC-101(String), 1(String)
+2017-07-04 16:56:32,867 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentForGrade_COUNT] <==      Total: 1
+2017-07-04 16:56:54,093 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.countStudentForGrade] ==>  Preparing: SELECT count(*) FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid=? AND tn.courseid=? AND s.id=tn.studentid AND tn.semester=? AND (tn.grade is null OR tn.grade='') 
+2017-07-04 16:56:54,093 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.countStudentForGrade] ==> Parameters: 1(String), ABC-101(String), 1(String)
+2017-07-04 16:56:54,095 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.countStudentForGrade] <==      Total: 1
+2017-07-04 16:56:54,097 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentForGrade_COUNT] ==>  Preparing: SELECT count(0) FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid = ? AND tn.courseid = ? AND s.id = tn.studentid AND tn.semester = ? AND (tn.grade IS NULL OR tn.grade = '') 
+2017-07-04 16:56:54,098 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentForGrade_COUNT] ==> Parameters: 1(String), ABC-101(String), 1(String)
+2017-07-04 16:56:54,099 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentForGrade_COUNT] <==      Total: 1
+2017-07-04 16:56:56,812 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.countStudentForGrade] ==>  Preparing: SELECT count(*) FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid=? AND tn.courseid=? AND s.id=tn.studentid AND tn.semester=? AND (tn.grade is null OR tn.grade='') 
+2017-07-04 16:56:56,812 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.countStudentForGrade] ==> Parameters: 1(String), ABC-101(String), 1(String)
+2017-07-04 16:56:56,814 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.countStudentForGrade] <==      Total: 1
+2017-07-04 16:56:56,816 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentForGrade_COUNT] ==>  Preparing: SELECT count(0) FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid = ? AND tn.courseid = ? AND s.id = tn.studentid AND tn.semester = ? AND (tn.grade IS NULL OR tn.grade = '') 
+2017-07-04 16:56:56,817 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentForGrade_COUNT] ==> Parameters: 1(String), ABC-101(String), 1(String)
+2017-07-04 16:56:56,818 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentForGrade_COUNT] <==      Total: 1
+2017-07-04 16:57:07,345 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleBySemester] ==>  Preparing: SELECT * FROM section as s inner join course as c inner join (SELECT * FROM scheduleofclasses WHERE semester = ?) as soc on s.courseid=c.courseid and s.teacherid=? and s.sectionid = soc.sectionid and c.courseid=soc.courseid left join teacher as t on s.teacherid=t.id 
+2017-07-04 16:57:07,347 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleBySemester] ==> Parameters: 学期(String), 111111(String)
+2017-07-04 16:57:07,349 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleBySemester] <==      Total: 1
+2017-07-04 16:57:08,888 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleBySemester] ==>  Preparing: SELECT * FROM section as s inner join course as c inner join (SELECT * FROM scheduleofclasses WHERE semester = ?) as soc on s.courseid=c.courseid and s.teacherid=? and s.sectionid = soc.sectionid and c.courseid=soc.courseid left join teacher as t on s.teacherid=t.id 
+2017-07-04 16:57:08,889 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleBySemester] ==> Parameters: 1(String), 111111(String)
+2017-07-04 16:57:08,891 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleBySemester] <==      Total: 1
+2017-07-04 16:57:10,920 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.countStudentForGrade] ==>  Preparing: SELECT count(*) FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid=? AND tn.courseid=? AND s.id=tn.studentid AND tn.semester=? AND (tn.grade is null OR tn.grade='') 
+2017-07-04 16:57:10,921 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.countStudentForGrade] ==> Parameters: 1(String), ABC-101(String), 1(String)
+2017-07-04 16:57:10,922 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.countStudentForGrade] <==      Total: 1
+2017-07-04 16:57:10,924 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentForGrade_COUNT] ==>  Preparing: SELECT count(0) FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid = ? AND tn.courseid = ? AND s.id = tn.studentid AND tn.semester = ? AND (tn.grade IS NULL OR tn.grade = '') 
+2017-07-04 16:57:10,925 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentForGrade_COUNT] ==> Parameters: 1(String), ABC-101(String), 1(String)
+2017-07-04 16:57:10,926 http-nio-8070-exec-7 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentForGrade_COUNT] <==      Total: 1
+2017-07-04 16:57:34,493 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.countStudentForGrade] ==>  Preparing: SELECT count(*) FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid=? AND tn.courseid=? AND s.id=tn.studentid AND tn.semester=? AND (tn.grade is null OR tn.grade='') 
+2017-07-04 16:57:34,493 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.countStudentForGrade] ==> Parameters: 1(String), ABC-101(String), 1(String)
+2017-07-04 16:57:34,494 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.countStudentForGrade] <==      Total: 1
+2017-07-04 16:57:34,497 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentForGrade_COUNT] ==>  Preparing: SELECT count(0) FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid = ? AND tn.courseid = ? AND s.id = tn.studentid AND tn.semester = ? AND (tn.grade IS NULL OR tn.grade = '') 
+2017-07-04 16:57:34,497 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentForGrade_COUNT] ==> Parameters: 1(String), ABC-101(String), 1(String)
+2017-07-04 16:57:34,498 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentForGrade_COUNT] <==      Total: 1
+2017-07-04 16:57:34,499 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentForGrade] ==>  Preparing: SELECT s.id,s.name,s.major,tn.grade FROM student AS s INNER JOIN transcriptentry AS tn ON tn.sectionid=? AND tn.courseid=? AND s.id=tn.studentid AND tn.semester=? AND (tn.grade is null OR tn.grade='') LIMIT 10 
+2017-07-04 16:57:34,500 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentForGrade] ==> Parameters: 1(String), ABC-101(String), 1(String)
+2017-07-04 16:57:34,502 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentForGrade] <==      Total: 1
+2017-07-04 16:57:56,125 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.appointGrade] ==>  Preparing: UPDATE transcriptentry SET grade=? WHERE studentid=? AND courseid=? AND sectionid=? 
+2017-07-04 16:57:56,127 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.appointGrade] ==> Parameters: A(String), 09143627(String), ABC-101(String), 1(String)
+2017-07-04 16:57:56,261 http-nio-8070-exec-1 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.appointGrade] <==    Updates: 1
+2017-07-04 16:58:03,544 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] ==>  Preparing: SELECT count(*) FROM course 
+2017-07-04 16:58:03,544 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] ==> Parameters: 
+2017-07-04 16:58:03,545 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] <==      Total: 1
+2017-07-04 16:58:03,547 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] ==>  Preparing: SELECT count(0) FROM course 
+2017-07-04 16:58:03,548 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] ==> Parameters: 
+2017-07-04 16:58:03,549 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] <==      Total: 1
+2017-07-04 16:58:03,549 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] ==>  Preparing: select * from course ORDER BY courseid asc LIMIT 10 
+2017-07-04 16:58:03,550 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] ==> Parameters: 
+2017-07-04 16:58:03,553 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] <==      Total: 6
+2017-07-04 16:58:23,826 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.appointPlanOfStudy] ==>  Preparing: INSERT INTO planofstudyentry(courseid,major) VALUES (?,?) , (?,?) , (?,?) 
+2017-07-04 16:58:23,826 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.appointPlanOfStudy] ==> Parameters: ABC-101(String), 市场营销(String), ABC-102(String), 市场营销(String), ABC-103(String), 市场营销(String)
+2017-07-04 16:58:23,937 http-nio-8070-exec-4 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.appointPlanOfStudy] <==    Updates: 3
+2017-07-04 16:58:29,049 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] ==>  Preparing: SELECT count(*) FROM course 
+2017-07-04 16:58:29,050 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] ==> Parameters: 
+2017-07-04 16:58:29,051 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.countAllCourse] <==      Total: 1
+2017-07-04 16:58:29,053 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] ==>  Preparing: SELECT count(0) FROM course 
+2017-07-04 16:58:29,054 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] ==> Parameters: 
+2017-07-04 16:58:29,054 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll_COUNT] <==      Total: 1
+2017-07-04 16:58:29,055 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] ==>  Preparing: select * from course ORDER BY courseid asc LIMIT 10 
+2017-07-04 16:58:29,056 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] ==> Parameters: 
+2017-07-04 16:58:29,057 http-nio-8070-exec-2 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findAll] <==      Total: 6
+2017-07-04 16:59:46,295 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==>  Preparing: select * from student where id=? 
+2017-07-04 16:59:46,296 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==> Parameters: 09143627(String)
+2017-07-04 16:59:46,297 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] <==      Total: 1
+2017-07-04 16:59:46,298 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==>  Preparing: select * from student where id=? 
+2017-07-04 16:59:46,299 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==> Parameters: 09143627(String)
+2017-07-04 16:59:46,299 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] <==      Total: 1
+2017-07-04 16:59:46,301 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==>  Preparing: select * from student where id=? 
+2017-07-04 16:59:46,302 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] ==> Parameters: 09143627(String)
+2017-07-04 16:59:46,303 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.StudentDao.findStudentById] <==      Total: 1
+2017-07-04 16:59:46,304 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.TranscriptDao.findTranscriptForStudent] ==>  Preparing: SELECT * FROM transcriptentry AS te INNER JOIN section AS s ON te.studentid=? AND s.sectionid=te.sectionid AND s.courseid=te.courseid INNER JOIN course AS c ON te.courseid=c.courseid LEFT JOIN teacher AS t ON t.id=s.teacherid 
+2017-07-04 16:59:46,304 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.TranscriptDao.findTranscriptForStudent] ==> Parameters: 09143627(String)
+2017-07-04 16:59:46,307 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.TranscriptDao.findTranscriptForStudent] <==      Total: 2
+2017-07-04 16:59:46,308 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findPlanOfStudy] ==>  Preparing: SELECT * FROM course AS c INNER JOIN planofstudyentry AS ps ON c.courseid=ps.courseid AND ps.major=? 
+2017-07-04 16:59:46,309 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findPlanOfStudy] ==> Parameters: 电子商务(String)
+2017-07-04 16:59:46,310 http-nio-8070-exec-5 DEBUG [com.github.lpfcumt.SRS.dao.CourseDao.findPlanOfStudy] <==      Total: 4
+2017-07-04 16:59:48,294 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleForStudent] ==>  Preparing: SELECT * FROM section as s inner join course as c ON s.courseid=c.courseid inner join transcriptentry as te ON s.courseid=te.courseid AND s.sectionid=te.sectionid AND te.semester=? AND te.studentid=? left join teacher as th on th.id=s.teacherid 
+2017-07-04 16:59:48,295 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleForStudent] ==> Parameters: 学期(String), 09143627(String)
+2017-07-04 16:59:48,296 http-nio-8070-exec-9 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleForStudent] <==      Total: 0
+2017-07-04 16:59:50,481 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleForStudent] ==>  Preparing: SELECT * FROM section as s inner join course as c ON s.courseid=c.courseid inner join transcriptentry as te ON s.courseid=te.courseid AND s.sectionid=te.sectionid AND te.semester=? AND te.studentid=? left join teacher as th on th.id=s.teacherid 
+2017-07-04 16:59:50,482 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleForStudent] ==> Parameters: 1(String), 09143627(String)
+2017-07-04 16:59:50,484 http-nio-8070-exec-8 DEBUG [com.github.lpfcumt.SRS.dao.ScheduleDao.findScheduleForStudent] <==      Total: 2

@@ -19,7 +19,7 @@ import com.github.pagehelper.PageHelper;
 
 @Service("courseService")
 public class CourseServiceImpl implements CourseService{
-	@Autowired// 把'@Autowired'改为'@Resource(name="courseMockDao")'，即可切换成sqlite数据源
+	@Autowired// 把'@Autowired'改为'@Resource(name="courseMockDao")'，即可切换成mock数据源
 	protected CourseDao courseDao;
 	
 	HashMap<String, Course> mapCourse = new HashMap<String ,Course>();

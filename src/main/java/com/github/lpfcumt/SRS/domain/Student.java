@@ -3,7 +3,7 @@ package com.github.lpfcumt.SRS.domain;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import com.github.lpfcumt.SRS.pojo.poStudent;
+
 
 /**
  * @author 林鹏飞
