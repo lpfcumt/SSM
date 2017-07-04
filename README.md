@@ -22,6 +22,8 @@
   ![](screenshot/code/uml.png)
 ## 数据库关系图
   ![](screenshot/code/er.png)
+## 顺序图
+  ![](screenshot/code/time.png)
 ## 前端功能截图
 ### 1、老师部分
 #### 课程部分
